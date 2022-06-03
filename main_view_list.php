@@ -16,7 +16,8 @@
                     { 
                         ?>
                         <?php 
-                        
+                           //$tmp =sql_fetch_array($result);
+                            
                             for($i=0; $row=sql_fetch_array($result); $i++){                 
                         ?>
                         <?php 
@@ -64,6 +65,10 @@
 
                                 $sql_member = " SELECT * FROM g5_member WHERE mb_id = '".$row['mb_id']."' ";
                                 $row_member = sql_fetch($sql_member);
+
+                                // $sql_member1 = " SELECT * FROM g5_member WHERE mb_id = '".$tmp['mb_id']."' ";
+                                // $row_member1 = sql_fetch($sql_member1);
+                                
                             ?>
                             <li class="v_slide <?php if(count($matches[1])>1) echo "lot_ico" ?>">
                                 <div class="bd_lst_profile">
@@ -72,7 +77,8 @@
                                         <form action="<?=G5_SHOP_URL?>/feed.php" method="post">
                                             <input type="hidden" name="user_name" value="<?=$row_member['mb_nick']?>">
                                             <input type="hidden" name="user_id" value="<?=$row_member['mb_id']?>">
-                                            <button type="submit" onclick="javascript: form.action='<?=G5_SHOP_URL?>/feed.php';"><?php echo get_member_profile_img($row_member['mb_id']); ?></button>
+                                            <button type="submit" onclick="javascript: form.action='<?=G5_SHOP_URL?>/feed.php';">
+                                            <?php echo get_member_profile_img($row_member['mb_id']); ?></button>
                                         </form>
                                         <!-- <a class="pc_pro_btn js_pro_btn_user"></a> -->
                                     </div>
@@ -89,7 +95,7 @@
                                 </div>
                                 <div class="bg">
                                     <!-- 이미지 링크 클릭 기능 -->
-                                    <a href="/bbs/board.php?bo_table=0101&wr_id=<?=$row['wr_id']?>" class="wrap">
+                                    <a href="#write<?=$row['wr_id']?>" class="wrap">
 
                                         <div id="show">
                                             <div class="img">
@@ -105,27 +111,31 @@
                                                     // 이미지 display
                                                     // run_replace : 변경 내용 적용 함수
                                                     echo run_replace('thumb_image_tag', $img_content, $thumb);
-                                                    
+                                            
+                                                    //echo "llll".$row['wr_id']."llll";
                                                 ?>
                                             </div>
                                         </div>
                                     </a>
-                                        
-                                        <!-- 이미지 모달창 띄우기 -->
-                                        <div class="background">
+                                                    
+                              
+                                        <!-- 썸내일 클릭 시 모달창 띄우기 -->
+                                        <div id="write<?=$row['wr_id']?>" class="background">
                                             <div class="window">
                                                 <div class="popup">
-                                                    <div class="modal_size">
-                                                        <button id="close">팝업닫기</button>
-                                                        <?php
-                                                            
-                                                                echo $write['wr_content'];
-                                                                echo $write['wr_3'];
-                                                                echo $write['wr_name'];
-                                                                                                       
-                                                        ?>
-                                                        
-                                                    </div>
+                                                    <button id="close">팝업닫기</button>
+                                                            <div class="modal_size1">
+                                                                <?php                                                                                           
+                                                                    echo $row['wr_content'];
+                                                                ?> 
+                                                            </div>   
+
+                                                            <div class="modal_size2">
+                                                                <?php         
+                                                                    echo $row['wr_3'];                                                                                                                 
+                                                                ?>
+                                                            </div>
+                                                    
                                                 </div>                                             
                                             </div>
                                         </div>
@@ -252,46 +262,23 @@
 
                     // 밑의 소스들은 이미지 리스트 클릭 시, 모달창 띄우는 기능임
                     const modalopen = document.querySelectorAll(".wrap");
-                    const modal = document.querySelector(".background");
-                    const modalclose = document.querySelector("close");
+                    //const modal = document.querySelector(".background");
+                    const modalclose = document.querySelectorAll("#close");
+                    let wr_id;
 
                     for(let i = 0; i <modalopen.length; ++i) {
                         modalopen[i].addEventListener("click", show);
+                        modalclose[i].addEventListener("click", close);
                     }
 
-                    function show (event) {
-                        event.preventDefault();
-                        document.querySelector(".background").className = "background show";
-                        }
+                    function show() {
+                        wr_id = this.getAttribute('href');
+                        document.querySelector(wr_id).className = "background show";
+                    }
 
-                    function close(event) {
-                        event.preventDefault();
-                        document.querySelector(".background").className = "background";
+                    function close() {
+                        document.querySelector(wr_id).className = "background";
                         
-                        }
-
-                    //document.querySelector("#show").addEventListener("click", show);
-                    document.querySelector("#close").addEventListener("click", close);
-
-                    // const modalopen = document.querySelectorAll(".wrap");
-                    // const modal = document.querySelector(".background");
-                    // const modalclose = document.querySelector("close");
-
-                    // for(let i=0; i < modalopen.length; i++){
-                    //     modalopen[i].addEventListener("click", openmodal);
-                    // }
-
-
-                    // function openmodal(event){
-                    // event.preventDefault();
-                    // modal.classList.remove("inactive");
-                    // modalclose.addEventListener("click", closemodal);
-                    // };
-
-
-
-                    // function closemodal(event){
-                    // event.preventDefault();
-                    // modal.classList.add("inactive");
-                    // }
+                    }
+               
          </script>
