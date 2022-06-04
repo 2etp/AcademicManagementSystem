@@ -1,5 +1,3 @@
-<!-- <link rel="stylesheet" href="main_view_list.css"> -->
-
 
 <div class="lst db">
             <ul>
@@ -114,31 +112,69 @@
                                             
                                                     //echo "llll".$row['wr_id']."llll";
                                                 ?>
-                                            </div>
-                                        </div>
+                                            </div> <!-- img -->
+                                        </div> <!-- show -->
                                     </a>
-                                                    
+                                </div> <!-- bg -->                   
                               
                                         <!-- 썸내일 클릭 시 모달창 띄우기 -->
                                         <div id="write<?=$row['wr_id']?>" class="background">
                                             <div class="window">
                                                 <div class="popup">
-                                                    <button id="close">팝업닫기</button>
+                                                    <button id="close" style="float: right;">팝업닫기</button>
                                                             <div class="modal_size1">
                                                                 <?php                                                                                           
                                                                     echo $row['wr_content'];
                                                                 ?> 
-                                                            </div>   
+                                                            </div> <!-- modal_size1 -->   
 
                                                             <div class="modal_size2">
-                                                                <?php         
-                                                                    echo $row['wr_3'];                                                                                                                 
-                                                                ?>
-                                                            </div>
+                                        
+        
+                                                                <div class="bd_lst_profile">
+                                                                    <div class="img">
+                                                                        <!-- 와꾸 이미지 불러오기 -->
+                                                                        <form action="<?=G5_SHOP_URL?>/feed.php" method="post">
+                                                                            <input type="hidden" name="user_name" value="<?=$row_member['mb_nick']?>">
+                                                                            <input type="hidden" name="user_id" value="<?=$row_member['mb_id']?>">
+                                                                            <button type="submit" onclick="javascript: form.action='<?=G5_SHOP_URL?>/feed.php';">
+                                                                            <?php echo get_member_profile_img($row_member['mb_id']); ?></button>
+                                                                        </form>
+                                                                        <!-- <a class="pc_pro_btn js_pro_btn_user"></a> -->
+                                                                    </div>  <!-- img -->
+
+                                                                    <div class="txt_box">
+                                                                        <div class="name_line">
+                                                                            
+                                                                            <a href="/bbs/board.php?bo_table=0101&wr_id=<?=$row['wr_id']?>" class="t1 tov"><?php echo $row_member['mb_nick'] ?></a>
+                                                                            <!-- 팔로우 -->
+                                                                            <button type="button" class="js_test lst_f" onclick="go_flow('<?=$row['mb_id']?>',<?=$i?>);" id="js_test_<?=$i?>" name="js_test_<?=$i?>" style="<?if(!$check['fol_id']){?>color:#ff4a4a<?}else{?><?}?>"><?if(!$check['fol_id']){?>팔로우<?}else{?>팔로잉<?}?></button>
+                                                                            <!-- act클래스 추가 -->
+                                                                        </div>
+                                                                        <p class="t2 tov"><?=$row_member['mb_profile']?></p>
+                                                                    </div>
+
+                                                                </div>  <!-- bd_lst_profile -->
+
+                                                                <?php echo $row['wr_3']; ?>
+
+                                    <?php include('C:/AutoSet10/public_html/theme/basic/skin/board/view_gall/view_comment.skin.php');
+                                    
+                                        
+                                        echo $comment;
+                                        
+                                     ?>
+                                                                            
+        
+                                 
+                                
+
+                                                            </div> <!-- modal_size2 -->
                                                     
-                                                </div>                                             
-                                            </div>
-                                        </div>
+                                                </div>  <!-- popup -->                                         
+                                            </div> <!-- window -->
+                                        </div> <!-- background -->
+                                   
 
                                 <div class="gall_ico_line cb">
                                         <!-- 좋아요 체크 -->
