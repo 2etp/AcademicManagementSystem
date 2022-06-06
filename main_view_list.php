@@ -1,4 +1,7 @@
 
+
+
+
 <div class="lst db">
             <ul>
                 <?php 
@@ -140,7 +143,7 @@
                                                                             <button type="submit" onclick="javascript: form.action='<?=G5_SHOP_URL?>/feed.php';">
                                                                             <?php echo get_member_profile_img($row_member['mb_id']); ?></button>
                                                                         </form>
-                                                                        <!-- <a class="pc_pro_btn js_pro_btn_user"></a> -->
+                                                                       
                                                                     </div>  <!-- img -->
 
                                                                     <div class="txt_box">
