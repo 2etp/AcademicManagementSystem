@@ -1,0 +1,82 @@
+@import url('https://webfontworld.github.io/busan/Busan.css');
+
+
+*{
+  font-family: 'busan', sans-serif;
+}
+
+
+.inactive{
+    display: none;
+  }
+  
+  .modal-signOut-background{
+    position: absolute;
+    top:0; 
+    left: 0; 
+    bottom: 0; 
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 998;
+  }
+  
+  
+  .modal-signOut-container{
+    width: 350px;
+    height: 350px;
+    margin: 150px auto;
+    border-radius: 10px;
+    background-color: #f8f8f8;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+  }
+  
+  .modal-signOut-title{
+    text-align: center;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 16px;
+  }
+  
+  .modal-signOut-input,
+  .modal-signOut-origin{
+    text-align: center;
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  .modal-signOut-msg p{
+    padding: 10px;
+    text-align: center;
+  }
+
+  .modal-signOut-input input{
+    width: 250px;
+    height: 40px;
+  }
+  
+  .modal-signOut-text{
+    text-align: center;
+    margin-top: 30px;
+    width: 100%;
+  }
+
+  
+  .modal-signOut-bnt{
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+  .modal-signOut-send-bnt,
+  .modal-signOut-close{
+    width: 80px;
+    height: 30px;
+  }
+  
+  .modal-signOut-send-bnt{
+    background: black;
+    color: #fff;
+  }

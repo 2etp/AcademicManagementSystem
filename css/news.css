@@ -1,0 +1,77 @@
+/* main */
+
+main {
+  display: flex;
+  justify-content: center;
+  padding-top : 80px;
+  width: 1000px;
+  margin: 0 auto;
+}
+
+main .news {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 50px;
+}
+main .content{
+  flex: 0.9;
+  margin-top: 30px;
+  width: 700px;
+}
+main .title{
+  border-bottom: 1px solid #e5e5e5;
+}
+
+
+main .title ul{
+  display: flex;
+  justify-content: space-evenly;
+  width: 700px;
+  height: 50px;
+  margin: 0 auto;
+  font-size: 22px;
+
+}
+
+main .title a {
+  color: black;
+}
+
+
+main .item {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+
+}
+
+
+main .item .item-text li{
+  font-size: 17px;
+  margin-bottom: 30px;
+  list-style: decimal;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+main .item .item-text li p{
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.newstitle{
+  font-size: 20px;
+}
+
+#moveup{
+  position: fixed;
+  bottom: 30px;
+  right: 50px;
+  width: 50px;
+  height: 50px;
+  font-size: 50px;
+}
+#moveup:hover{
+  cursor: pointer;
+}
+

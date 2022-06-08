@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>잘놀다갑니다</title>
+  <link rel="stylesheet" href="./css/login.css">
+</head>
+<body>
+
+<!-- 헤더 영역 -->
+  <header>
+    <div class="header">
+      <div class="header-logo">
+        <img src="./images/seagull.png">
+        <div>잘놀다갑니다</div>
+      </div>
+    </div>
+  </header>
+
+
+
+
+<!-- 로그인 폼 -->
+  <div class="container">
+    <form id="loginForm">
+      <h4>로그인</h4>
+      <div class="id">
+        <input id="idInput" type="id" placeholder="ID를 입력하세요." maxlength="15" required>
+        <i class="fa-solid fa-user"></i>
+      </div>
+      <div id="password" class="password">
+        <input type="passwordInput" placeholder="비밀번호를 입력하세요."maxlength="20" required>
+        <ion-icon name="lock"></ion-icon>
+      </div>
+      <label class="keepsignedIn">
+        <input type="checkbox">
+        자동로그인
+      </label>
+      <input type="submit" value="Login">
+      <a id="naverIdLogin_loginButton" href="javascript:void(0)">
+        <img src="./images/btnW_로그인.png" alt="">
+      </a>
+      <a id="kakaoBtn" href="javascript:void(0)" onclick="kakaoLogin();">
+        <img src="./images/kakao_login_medium_narrow.png"></img>
+      </a>
+  
+  
+  
+      <div class="lowForm">
+        <label class="SignUp">
+          <a href="#" class="forgot">비밀번호 찾기</a><a href="./signUp.html">회원가입</a>
+        </label>
+      </div>
+    </form>
+  </div>
+
+
+    <!-- 
+      <a href="javascript:void(0)"  onclick="naverLogout(); return false;">
+          <span>네이버 로그아웃</span>
+      </a>
+
+      <a href="javascript:void(0)" onclick="kakaoLogout();">
+        <span>카카오 로그아웃</span>
+      </a>
+    -->
+
+
+  <!-- 스크립트 -->
+  <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+  <script src="https://kit.fontawesome.com/536e37fbfc.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+  <script src="./js/naver-login.js"></script>
+  <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  <script src="./js/kakao-login.js"></script>
+  <script src="./js/login.js"></script>
+</body>
+</html>

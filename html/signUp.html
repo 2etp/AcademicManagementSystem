@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>잘놀다갑니다</title>
+  <link rel="stylesheet" href="./css/signUp.css">
+</head>
+<body>
+
+<!-- 헤더 영역 -->
+  <header>
+    <div class="header">
+      <div class="header-logo">
+        <img src="./images/seagull.png">
+        <div>잘놀다갑니다</div>
+      </div>
+    </div>
+  </header>
+
+
+
+
+<!-- 로그인 폼 -->
+  <div class="container">
+    <form id="loginForm">
+      <h4>회원가입</h4>
+      <div class="id">
+        <input id="idInput" type="id" placeholder="ID를 입력하세요" maxlength="15" required>
+        <i class="fa-solid fa-user"></i>
+      </div>
+      <div id="password" class="password">
+        <input type="passwordInput" placeholder="비밀번호를 입력하세요" maxlength="20" required>
+        <ion-icon name="lock"></ion-icon>
+      </div>
+      <div id="passwordcheck" class="password">
+        <input type="passwordInput" placeholder="비밀번호 한번 더 입력하세요" maxlength="20" required>
+        <ion-icon name="lock"></ion-icon>
+      </div>
+      <div id="phonenumber" class="password">
+        <input type="text" placeholder="휴대폰 번호 입력하세요" maxlength="11" required>
+        <ion-icon name="call"></ion-icon>
+      </div>
+      <div>
+        <input type="submit" value="회원가입">
+        <button class="go_login"><a class="go_login_a" href="./login.html">로그인으로</a></button>
+      </div>
+  </div>
+  </form>
+  </div>
+
+
+
+  <!-- 스크립트 -->
+  <script src="https://kit.fontawesome.com/536e37fbfc.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+</body>
+</html>
