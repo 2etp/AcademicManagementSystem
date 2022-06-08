@@ -36,8 +36,8 @@
         <li><a href="javascript:void(0)">포토</a></li>
       </ul>
       <div class="header-login">
-        <a href="./login.html">로그인</a>
-        <a href="./signUp.html">회원가입</a>
+        <a href="./login.jsp">로그인</a>
+        <a href="./signup.jsp">회원가입</a>
       </div>
     </div>
   </header>
@@ -52,7 +52,7 @@
 	          <a href="#">공지사항</a><i class="fa-solid fa-bullhorn"></i>
 	        </div>
 	        <div class="l-menu">
-	          <a href="./help.html">도움말</a><i class="fa-solid fa-circle-question"></i>
+	          <a href="./help.jsp">도움말</a><i class="fa-solid fa-circle-question"></i>
 	        </div>
 	        <div class="l-menu inquiry">
 	          <a href="">문의하기</a><i class="fa-solid fa-person-circle-question"></i>

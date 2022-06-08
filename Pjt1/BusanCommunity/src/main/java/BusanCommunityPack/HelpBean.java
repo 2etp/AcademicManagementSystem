@@ -5,7 +5,7 @@ public class HelpBean {
 	private int helpSeq;
 	private String helpContent;
 	private String helpAccount;
-	private String helpPolicy;
+	private String helpPrivacyPolicy;
 	private String helpEtc;
 	
 	public int getHelpSeq() {
@@ -26,11 +26,11 @@ public class HelpBean {
 	public void setHelpAccount(String helpAccount) {
 		this.helpAccount = helpAccount;
 	}
-	public String getHelpPolicy() {
-		return helpPolicy;
+	public String getHelpPrivacyPolicy() {
+		return helpPrivacyPolicy;
 	}
-	public void setHelpPolicy(String helpPolicy) {
-		this.helpPolicy = helpPolicy;
+	public void setHelpPrivacyPolicy(String helpPrivacyPolicy) {
+		this.helpPrivacyPolicy = helpPrivacyPolicy;
 	}
 	public String getHelpEtc() {
 		return helpEtc;

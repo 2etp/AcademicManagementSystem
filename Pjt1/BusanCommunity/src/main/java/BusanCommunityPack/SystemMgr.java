@@ -74,7 +74,7 @@ public class SystemMgr {
 		return flag;
 	}
 	
-	// 로그인 시 사용 가능한 기능 불러오기(공지사항, 도움말, 문의하기, 설정)
+	// 로그인 시 공지사항 불러오기
 	public Vector<NoticeBean> selectNotice(int[] seq) {
 		
 		Connection con = null;
@@ -89,8 +89,7 @@ public class SystemMgr {
 			pstmt = con.prepareStatement(sql);
 			
 			for(int i = 0; i < seq.length; ++i) {
-				
-			
+						
 				pstmt.setInt(1, seq[i]);
 				rs = pstmt.executeQuery();
 				
@@ -98,6 +97,46 @@ public class SystemMgr {
 					NoticeBean bean = new NoticeBean();
 					bean.setNoticeSeq(rs.getInt("notice_seq"));
 					bean.setNoticeContent(rs.getString("notice_content"));
+					
+					vlist.add(bean);
+				}
+			}
+					
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		
+		return vlist;
+	}
+	
+	// 로그인 시 도움말 불러오기
+	public Vector<HelpBean> selectHelp(int[] seq) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		Vector<HelpBean> vlist = new Vector<HelpBean>();
+		
+		try {
+			con = pool.getConnection();
+			sql = "select * from tblhelp where help_seq = ?";
+			pstmt = con.prepareStatement(sql);
+			
+			for(int i = 0; i < seq.length; ++i) {
+					
+				pstmt.setInt(1, seq[i]);
+				rs = pstmt.executeQuery();
+				
+				while (rs.next()) {
+					HelpBean bean = new HelpBean();
+					bean.setHelpSeq(rs.getInt("help_seq"));
+					bean.setHelpContent(rs.getString("help_content"));
+					bean.setHelpAccount(rs.getString("help_account"));
+					bean.setHelpPrivacyPolicy(rs.getString("help_policy"));
+					bean.setHelpEtc(rs.getNString("help_etc"));
 					
 					vlist.add(bean);
 				}

@@ -6,7 +6,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	// DB의 tblnotice row 수만큼 배열 할당
-	int[] helpSeq = {1, 2};
+	int[] helpSeq = {1, 2, 3, 4};
 	Vector<HelpBean> vlist = sMgr.selectHelp(helpSeq);
 
 %>
@@ -43,6 +43,8 @@
     </div>
   </header>
 
+
+
   <!-- 메인 -->
   <main>
     <div class="main">
@@ -52,7 +54,7 @@
           <a href="./notice.jsp">공지사항</a><i class="fa-solid fa-bullhorn"></i>
         </div>
         <div class="l-menu">
-          <a href="#">도움말</a><i class="fa-solid fa-circle-question"></i>
+          <a href="./help.jsp">도움말</a><i class="fa-solid fa-circle-question"></i>
         </div>
         <div class="l-menu inquiry">
           <a>문의하기</a><i class="fa-solid fa-person-circle-question"></i>
@@ -62,28 +64,27 @@
         </div>
       </div>
     </div>
-    
-    <%
+
+	<%
 		// 쿼리문 각각의 결괏값을 할당하기 위한 배열 선언(vlist의 사이즈가 4이므로 그에 맞게 크기 4로 지정)
-		String[] helpContent = new String[2];
+		String[] helpEtc = new String[2];
 		
   		for(int i = 0; i < vlist.size(); ++i) {
   			
   			HelpBean bean = vlist.get(i);
   			// bean 객체로부터 가져온 결괏값들을 배열의 각 위치에 할당
-	  		helpContent[i] = bean.getHelpContent();
-
+	  		helpEtc[i] = bean.getHelpEtc();
   		}
   	%>
-
+  	
       <div class="noti-container">
         <div class="noti-main">
           <div class="noti-title">도움말</div>
         </div>
         <div class="noti-sub">
           <ul>
-            <li class="noti-sub-menu"><a href="#">도움말</a></li>
-            <li class="noti-sub-menu"><a href="./account.jsp">계정</a></li>
+            <li class="noti-sub-menu"><a href="./help.jsp">도움말</a></li>
+            <li class="noti-sub-menu"><a href="#">계정</a></li>
             <li class="noti-sub-menu"><a href="./privacyPolicy.jsp">개인정보정책</a></li>
             <li class="noti-sub-menu"><a href="./etc.jsp">기타</a></li>
           </ul>
@@ -100,13 +101,13 @@
           <li class="noti-list">
             <i class="fa-solid fa-caret-right"></i><div class="q">잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
           </li>
-          <div class="a inactive"><%=helpContent[0]%></div>
+          <div class="a inactive"><%=helpEtc[0]%></div>
           <li class="noti-list">
             <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
           </li>
-          <div class="a inactive"><%=helpContent[1]%></div>
+          <div class="a inactive"><%=helpEtc[1]%></div>
           <li class="noti-list">
-            <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>          
+            <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
           </li>
           <div class="a inactive">환영합니다</div>
           <li class="noti-list">
@@ -128,9 +129,8 @@
 
 
 
-
   <!-- 푸터 -->
-  <!-- <footer>
+  <footer>
     <div class="footer">
       <ul class="footer-menu">
         <li><a href="javascript:void(0)">회사소개</a></li>
@@ -147,7 +147,7 @@
         Copyright 2019.Drama & Company All rights reserved
       </div>
     </div>
-  </footer> -->
+  </footer>
 
 
  <!-- 문의모달 -->

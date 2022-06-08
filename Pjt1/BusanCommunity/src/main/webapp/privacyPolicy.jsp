@@ -6,7 +6,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	// DB의 tblnotice row 수만큼 배열 할당
-	int[] helpSeq = {1, 2};
+	int[] helpSeq = {1, 2, 3, 4};
 	Vector<HelpBean> vlist = sMgr.selectHelp(helpSeq);
 
 %>
@@ -20,6 +20,7 @@
   <title>잘놀다갑니다</title>
   <link rel="stylesheet" href="./css/help.css">
   <link rel="stylesheet" href="./css/modal_inquiry.css">
+
 </head>
 
 <body>
@@ -43,6 +44,8 @@
     </div>
   </header>
 
+
+
   <!-- 메인 -->
   <main>
     <div class="main">
@@ -52,7 +55,7 @@
           <a href="./notice.jsp">공지사항</a><i class="fa-solid fa-bullhorn"></i>
         </div>
         <div class="l-menu">
-          <a href="#">도움말</a><i class="fa-solid fa-circle-question"></i>
+          <a href="./help.jsp">도움말</a><i class="fa-solid fa-circle-question"></i>
         </div>
         <div class="l-menu inquiry">
           <a>문의하기</a><i class="fa-solid fa-person-circle-question"></i>
@@ -63,16 +66,15 @@
       </div>
     </div>
     
-    <%
+	<%
 		// 쿼리문 각각의 결괏값을 할당하기 위한 배열 선언(vlist의 사이즈가 4이므로 그에 맞게 크기 4로 지정)
-		String[] helpContent = new String[2];
+		String[] helpPrivacyPolicy = new String[2];
 		
   		for(int i = 0; i < vlist.size(); ++i) {
   			
   			HelpBean bean = vlist.get(i);
   			// bean 객체로부터 가져온 결괏값들을 배열의 각 위치에 할당
-	  		helpContent[i] = bean.getHelpContent();
-
+	  		helpPrivacyPolicy[i] = bean.getHelpPrivacyPolicy();
   		}
   	%>
 
@@ -82,8 +84,8 @@
         </div>
         <div class="noti-sub">
           <ul>
-            <li class="noti-sub-menu"><a href="#">도움말</a></li>
-            <li class="noti-sub-menu"><a href="./account.jsp">계정</a></li>
+            <li class="noti-sub-menu"><a href="./help.jsp">도움말</a></li>
+            <li class="noti-sub-menu"><a href="#">계정</a></li>
             <li class="noti-sub-menu"><a href="./privacyPolicy.jsp">개인정보정책</a></li>
             <li class="noti-sub-menu"><a href="./etc.jsp">기타</a></li>
           </ul>
@@ -100,13 +102,13 @@
           <li class="noti-list">
             <i class="fa-solid fa-caret-right"></i><div class="q">잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
           </li>
-          <div class="a inactive"><%=helpContent[0]%></div>
+          <div class="a inactive"><%=helpPrivacyPolicy[0]%></div>
           <li class="noti-list">
             <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
           </li>
-          <div class="a inactive"><%=helpContent[1]%></div>
+          <div class="a inactive"><%=helpPrivacyPolicy[1]%></div>
           <li class="noti-list">
-            <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>          
+            <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
           </li>
           <div class="a inactive">환영합니다</div>
           <li class="noti-list">
@@ -127,10 +129,37 @@
   </main>
 
 
+  <div class="modal-container inactive">
+    <div class="modal-size">
+      <form action="">
+        <p class="modal-title">문의하기</p>
+        <div class="modal-input">
+          <input type="text" class="modal-email" placeholder="이메일을 입력하세요"></input>
+        </div>
+        <div class="modal-text">
+          <textarea name="" id="" rows="5" maxlength="1000" placeholder="문의 내용을 입력하세요"></textarea>
+        </div>
+        <div class="modal-screen">
+          <p>스크린샷</p>
+          <div class="fileUploadSize">
+            <label class="fileUpload" for="imgFile">
+              <i class="fa-solid fa-folder-open"><input type="file" accept="image/*" for="imgFile"></i>
+              <span style="margin-left: 10px;">파일 추가</span>
+            </label>
+          </div>
+        </div>
+        <div class="modal-bnt">
+          <button>보내기</button>
+          <button class="modal-close">취소</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
 
 
   <!-- 푸터 -->
-  <!-- <footer>
+  <footer>
     <div class="footer">
       <ul class="footer-menu">
         <li><a href="javascript:void(0)">회사소개</a></li>
@@ -147,7 +176,7 @@
         Copyright 2019.Drama & Company All rights reserved
       </div>
     </div>
-  </footer> -->
+  </footer>
 
 
  <!-- 문의모달 -->
