@@ -2,13 +2,13 @@
 <%@ page import="BusanCommunityPack.NoticeBean"%>
 <%@ page import="java.util.*"%>
 <jsp:useBean id="sMgr" class="BusanCommunityPack.SystemMgr"/>
-<jsp:useBean id="noticeBean" class="BusanCommunityPack.NoticeBean"/>
 
 <%
 	request.setCharacterEncoding("UTF-8");
-	int noticeSeq = 1;
-	
+	// DB의 tblnotice row 수만큼 배열 할당
+	int[] noticeSeq = {1, 2, 3, 4};
 	Vector<NoticeBean> vlist = sMgr.selectNotice(noticeSeq);
+
 %>
     
 <!DOCTYPE html>
@@ -45,29 +45,34 @@
   <!-- 메인 -->
   <main>
   
-    <div class="main">
-    <div class="leftSide">
-      <div class="l-sidebar">
-        <div class="l-menu">
-          <a href="#">공지사항</a><i class="fa-solid fa-bullhorn"></i>
-        </div>
-        <div class="l-menu">
-          <a href="./help.html">도움말</a><i class="fa-solid fa-circle-question"></i>
-        </div>
-        <div class="l-menu inquiry">
-          <a href="">문의하기</a><i class="fa-solid fa-person-circle-question"></i>
-        </div>
-        <div class="l-menu">
-          <a href="">설정</a><i class="fa-solid fa-gear"></i>
-        </div>
-      </div>
-    </div>
+	<div class="main">
+	    <div class="leftSide">
+	      <div class="l-sidebar">
+	        <div class="l-menu">
+	          <a href="#">공지사항</a><i class="fa-solid fa-bullhorn"></i>
+	        </div>
+	        <div class="l-menu">
+	          <a href="./help.html">도움말</a><i class="fa-solid fa-circle-question"></i>
+	        </div>
+	        <div class="l-menu inquiry">
+	          <a href="">문의하기</a><i class="fa-solid fa-person-circle-question"></i>
+	        </div>
+	        <div class="l-menu">
+	          <a href="">설정</a><i class="fa-solid fa-gear"></i>
+	        </div>
+	      </div>
+	    </div>
     
 	<%
-		String noticeContent = "";
+		// 쿼리문 각각의 결괏값을 할당하기 위한 배열 선언(vlist의 사이즈가 4이므로 그에 맞게 크기 4로 지정)
+		String[] noticeContent = new String[4];
+		
   		for(int i = 0; i < vlist.size(); ++i) {
+  			
   			NoticeBean bean = vlist.get(i);
-  			noticeContent = bean.getNoticeContent();
+  			// bean 객체로부터 가져온 결괏값들을 배열의 각 위치에 할당
+	  		noticeContent[i] = bean.getNoticeContent();
+
   		}
   	%>
 
@@ -81,23 +86,22 @@
 	        <li class="noti-list">
 	          <div class="q" name="1"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
 	        </li>       
-	        <div class="a inactive"><%=noticeContent%></div>
-	    
+	        <div class="a inactive"><%=noticeContent[0]%></div>
+	            
+	        <li class="noti-list">
+	          <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
+	        </li>
+	        <div class="a inactive"><%=noticeContent[1]%></div>
 	        
 	        <li class="noti-list">
 	          <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
 	        </li>
-	        <div class="a inactive">환영합니다</div>
+	        <div class="a inactive"><%=noticeContent[2]%></div>
 	        
 	        <li class="noti-list">
 	          <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
 	        </li>
-	        <div class="a inactive">환영합니다</div>
-	        
-	        <li class="noti-list">
-	          <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
-	        </li>
-	        <div class="a inactive">환영합니다</div>
+	        <div class="a inactive"><%=noticeContent[3]%></div>
 	        
 	        <li class="noti-list">
 	          <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
@@ -116,6 +120,8 @@
 	      </ul>
 	    </div>
 	</form>
+	
+	
   </main>
   
 
