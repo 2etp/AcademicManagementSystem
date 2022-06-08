@@ -55,12 +55,11 @@ public class SystemMgr {
 		
 		try {
 			con = pool.getConnection();
-			sql = "insert tblmember(id, pw, mobile)values(?,?,?)";
+			sql = "insert tblmember(id, pw, mobile, regDate)values(?,?,?, now())";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberBean.getId());
 			pstmt.setString(2, memberBean.getPw());
 			pstmt.setString(3, memberBean.getMobile());
-
 			
 			if(pstmt.executeUpdate() == 1)
 				
@@ -148,6 +147,38 @@ public class SystemMgr {
 			pool.freeConnection(con, pstmt, rs);
 		}
 		
+		return vlist;
+	}
+	
+	// 일정기간 지난 후 pw 재설정 메시지 띄우기
+	public Vector<MemberBean> resetPw(String id, String pw) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		Vector<MemberBean> vlist = new Vector<MemberBean>();
+		
+		try {
+			con = pool.getConnection();
+			sql = "select regdate from tblmember where id = ? and pw = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pw);
+			rs = pstmt.executeQuery();
+		
+			while (rs.next()) {
+				MemberBean bean = new MemberBean();
+				bean.setRegDate(rs.getString("regdate"));
+	
+				vlist.add(bean);
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
 		return vlist;
 	}
 }

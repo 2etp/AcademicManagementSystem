@@ -5,6 +5,8 @@ public class MemberBean {
 	private String id;
 	private String pw;
 	private String mobile;
+	private String regDate;
+	
 	
 	public String getId() {
 		return id;
@@ -23,6 +25,13 @@ public class MemberBean {
 	}
 	public void setMobile(String mobile) {
 		this.mobile = mobile;
+	}
+	
+	public String getRegDate() {
+		return regDate;
+	}
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
 	}
 	
 }

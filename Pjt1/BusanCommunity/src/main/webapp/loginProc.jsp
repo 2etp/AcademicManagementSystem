@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" import="java.sql.*"%>
 <%@ page import="java.util.*"%>
+<%@ page import="BusanCommunityPack.MemberBean"%>
 <jsp:useBean id="sMgr" class="BusanCommunityPack.SystemMgr"/>
 
 <%
@@ -28,6 +29,8 @@
 	} */
 
 	boolean result = sMgr.loginCheck(id, pw);
+	Vector<MemberBean> vlist = sMgr.resetPw(id, pw);
+	
 	if(result) {
 		session.setAttribute("idKey", id);
 		// 로그인 유지처리
@@ -40,6 +43,15 @@
 		msg = "로그인에 성공하였습니다.";
 		url = "main.jsp";
 	}
+/* 	
+	String regDate = null;
+	for(int i = 0; i < vlist.size(); ++i) {
+		
+		MemberBean bean = vlist.get(i);
+		regDate = bean.getRegDate();
+	}
+	 */
+
 	
 %>
 	
