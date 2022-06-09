@@ -1,5 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" import="java.sql.*"%>
 <%@ page import="java.util.*"%>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.util.Calendar"%>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="BusanCommunityPack.MemberBean"%>
 <jsp:useBean id="sMgr" class="BusanCommunityPack.SystemMgr"/>
 
@@ -28,8 +31,10 @@
 		}
 	} */
 
+	// 로그인 체킹
 	boolean result = sMgr.loginCheck(id, pw);
-	Vector<MemberBean> vlist = sMgr.resetPw(id, pw);
+	// 비번 재설정
+	Vector<MemberBean> vlist = sMgr.resetPwMsg(id, pw);
 	
 	if(result) {
 		session.setAttribute("idKey", id);
@@ -43,19 +48,46 @@
 		msg = "로그인에 성공하였습니다.";
 		url = "main.jsp";
 	}
-/* 	
-	String regDate = null;
-	for(int i = 0; i < vlist.size(); ++i) {
-		
-		MemberBean bean = vlist.get(i);
-		regDate = bean.getRegDate();
-	}
-	 */
-
 	
-%>
+	 // 날짜 일정한 폼으로 바꾸기 위한 설정
+	 SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+	 String dbregDate = null;
+	 Date regDate = null;
+	 
+	 for(int i = 0; i < vlist.size(); ++i) {
+		 
+		 MemberBean bean  = vlist.get(i);
+		 
+		 // DB에 있는 회원가입 날짜(혹은 비번 재설정 날짜) 가져오기
+		 dbregDate = bean.getRegDate();
+		 // String 변수를 Date 타입으로 변환
+		 regDate = sf.parse(dbregDate);
+		 	 
+	 }
+	 
+	 // 현재 시간을 위의 폼으로 불러오기
+	 String curDate = sf.format(new Date());
+	 // Date 타입으로 변환
+	 Date mod_curDate = sf.parse(curDate);
+	 
+	 // 현재 시간에서 DB의 시간 빼기
+	 long differTime = mod_curDate.getTime()-regDate.getTime();	 
+	 // 일 수로 나타내기 위해 int로 캐스팅(기본 : milliSec)
+	 int days = (int) (differTime / (1000*60*60*24));
+	 
+	 String resetMsg = null;
+%>	 
 	
 <script>
 	alert("<%=msg%>");
+	
+<%
+	if(days > 1) {
+		 
+		resetMsg = "비밀번호 재설정해라."; %>
+		alert("<%=resetMsg%>");
+<%	}%>
+
+	
 	location.href = "<%=url%>";
 </script>

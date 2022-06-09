@@ -1,7 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
-<%@ page import="BusanCommunityPack.HelpBean"%>
+<%@ page import="BusanCommunityPack.MemberBean"%>
 <%@ page import="java.util.*"%>
 <jsp:useBean id="sMgr" class="BusanCommunityPack.SystemMgr"/>
+
+<%
+	request.setCharacterEncoding("UTF-8");
+	String id = (String)session.getAttribute("idKey");
+	
+	Vector<MemberBean> vlist = sMgr.selectMobile(id);
+%>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -58,113 +65,131 @@
       </div>
     </div>
 
-    <div class="noti-container">
-      <div class="noti-main">
-        <div class="noti-title">설정</div>
-      </div>
-      <ul class="noti-ul">
-        <li>
-          <label  class="noti-list changeNum" for="">
-            <div>비밀번호 변경</div>
-            <i class="fa-solid fa-lock"></i>
-          </label>
-        </li>
-        
-        <li>
-          <label  class="noti-list changePhone" for="">
-            <div>휴대폰 번호 변경</div>
-            <div>010-1111-1111</div>
-            <i class="fa-solid fa-phone"></i>
-            </label>
-        </li>
-        
-        <li>
-          <label class="noti-list easyLogin" for="">
-            <div>간편 로그인 설정</div>
-            <div>네이버</div>
-            <i class="fa-solid fa-arrow-right-to-bracket"></i>
-            </label>
-        </li>
-        
-        <li>
-          <label class="noti-list signOut" for="">
-            <div>회원 탈퇴</div>
-            <i class="fa-solid fa-arrow-right-from-bracket"></i>
-          </label>
-        </li>
-        
-      </ul>
-    </div>
-    </main>
+	<%
+		String mobile1 = null;
+		String mobile2 = null;
+		String mobile3 = null;
+		
+		for(int i = 0; i < vlist.size(); ++i) {
+			
+			MemberBean bean = vlist.get(i);			
+			
+			String mobile = bean.getMobile();
+			mobile1 = mobile.substring(0, 3);
+			mobile2 = mobile.substring(3, 7);
+			mobile3 = mobile.substring(7, 11);
+		
+		}
+	%>
+
+	    <div class="noti-container">
+	      <div class="noti-main">
+	        <div class="noti-title">설정</div>
+	      </div>
+	      <ul class="noti-ul">
+	        <li>
+	          <label  class="noti-list changeNum" for="">
+	            <div>비밀번호 변경</div>
+	            <i class="fa-solid fa-lock"></i>
+	          </label>
+	        </li>
+	        
+	        <li>
+	          <label  class="noti-list changePhone" for="">
+	            <div>휴대폰 번호 변경</div>
+	            <div><%=mobile1%>-<%=mobile2%>-<%=mobile3%></div>
+	            <i class="fa-solid fa-phone"></i>
+	            </label>
+	        </li>
+	        
+	        <li>
+	          <label class="noti-list easyLogin" for="">
+	            <div>간편 로그인 설정</div>
+	            <div>네이버</div>
+	            <i class="fa-solid fa-arrow-right-to-bracket"></i>
+	            </label>
+	        </li>
+	        
+	        <li>
+	          <label class="noti-list signOut" for="">
+	            <div>회원 탈퇴</div>
+	            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+	          </label>
+	        </li>
+	        
+	      </ul>
+	    </div>
+
+  </main>
 
 
 
   <!-- 문의모달 -->
   
   <div class="modal-background inactive">
-    <div class="modal-container">
-    <div>
-      <form action="">
-        <p class="modal-title">문의하기</p>
-        <div class="modal-input">
-          <input type="text" class="modal-email" placeholder="이메일을 입력하세요"></input>
-        </div>
-        <div class="modal-text">
-          <textarea name="" id="" rows="5" maxlength="1000" placeholder="문의 내용을 입력하세요"></textarea>
-        </div>
-        <div class="modal-screen">
-          <p>스크린샷</p>
-          <div class="fileUploadSize">
-            <label class="fileUpload" for="imgFile">
-              <i class="fa-solid fa-folder-open"></i>
-              <input type="file" accept="image/*" id="imgFile">
-              <span style="margin-left: 10px;">파일 추가</span>
-            </label>
-          </div>
-        </div>
-        <div class="modal-bnt">
-          <button class="modal-send-bnt" type="submit">보내기</button>
-          <button class="modal-close">취소</button>
-        </div>
-      </form>
-    </div>
-  </div>
+	<div class="modal-container">
+	    <div>
+	      
+	        <p class="modal-title">문의하기</p>
+	        <div class="modal-input">
+	          <input type="text" class="modal-email" placeholder="이메일을 입력하세요"></input>
+	        </div>
+	        <div class="modal-text">
+	          <textarea name="" id="" rows="5" maxlength="1000" placeholder="문의 내용을 입력하세요"></textarea>
+	        </div>
+	        <div class="modal-screen">
+	          <p>스크린샷</p>
+	          <div class="fileUploadSize">
+	            <label class="fileUpload" for="imgFile">
+	              <i class="fa-solid fa-folder-open"></i>
+	              <input type="file" accept="image/*" id="imgFile">
+	              <span style="margin-left: 10px;">파일 추가</span>
+	            </label>
+	          </div>
+	        </div>
+	        <div class="modal-bnt">
+	          <button class="modal-send-bnt" type="submit">보내기</button>
+	          <button class="modal-close">취소</button>
+	        </div>
+	    
+	    </div>
+	</div>
   </div>
 
 
 <!-- 비밀번호 변경 모달 -->
 <div class="modal-changeNum-background inactive">
-  <div class="modal-changeNum-container">
-  <div>
-    <form action="">
-      <p class="modal-changeNum-title">비밀번호 변경</p>
-      <div class="modal-changeNum-input">
-        <input type="password" class="" placeholder="변경 할 비밀번호"></input>
-      </div>
-      <div class="modal-changeNum-input">
-        <input type="password" class="" placeholder="변경 할 비밀번호 확인"></input>
-      </div>
-      <div class="modal-changeNum-bnt">
-        <button class="modal-changeNum-send-bnt" type="submit">보내기</button>
-        <button class="modal-changeNum-close">취소</button>
-      </div>
-    </form>
-  </div>
-</div>
+	<div class="modal-changeNum-container">
+	  <div>
+	    <form name="settingFrm" method="post" action="resetPwProc.jsp">
+	      <p class="modal-changeNum-title">비밀번호 변경</p>
+	      <div class="modal-changeNum-input">
+	        <input type="password" class="" placeholder="변경 할 비밀번호" name="pw"></input>
+	      </div>
+	      <div class="modal-changeNum-input">
+	        <input type="password" class="" placeholder="변경 할 비밀번호 확인"></input>
+	      </div>
+	      <div class="modal-changeNum-bnt">
+	        <button class="modal-changeNum-send-bnt" type="submit">보내기</button>
+	        <button class="modal-changeNum-close">취소</button>
+	      </div>
+	    </form>
+	  </div>
+	</div>
 </div>
 
 <!-- 휴대폰 번호 변경 모달 -->
 <div class="modal-changePhone-background inactive">
   <div class="modal-changePhone-container">
   <div>
-    <form action="">
+    <form name="settingFrm" method="post" action="resetMobileProc.jsp">
       <p class="modal-changePhone-title">비밀번호 변경</p>
       <div class="modal-changePhone-origin">
         <p>기존 휴대폰 번호</p>
        <p>010-1111-1111</p>
       </div>
       <div class="modal-changePhone-input">
-        <input type="text" class="" placeholder="변경 할 휴대폰 번호"></input>
+        <input type="text" class="" placeholder="변경 할 휴대폰 번호" name="mobile"></input>
       </div>
       <div class="modal-changePhone-bnt">
         <button class="modal-changePhone-send-bnt" type="submit">보내기</button>

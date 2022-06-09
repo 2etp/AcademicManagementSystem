@@ -55,7 +55,7 @@ public class SystemMgr {
 		
 		try {
 			con = pool.getConnection();
-			sql = "insert tblmember(id, pw, mobile, regDate)values(?,?,?, now())";
+			sql = "insert tblmember(id, pw, mobile, regdate)values(?,?,?, now())";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberBean.getId());
 			pstmt.setString(2, memberBean.getPw());
@@ -72,6 +72,9 @@ public class SystemMgr {
 		}
 		return flag;
 	}
+	
+	// 회원탈퇴
+	//public void deleteMember
 	
 	// 로그인 시 공지사항 불러오기
 	public Vector<NoticeBean> selectNotice(int[] seq) {
@@ -151,7 +154,7 @@ public class SystemMgr {
 	}
 	
 	// 일정기간 지난 후 pw 재설정 메시지 띄우기
-	public Vector<MemberBean> resetPw(String id, String pw) {
+	public Vector<MemberBean> resetPwMsg(String id, String pw) {
 		
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -181,4 +184,97 @@ public class SystemMgr {
 		}
 		return vlist;
 	}
+	
+	// 비밀번호 변경
+	public boolean resetPw(String id, String pw) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		boolean flag = false;
+		
+		try {
+			con = pool.getConnection();
+			sql = "update tblmember set pw = ?, regdate = now() where id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, pw);
+			pstmt.setString(2, id);
+					
+			if(pstmt.executeUpdate() == 1)
+				
+				flag = true;
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		
+		return flag;
+		
+	}
+	
+	// 휴대폰 번호 변경
+	public boolean resetMobile(String id, String mobile) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		boolean flag = false;
+		
+		try {
+			con = pool.getConnection();
+			sql = "update tblmember set mobile = ? where id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, mobile);
+			pstmt.setString(2, id);
+					
+			if(pstmt.executeUpdate() == 1)
+				
+				flag = true;
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		
+		return flag;
+		
+	}
+	
+	// 설정 페이지의 휴대폰 번호 display
+	public Vector<MemberBean> selectMobile(String id) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		Vector<MemberBean> vlist = new Vector<MemberBean>();
+		
+		try {
+			con = pool.getConnection();
+			sql = "select mobile from tblmember where id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				MemberBean bean = new MemberBean();
+				bean.setMobile(rs.getString("mobile"));
+	
+				vlist.add(bean);
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		return vlist;
+	}
+	
+
 }
