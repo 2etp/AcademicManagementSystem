@@ -353,7 +353,7 @@ public class SystemMgr {
 				
 				while (rs.next()) {
 					PhotoBean bean = new PhotoBean();
-					bean.setPhotoUrl(rs.getString("photo_url_haeundae"));
+					bean.setPhotoUrl(rs.getString("haeundae"));
 					
 					vlist.add(bean);
 				}

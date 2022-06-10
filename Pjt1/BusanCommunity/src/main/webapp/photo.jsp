@@ -28,6 +28,8 @@
 		keyWord = request.getParameter("keyWord");
 	}
 	
+	out.println(keyWord);
+	
 	if (request.getParameter("reload") != null){
 		if(request.getParameter("reload").equals("true")) {
 			keyWord = "";
@@ -46,6 +48,10 @@
 	nowBlock = (int)Math.ceil((double)nowPage/pagePerBlock); //현재블럭 계산
 	
 	totalBlock = (int)Math.ceil((double)totalPage / pagePerBlock);  //전체블럭계산
+	
+	String jungGu = "junggu";
+	
+	
 %>
 
 <!DOCTYPE html>
@@ -72,7 +78,13 @@
 	function block(value){
 		 document.readFrm.nowPage.value=<%=pagePerBlock%>*(value-1)+1;
 		 document.readFrm.submit();
-	} 
+	}
+	
+	function jungGu(area) {
+		console.log(area);
+		document.photoFrm.keyWord.value = area;
+		document.photoFrm.submit();
+	}
 	
 </script>
 </head>
@@ -102,8 +114,8 @@
     <div class="photo">
       <div class="title">
         <ul>
-          <li>지역</li>
-          <li>지역</li>
+          <li>해운대구</li>
+          <li><a href="javascript:jungGu('<%=jungGu%>')">중구</a></li>
           <li>지역</li>
           <li>지역</li>
           <li>지역</li>
@@ -123,7 +135,6 @@
 						if (i == listSize) break;
 						PhotoBean bean = vlist.get(i);
 						String photoUrl = bean.getPhotoUrl();
-						out.println(photoUrl);
 						
 				  %>
 				  <img src="./img/<%=photoUrl%>"/>
@@ -177,7 +188,7 @@
         </ul> -->
       </div>
       
-      <form name="photoFrm" method="post">
+      <form name="photoFrm" method="post" action="photo.jsp">
       	<input type="hidden" name="reload" value="true">
       	<input type="hidden" name="nowPage" value="1">
       	<input type="hidden" name="keyWord" value="<%=keyWord%>">
