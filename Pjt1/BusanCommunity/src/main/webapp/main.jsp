@@ -12,8 +12,8 @@
 		}
 	}
 	
-    //세션값 가져오기, Object형으로 저장되기에 다운케스팅이 필요하다.
-    String id =(String)session.getAttribute("idKey");
+    //세션값 가져오기, Object형으로 저장되기에 다운캐스팅이 필요함
+    String id = (String)session.getAttribute("idKey");
     
 %>
 
@@ -42,11 +42,12 @@
         <li><a href="./photo.jsp">포토</a></li>
       </ul>
       <div class="header-login">
-        <a href="login.jsp">로그인</a>
-        
-        <a href="signup.jsp">회원가입</a>
-        
-        <b><%=id %> 님이 로그인 했습니다.</b>
+        <% if(id != null) { %>
+          <b class="login"><%=id %> 님이 로그인 했습니다.</b>
+        <% } else { %>
+          <a href="login.jsp">로그인</a>
+          <a href="signup.jsp">회원가입</a>
+        <% } %>
         <a href="setting.jsp">설정</a>
 		<input type="button" value="로그아웃" onclick="location.href='logout.jsp'">
       </div>

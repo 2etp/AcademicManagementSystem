@@ -74,7 +74,33 @@ public class SystemMgr {
 	}
 	
 	// 회원탈퇴
-	//public void deleteMember
+	public boolean deleteMember(String id, String pw) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		boolean flag = false;
+		
+		try {
+			con = pool.getConnection();
+			sql = "delete from tblMember where id = ? and pw = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, pw);
+			
+			if(pstmt.executeUpdate() == 1)
+				
+				flag = true;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		return flag;
+		
+	}
 	
 	// 로그인 시 공지사항 불러오기
 	public Vector<NoticeBean> selectNotice(int[] seq) {

@@ -5,7 +5,7 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String id = (String)session.getAttribute("idKey");
-	String pw = request.getParameter("mobile");
+	String pw = request.getParameter("pw");
 	
 	String url = null;
 	String msg = null;

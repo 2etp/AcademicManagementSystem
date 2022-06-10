@@ -186,7 +186,7 @@
       <p class="modal-changePhone-title">비밀번호 변경</p>
       <div class="modal-changePhone-origin">
         <p>기존 휴대폰 번호</p>
-       <p>010-1111-1111</p>
+       <p><%=mobile1%>-<%=mobile2%>-<%=mobile3%></p>
       </div>
       <div class="modal-changePhone-input">
         <input type="text" class="" placeholder="변경 할 휴대폰 번호" name="mobile"></input>
@@ -205,13 +205,13 @@
 <div class="modal-signOut-background inactive">
   <div class="modal-signOut-container">
   <div>
-    <form action="">
+    <form name="settingFrm" method="post" action="deleteMemberProc.jsp">
       <p class="modal-signOut-title">회원 탈퇴</p>
         <div class="modal-signOut-msg">
         <p>회원 탈퇴하면 모든 데이터가 삭제됩니다<br>계속 하시겠습니까?</p>
         </div>
       <div class="modal-signOut-input">
-        <input type="password" class="" placeholder="비밀번호 입력"></input>
+        <input type="password" class="" placeholder="비밀번호 입력" name="pw"></input>
       </div>
       <div class="modal-signOut-bnt">
         <button class="modal-signOut-send-bnt" type="submit">보내기</button>
