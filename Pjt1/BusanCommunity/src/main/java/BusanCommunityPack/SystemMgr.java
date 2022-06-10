@@ -301,6 +301,84 @@ public class SystemMgr {
 		}
 		return vlist;
 	}
+		
+	// 포토페이지의 총 게시물수
+	public int getTotalCount(String keyWord) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int totalCount = 0;
+		
+		try {
+			con = pool.getConnection();
+			if (keyWord.equals("null")) {
+				sql = "select count(photo_url_haeundae) from tblphoto";
+				pstmt = con.prepareStatement(sql);
+			} else {
+				sql = "select count(?) from tblphoto";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, keyWord);
+			}
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				totalCount = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		return totalCount;
+	}
+	
+	// DB에 저장된 이미지 경로 불러오기
+	public Vector<PhotoBean> getPhotoImgUrl(String keyWord, int start, int end) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		
+		Vector<PhotoBean> vlist = new Vector<PhotoBean>();
+		
+		try {
+			con = pool.getConnection();
+			if(keyWord.equals("")) {
+			sql = "select * from tblphoto order by photo_seq desc limit ?, ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, start);
+				pstmt.setInt(2, end);
+				rs = pstmt.executeQuery();
+				
+				while (rs.next()) {
+					PhotoBean bean = new PhotoBean();
+					bean.setPhotoUrl(rs.getString("photo_url_haeundae"));
+					
+					vlist.add(bean);
+				}
+			} else {
+			sql = "select ? from tblphoto order by photo_seq desc limit ?, ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setString(1, keyWord);
+				pstmt.setInt(2, start);
+				pstmt.setInt(3, end);	
+				rs = pstmt.executeQuery();
+			
+				while (rs.next()) {
+					PhotoBean bean = new PhotoBean();
+					bean.setPhotoUrl(rs.getString(1));
+					
+					vlist.add(bean);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		return vlist;
+	}
 	
 
 }

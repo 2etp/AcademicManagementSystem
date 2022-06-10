@@ -1,0 +1,42 @@
+/* ¿ÃπÃ¡ˆ */
+
+main {
+  display: flex;
+  justify-content: center;
+  padding-top : 100px;
+  height: 800px;
+}
+
+main .title ul{
+  display: flex;
+  justify-content: space-around;
+}
+
+main .photo{
+  flex: 0.44;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+main .content{
+  flex-wrap :wrap;
+  flex: 0.9;
+}
+
+main .content img{
+  width: 100px;
+  height: 100px;
+  position: relative;
+  left: 50px;
+}
+
+main .content .image-title{
+  background-color: RGBA(0,0,0,.7);
+  position: relative;
+  display: inline-block;
+  right: 55px;
+  width: 100px;
+  text-align: center;
+}
+

@@ -2,37 +2,29 @@ package BusanCommunityPack;
 
 public class PhotoBean {
 	
-	private int num;
-	private String name;        
+	//private int num;
+	private String photoSeq;
+	private String photoUrl;
 	private String subject;      
-	private String content;     
-	private int pos;            
-	private int depth;        
-	private int ref;        
-	private String regdate;     
-	private String pass;          
-	private String  ip;
-	private int count;        
-	private String filename; 
+	private String content;         
+	private int count;
+	
+	public String getPhotoSeq() {
+		return photoSeq;
+	}
 
-	private int filesize;
-	
-	public int getNum() {
-		return num;
+	public void setPhotoSeq(String photoSeq) {
+		this.photoSeq = photoSeq;
 	}
 	
-	public void setNum(int num) {
-		this.num = num;
+	public String getPhotoUrl() {
+		return photoUrl;
 	}
-	
-	public String getName() {
-		return name;
+
+	public void setPhotoUrl(String photoUrl) {
+		this.photoUrl = photoUrl;
 	}
-	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
+
 	public String getSubject() {
 		return subject;
 	}
@@ -49,53 +41,6 @@ public class PhotoBean {
 		this.content = content;
 	}
 	
-	public int getPos() {
-		return pos;
-	}
-	
-	public void setPos(int pos) {
-		this.pos = pos;
-	}
-	
-	public int getDepth() {
-		return depth;
-	}
-	
-	public void setDepth(int depth) {
-		this.depth = depth;
-	}
-	
-	public int getRef() {
-		return ref;
-	}
-	
-	public void setRef(int ref) {
-		this.ref = ref;
-	}
-	
-	public String getRegdate() {
-		return regdate;
-	}
-	
-	public void setRegdate(String regdate) {
-		this.regdate = regdate;
-	}
-	
-	public String getPass() {
-		return pass;
-	}
-	
-	public void setPass(String pass) {
-		this.pass = pass;
-	}
-	
-	public String getIp() {
-		return ip;
-	}
-	
-	public void setIp(String ip) {
-		this.ip = ip;
-	}
 	
 	public int getCount() {
 		return count;
@@ -105,19 +50,5 @@ public class PhotoBean {
 		this.count = count;
 	}
 	
-	public String getFilename() {
-		return filename;
-	}
-	
-	public void setFilename(String filename) {
-		this.filename = filename;
-	}
-	
-	public int getFilesize() {
-		return filesize;
-	}
-	
-	public void setFilesize(int filesize) {
-		this.filesize = filesize;
-	}  
+
 }
