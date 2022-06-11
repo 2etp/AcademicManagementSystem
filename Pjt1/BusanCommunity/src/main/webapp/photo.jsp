@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" import="java.sql.*"%>
+<%@ page contentType="text/html;charset=UTF-8" import="java.sql.*"%> 
 <%@	page import="BusanCommunityPack.PhotoBean"%>
 <%@	page import="java.util.Vector"%>
 <jsp:useBean id="sMgr" class="BusanCommunityPack.SystemMgr"/>

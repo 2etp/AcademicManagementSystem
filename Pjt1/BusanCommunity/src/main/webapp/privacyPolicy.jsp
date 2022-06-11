@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8"%> 
 <%@ page import="BusanCommunityPack.HelpBean"%>
 <%@ page import="java.util.*"%>
 <jsp:useBean id="sMgr" class="BusanCommunityPack.SystemMgr"/>

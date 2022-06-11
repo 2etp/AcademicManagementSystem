@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8"%> 
 <%request.setCharacterEncoding("UTF-8");%>
 <jsp:useBean id="sMgr" class="BusanCommunityPack.SystemMgr"/>
 <jsp:useBean id="memberBean" class="BusanCommunityPack.MemberBean"/>
