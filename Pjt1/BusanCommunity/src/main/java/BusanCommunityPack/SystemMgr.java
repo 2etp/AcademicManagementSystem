@@ -312,8 +312,8 @@ public class SystemMgr {
 		
 		try {
 			con = pool.getConnection();
-			if (keyWord.equals("null")) {
-				sql = "select count(photo_url_haeundae) from tblphoto";
+			if (keyWord == null || keyWord == "") {
+				sql = "select count(haeundae) from tblphoto";
 				pstmt = con.prepareStatement(sql);
 			} else {
 				sql = "select count(?) from tblphoto";
@@ -341,10 +341,10 @@ public class SystemMgr {
 		String sql = null;
 		
 		Vector<PhotoBean> vlist = new Vector<PhotoBean>();
-		
+		System.out.println("keyWord : "+keyWord);
 		try {
 			con = pool.getConnection();
-			if(keyWord.equals("")) {
+			if(keyWord == null || keyWord == "") {
 			sql = "select * from tblphoto order by photo_seq desc limit ?, ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, start);
@@ -358,11 +358,10 @@ public class SystemMgr {
 					vlist.add(bean);
 				}
 			} else {
-			sql = "select ? from tblphoto order by photo_seq desc limit ?, ?";
+			sql = "select " + keyWord + " from tblphoto order by photo_seq desc limit ?, ?";
 				pstmt = con.prepareStatement(sql);
-				pstmt.setString(1, keyWord);
-				pstmt.setInt(2, start);
-				pstmt.setInt(3, end);	
+				pstmt.setInt(1, start);
+				pstmt.setInt(2, end);	
 				rs = pstmt.executeQuery();
 			
 				while (rs.next()) {

@@ -2,6 +2,10 @@
 <%@	page import="BusanCommunityPack.PhotoBean"%>
 <%@	page import="java.util.Vector"%>
 <jsp:useBean id="sMgr" class="BusanCommunityPack.SystemMgr"/>
+<%!
+	String keyWord;
+%>
+
 
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -21,20 +25,20 @@
 	
 	int listSize=0; //현재 읽어온 게시물의 수
 	
-	String keyWord = "";
+	
 	Vector<PhotoBean> vlist = null;
 	
 	if (request.getParameter("keyWord") != null) {
 		keyWord = request.getParameter("keyWord");
 	}
 	
-	out.println(keyWord);
+	System.out.println(keyWord);
 	
-	if (request.getParameter("reload") != null){
+/* 	if (request.getParameter("reload") != null){
 		if(request.getParameter("reload").equals("true")) {
 			keyWord = "";
 		}
-	}
+	} */
 	
 	if (request.getParameter("nowPage") != null) {
 		nowPage = Integer.parseInt(request.getParameter("nowPage"));
@@ -49,9 +53,6 @@
 	
 	totalBlock = (int)Math.ceil((double)totalPage / pagePerBlock);  //전체블럭계산
 	
-	String jungGu = "junggu";
-	
-	
 %>
 
 <!DOCTYPE html>
@@ -64,11 +65,8 @@
   <link rel="stylesheet" href="./css/common.css" >
   <link rel="stylesheet" href="./css/photo.css">
   
+  <script src="./js/photo.js" defer></script>
   <script type="text/javascript">
-	function list() {
-		
-		document.listFrm.submit();
-	}
 	
 	function pageing(page) {
 		document.readFrm.nowPage.value = page;
@@ -81,12 +79,42 @@
 	}
 	
 	function jungGu(area) {
-		console.log(area);
 		document.photoFrm.keyWord.value = area;
 		document.photoFrm.submit();
 	}
 	
+	window.addEventListener("load", function(){
+	    var enable = "<%=request.getParameter("keyWord")%>";
+	    if(!(enable==null)){
+	    	switch(enable){
+	    		case "haeundae":
+    				enable = 0;
+    				break;
+	    		case "junggu":
+	    			enable = 1;
+	    			break;
+	    		case "youngdogu":
+    				enable = 2;
+    				break;
+	    		case "sahagu":
+    				enable = 3;
+    				break;
+	    		case "seogu":
+    				enable = 4;
+    				break;
+	    		case "busanjingu":
+    				enable = 5;
+    				break;
+	    		default:
+	    			enable = 0;
+    				break;
+	    	}
+	        document.querySelectorAll(".photo .title ul li")[enable].classList.add("enable");
+	    }
+	});
+	
 </script>
+
 </head>
 <body>
   <!-- 헤더 -->
@@ -115,17 +143,19 @@
       <div class="title">
         <ul>
           <li>해운대구</li>
-          <li><a href="javascript:jungGu('<%=jungGu%>')">중구</a></li>
-          <li>지역</li>
-          <li>지역</li>
-          <li>지역</li>
+          <li>중구</li>
+          <li>영도구</li>
+          <li>사하구</li>
+          <li>서구</li>
+          <li>부산진구</li>
         </ul>
       </div>
       <div class="content">
-      
+      	해당 지역을 눌러 해당 지역의 사진을 표시할 수 있습니다.
       <%
+      		  System.out.println(keyWord);
 			  vlist = sMgr.getPhotoImgUrl(keyWord, start, end);
-			  listSize = vlist.size();//브라우저 화면에 보여질 게시물 번호
+			  listSize = vlist.size(); //브라우저 화면에 보여질 게시물 번호
 			  
 			  if (vlist.isEmpty()) {
 				out.println("등록된 게시물이 없습니다.");
@@ -144,8 +174,6 @@
 			  }
 			  
 	  %>
-          <!-- <img src="./img/seagull.png">
-          <div class="image-title">보라</div> -->
 
       </div>
       <div class="pagemove">
@@ -159,7 +187,8 @@
           <!-- 페이징 및 블럭 처리 Start--> 
 			<%
    				  int pageStart = (nowBlock -1)*pagePerBlock + 1 ; //하단 페이지 시작번호
-   				  int pageEnd = ((pageStart + pagePerBlock ) <= totalPage) ?  (pageStart + pagePerBlock): totalPage+1; 
+   				  int pageEnd = ((pageStart + pagePerBlock ) <= totalPage) ?  (pageStart + pagePerBlock): totalPage+1;
+
    				  //하단 페이지 끝번호
    				  if(totalPage !=0){
     			  	if (nowBlock > 1) {%>
@@ -175,10 +204,7 @@
     				<%}%>&nbsp;  
    				<%}%>
  				<!-- 페이징 및 블럭 처리 End-->
-            <!-- <li><a class="current" href="javascript:void(0)">1</a></li>
-            <li><a href="javascript:void(0)">2</a></li>
-            <li><a href="javascript:void(0)">3</a></li>
-            <li><a href="javascript:void(0)">4</a></li> -->
+
           </span>
          <!--  <li class="pagemove-Arrow">
             <a href="javascript:void(0)">

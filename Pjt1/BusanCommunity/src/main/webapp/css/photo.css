@@ -1,4 +1,4 @@
-/* ÀÌ¹ÌÁö */
+/* ì´ë¯¸ì§€ */
 
 main {
   display: flex;
@@ -17,6 +17,14 @@ main .photo{
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+main .photo .title ul li{
+  cursor: pointer;
+}
+
+main .photo .title ul .enable{
+  color: blue;
 }
 
 main .content{
