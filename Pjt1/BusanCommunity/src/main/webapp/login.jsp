@@ -18,65 +18,67 @@
 
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>잘놀다갑니다</title>
   <link rel="stylesheet" href="./css/login.css">
-
-	
-	
-
+  <link rel="stylesheet" href="./css/destyle.css">
+  <link rel="stylesheet" href="./css/common.css">
+  <link rel="icon" href="./images/favicon.ico" type="image/x-icon" sizes="16x16">
 </head>
+
 <body>
 	<!-- 헤더 영역 -->
-	 <header>
-	   <div class="header">
-	     <div class="header-logo">
-	       <img src="./img/seagull.png">
-	       <div>잘놀다갑니다</div>
-	     </div>
-	   </div>
-	 </header>
+    <header>
+      <div class="header">
+        <a href="./main.jsp" class="header-logo">
+          <img src="./images/seagull.png">
+          <div>잘놀다갑니다</div>
+        </a>
+      </div>
+    </header>
  
  <!-- 로그인 폼 -->
   <div class="container">
 	<form id="loginForm" name="loginFrm" method="post" action="loginProc.jsp">
-		<div class="g-recaptcha" data-sitekey="6Le91hggAAAAAPx4fwZ1YlLZzmm7WPHxwIlPWxjS"></div>
-			<h4>로그인</h4>
-			
-		      <div class="id">
-		        <input id="idInput" type="text" placeholder="ID를 입력하세요." maxlength="15" required name="id">
-		        <i class="fa-solid fa-user"></i>
-		      </div>
-		      
-		      <div id="password" class="password">
-		        <input type="password" placeholder="비밀번호를 입력하세요." maxlength="20" required name="pw">
-		        <ion-icon name="lock"></ion-icon>
-		      </div>
-		      
-		      <label class="keepsignedIn">
-		      <input type="checkbox" name="loginChk" value="true">자동로그인</label>
-		      
-		      <input type="submit" value="Login" onclick="return check_recaptcha();">
-		      <a id="naverIdLogin_loginButton" href="javascript:void(0)">
-		        <img src="./img/btnW_로그인.png" alt="">
-		      </a>
-		      
-		      <a id="kakaoBtn" href="javascript:void(0)" onclick="kakaoLogin();">
-		        <img src="./img/kakao_login_medium_narrow.png"></img>
-		      </a>
-		      
-			<!-- <input type = "checkbox" name="loginChk" value = "true">로그인 상태유지
-			<button type="submit" id="regLogBtn" onclick="return check_recaptcha();">Login</button> -->
-	
-			<div class="lowForm">
-		        <label class="SignUp">
-		          <a href="#" class="forgot">비밀번호 찾기</a><a href="./signup.jsp">회원가입</a>
-		        </label>
-		   	</div>
-	</form>
+		<h4>로그인</h4>
+		
+	    <div class="id">
+             <input id="idInput" type="text" placeholder="ID를 입력하세요." maxlength="15" required name="id">
+             <i class="fa-solid fa-user"></i>
+           </div>
+           
+           <div id="password" class="password">
+             <input type="password" placeholder="비밀번호를 입력하세요." maxlength="20" required name="pw">
+             <ion-icon name="lock"></ion-icon>
+           </div>
+           
+           <label class="keepsignedIn">
+           <input type="checkbox" name="loginChk" value="true">자동로그인</label>
+           
+           <input type="submit" value="로그인" onclick="return check_recaptcha();">
+           <a id="naverIdLogin_loginButton" href="javascript:void(0)">
+             <img src="./images/btnW_로그인.png" alt="">
+           </a>
+           
+           <a id="kakaoBtn" href="javascript:void(0)" onclick="kakaoLogin();">
+             <img src="./images/kakao_login_medium_narrow.png"></img>
+           </a>
+            
+         <!-- <input type = "checkbox" name="loginChk" value = "true">로그인 상태유지
+         <button type="submit" id="regLogBtn" onclick="return check_recaptcha();">Login</button> -->
+   
+         <div class="lowForm">
+              <label class="SignUp">
+                <a href="./findpassword.jsp" class="forgot">비밀번호 찾기</a><a href="./signup.jsp">회원가입</a>
+              </label>
+            </div>
+            <div class="g-recaptcha" data-sitekey="6Le91hggAAAAAPx4fwZ1YlLZzmm7WPHxwIlPWxjS"></div>
+            <div style="padding: 10px;"></div>
+   </form>
  </div> <!-- end container -->
  
  <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>

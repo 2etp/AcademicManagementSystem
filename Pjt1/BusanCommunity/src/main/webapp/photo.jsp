@@ -2,13 +2,10 @@
 <%@	page import="BusanCommunityPack.PhotoBean"%>
 <%@	page import="java.util.Vector"%>
 <jsp:useBean id="sMgr" class="BusanCommunityPack.SystemMgr"/>
-<%!
-	String keyWord;
-%>
-
 
 <%
 	request.setCharacterEncoding("UTF-8");
+	String id = (String)session.getAttribute("idKey");
 	
 	int totalRecord=0; //전체레코드수
 	int numPerPage=6; // 페이지당 레코드 수 
@@ -25,7 +22,7 @@
 	
 	int listSize=0; //현재 읽어온 게시물의 수
 	
-	
+	String keyWord = "";
 	Vector<PhotoBean> vlist = null;
 	
 	if (request.getParameter("keyWord") != null) {
@@ -105,6 +102,36 @@
 	    		case "busanjingu":
     				enable = 5;
     				break;
+	    		case "donggu":
+    				enable = 6;
+    				break;
+	    		case "dongraegu":
+    				enable = 7;
+    				break;
+	    		case "namgu":
+    				enable = 8;
+    				break;
+	    		case "bukgu":
+    				enable = 9;
+    				break;
+	    		case "geumjeonggu":
+    				enable = 10;
+    				break;
+	    		case "gangseogu":
+    				enable = 11;
+    				break;
+	    		case "yeonjegu":
+    				enable = 12;
+    				break;
+	    		case "suyeonggu":
+    				enable = 13;
+    				break;
+	    		case "sasanggu":
+    				enable = 14;
+    				break;
+	    		case "gijanggun":
+    				enable = 15;
+    				break;
 	    		default:
 	    			enable = 0;
     				break;
@@ -121,19 +148,24 @@
   <header>
     <div class="header">
       <a href="./main.jsp" class="header-logo">
-        <img src="./img/seagull.png">
+        <img src="./images/seagull.png">
         <div>잘놀다갑니다</div>
       </a>
       <ul class="header-menu">
         <li><a href="./busanIntroduce.jsp">부산소개</a></li>
         <li><a href="./community.jsp">커뮤니티</a></li>
-        <li><a href="./news.jsp">소식</a></li>
+        <li><a href="./newsAll.jsp">소식</a></li>
         <li><a href="./photo.jsp">포토</a></li>
       </ul>
       <div class="header-login">
-        <a href="javascript:void(0)">로그인</a>
-        
-        <a href="javascript:void(0)">회원가입</a>
+        <% if(id != null) { %>
+          <b class="login"><%=id %> 님이 로그인 했습니다.</b>
+          <a href="setting.jsp">설정</a>
+          <input type="button" value="로그아웃" onclick="location.href='logout.jsp'">
+        <% } else { %>
+          <a href="login.jsp">로그인</a>
+          <a href="signup.jsp">회원가입</a>
+        <% } %>
       </div>
     </div>
   </header>
@@ -148,10 +180,20 @@
           <li>사하구</li>
           <li>서구</li>
           <li>부산진구</li>
+          <li>동구</li>
+          <li>동래구</li>
+          <li>남구</li>
+          <li>북구</li>
+          <li>금정구</li>
+          <li>강서구</li>
+          <li>연제구</li>
+          <li>수영구</li>
+          <li>사상구</li>
+          <li>기장군</li>
         </ul>
       </div>
       <div class="content">
-      	해당 지역을 눌러 해당 지역의 사진을 표시할 수 있습니다.
+
       <%
       		  System.out.println(keyWord);
 			  vlist = sMgr.getPhotoImgUrl(keyWord, start, end);
@@ -167,9 +209,8 @@
 						String photoUrl = bean.getPhotoUrl();
 						
 				  %>
-				  <img src="./img/<%=photoUrl%>"/>
-				  
-				  <%
+				  <img src="./images/<%=photoUrl%>"/>
+				 <% 
 				  }
 			  }
 			  

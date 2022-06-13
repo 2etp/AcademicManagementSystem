@@ -1,0 +1,155 @@
+:root{
+  --normal-line:1px solid;
+  
+  --light-gray:#dcdcdc90;
+  --medium-gray: #b4b4b4;
+  --dark-gray: #969696;
+
+  --font-17 : 17px;
+  --font-22 : 22px;
+  --font-25 : 25px;
+
+}
+
+@font-face {
+  font-family: 'ChosunGs';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.0/ChosunGs.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+/* main section 1 */
+.main-section1{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  letter-spacing: 2px;
+}
+
+.main-section1-text {
+  margin: 10%;
+  color: rgb(46, 46, 46);
+}
+
+.main-section1-text h2{
+  font-weight: 700;
+  font-size: 120px;
+  margin-bottom: 70px;
+}
+
+.main-section1-text h3{
+  font-weight: 700;
+  font-size: 40px;
+  margin-bottom: 70px;
+  letter-spacing: 1px;
+}
+
+
+/* main section 2 */
+
+.main-section2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+
+  scroll-snap-align:start;
+}
+
+.main-section2-text {
+  margin: 10%;
+  color: rgb(46, 46, 46);
+}
+
+.main-section2-text h2{
+  font-weight: 700;
+  font-size: 120px;
+  margin-bottom: 70px;
+}
+
+.main-section2-text h3{
+  font-weight: 700;
+  font-size: 40px;
+  margin-bottom: 70px;
+  letter-spacing: 1px;
+}
+
+/* main section 3 */
+
+.main-section3{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+
+  scroll-snap-align:start;
+}
+
+.main-section3-text {
+  margin: 10%;
+  color: rgb(46, 46, 46);
+}
+
+.main-section3-text h2{
+  font-weight: 700;
+  font-size: 120px;
+  margin-bottom: 70px;
+}
+
+.main-section3-text h3{
+  font-weight: 700;
+  font-size: 40px;
+  margin-bottom: 70px;
+  letter-spacing: 1px;
+}
+
+/* main section 4 */
+
+.main-section4{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+
+}
+
+.main-section4-text {
+  margin: 10%;
+  color: rgb(46, 46, 46);
+}
+
+.main-section4-text h2{
+  font-weight: 700;
+  font-size: 100px;
+  margin-bottom: 70px;
+}
+
+.main-section4-text h3{
+  font-weight: 700;
+  font-size: 40px;
+  margin-bottom: 70px;
+  letter-spacing: 1px;
+
+}
+
+.slidecontent  a{
+  font-size: var(--font-22);
+}
+
+
+
+footer{
+  position:fixed;
+  bottom: 0;
+  display:block;
+  width: 100%;
+  z-index:9;
+
+}

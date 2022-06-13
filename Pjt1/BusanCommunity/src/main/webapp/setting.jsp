@@ -8,26 +8,31 @@
 	String id = (String)session.getAttribute("idKey");
 	
 	Vector<MemberBean> vlist = sMgr.selectMobile(id);
+	
 %>
 
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <title>잘놀다갑니다</title>
  <link rel="stylesheet" href="./css/setting.css" >
+ <link rel="stylesheet" href="./css/common.css">
  <link rel="stylesheet" href="./css/modal_inquiry.css">
  <link rel="stylesheet" href="./css/modal_changeNum.css">
  <link rel="stylesheet" href="./css/modal_changePhone.css">
  <link rel="stylesheet" href="./css/modal_signOut.css">
+ <link rel="icon" href="./images/favicon.ico" type="image/x-icon" sizes="16x16">
 </head>
+
 <body>
   <!-- 헤더 -->
   <header>
     <div class="header">
       <a href="#" class="header-logo">
-        <img src="./img/seagull.png">
+        <img src="./images/seagull.png">
         <div>잘놀다갑니다</div>
       </a>
       <ul class="header-menu">
@@ -37,8 +42,14 @@
         <li><a href="javascript:void(0)">포토</a></li>
       </ul>
       <div class="header-login">
-        <a href="./login.jsp">로그인</a>
-        <a href="./signUp.jsp">회원가입</a>
+        <% if(id != null) { %>
+          <b class="login"><%=id %> 님이 로그인 했습니다.</b>
+          <a href="setting.jsp">설정</a>
+          <input type="button" value="로그아웃" onclick="location.href='logout.jsp'">
+        <% } else { %>
+          <a href="login.jsp">로그인</a>
+          <a href="signup.jsp">회원가입</a>
+        <% } %>
       </div>
     </div>
   </header>
@@ -48,22 +59,22 @@
   <!-- 메인 -->
   <main>
     <div class="main">
-    <div class="leftSide">
-      <div class="l-sidebar">
-        <div class="l-menu">
-          <a href="#">공지사항</a><i class="fa-solid fa-bullhorn"></i>
-        </div>
-        <div class="l-menu">
-          <a href="./help.jsp">도움말</a><i class="fa-solid fa-circle-question"></i>
-        </div>
-        <div class="l-menu inquiry">
-          <a href="">문의하기</a><i class="fa-solid fa-person-circle-question"></i>
-        </div>
-        <div class="l-menu">
-          <a href="">설정</a><i class="fa-solid fa-gear"></i>
-        </div>
-      </div>
-    </div>
+	    <div class="leftSide">
+	      <div class="l-sidebar">
+	        <div class="l-menu">
+	          <a href="./notice.jsp">공지사항</a><i class="fa-solid fa-bullhorn"></i>
+	        </div>
+	        <div class="l-menu">
+	          <a href="./help.jsp">도움말</a><i class="fa-solid fa-circle-question"></i>
+	        </div>
+	        <div class="l-menu inquiry">
+	          <a href="">문의하기</a><i class="fa-solid fa-person-circle-question"></i>
+	        </div>
+	        <div class="l-menu">
+	          <a href="#">설정</a><i class="fa-solid fa-gear"></i>
+	        </div>
+	      </div>
+	    </div>
 
 	<%
 		String mobile1 = null;
@@ -84,7 +95,7 @@
 
 	    <div class="noti-container">
 	      <div class="noti-main">
-	        <div class="noti-title">설정</div>
+	        <div class="noti-title">설정&nbsp&nbsp<i class="fa-solid fa-gear"></i></div>
 	      </div>
 	      <ul class="noti-ul">
 	        <li>
@@ -121,11 +132,19 @@
 	    </div>
 
   </main>
-
-
+  
+   <footer>
+    <div class="footer">
+      <div class="footer-information">
+        팀장 : 박휘원 | 전화번호 : 010-4623-0195 <br><br>
+        팀원 : 송민영 | 전화번호 : 010-8800-3995 <br><br>
+        팀원 : 최낙원 | 전화번호 : 010-9753-0266 <br><br>
+        팀원 : 최영수 | 전화번호 : 010-6356-2213 <br><br>
+      </div>
+    </div>
+  </footer>
 
   <!-- 문의모달 -->
-  
   <div class="modal-background inactive">
 	<div class="modal-container">
 	    <div>
@@ -181,52 +200,53 @@
 <!-- 휴대폰 번호 변경 모달 -->
 <div class="modal-changePhone-background inactive">
   <div class="modal-changePhone-container">
-  <div>
-    <form name="settingFrm" method="post" action="resetMobileProc.jsp">
-      <p class="modal-changePhone-title">비밀번호 변경</p>
-      <div class="modal-changePhone-origin">
-        <p>기존 휴대폰 번호</p>
-       <p><%=mobile1%>-<%=mobile2%>-<%=mobile3%></p>
-      </div>
-      <div class="modal-changePhone-input">
-        <input type="text" class="" placeholder="변경 할 휴대폰 번호" name="mobile"></input>
-      </div>
-      <div class="modal-changePhone-bnt">
-        <button class="modal-changePhone-send-bnt" type="submit">보내기</button>
-        <button class="modal-changePhone-close">취소</button>
-      </div>
-    </form>
-  </div>
-</div>
+	  <div>
+	    <form name="settingFrm" method="post" action="resetMobileProc.jsp">
+	      <p class="modal-changePhone-title">비밀번호 변경</p>
+	      <div class="modal-changePhone-origin">
+	        <p>기존 휴대폰 번호</p>
+	       <p><%=mobile1%>-<%=mobile2%>-<%=mobile3%></p>
+	      </div>
+	      <div class="modal-changePhone-input">
+	        <input type="text" class="" placeholder="변경 할 휴대폰 번호" name="mobile"></input>
+	      </div>
+	      <div class="modal-changePhone-bnt">
+	        <button class="modal-changePhone-send-bnt" type="submit">보내기</button>
+	        <button class="modal-changePhone-close">취소</button>
+	      </div>
+	    </form>
+	  </div>
+	</div>
 </div>
 
 
 <!-- 회원탈퇴 모달 -->
 <div class="modal-signOut-background inactive">
-  <div class="modal-signOut-container">
-  <div>
-    <form name="settingFrm" method="post" action="deleteMemberProc.jsp">
-      <p class="modal-signOut-title">회원 탈퇴</p>
-        <div class="modal-signOut-msg">
-        <p>회원 탈퇴하면 모든 데이터가 삭제됩니다<br>계속 하시겠습니까?</p>
-        </div>
-      <div class="modal-signOut-input">
-        <input type="password" class="" placeholder="비밀번호 입력" name="pw"></input>
-      </div>
-      <div class="modal-signOut-bnt">
-        <button class="modal-signOut-send-bnt" type="submit">보내기</button>
-        <button class="modal-signOut-close">취소</button>
-      </div>
-    </form>
-  </div>
-</div>
+   <div class="modal-signOut-container">
+	  <div>
+	    <form name="settingFrm" method="post" action="deleteMemberProc.jsp">
+	      <p class="modal-signOut-title">회원 탈퇴</p>
+	        <div class="modal-signOut-msg">
+	        <p>회원 탈퇴하면 모든 데이터가 삭제됩니다<br>계속 하시겠습니까?</p>
+	        </div>
+	      <div class="modal-signOut-input">
+	        <input type="password" class="" placeholder="비밀번호 입력" name="pw"></input>
+	      </div>
+	      <div class="modal-signOut-bnt">
+	        <button class="modal-signOut-send-bnt" type="submit">보내기</button>
+	        <button class="modal-signOut-close">취소</button>
+	      </div>
+	    </form>
+	  </div>
+   </div>
 </div>
 
+<script src="./js/modal_changeNum.js"></script>
+<script src="./js/modal_changePhone.js"></script>
+<script src="./js/modal_inquiry.js"></script>
+<script src="./js/modal_signOut.js"></script>
 
-<script src="./js/modal.js"></script>
 <script src="https://kit.fontawesome.com/536e37fbfc.js" crossorigin="anonymous"></script>
 
-
 </body>
-
 </html>

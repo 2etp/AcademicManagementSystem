@@ -1,4 +1,6 @@
-var arr = ["haeundae","junggu", "youngdogu", "sahagu", "seogu", "busanjingu"];
+var arr = ["haeundae","junggu", "youngdogu", "sahagu", "seogu", "busanjingu", "donggu",
+		   "dongraegu", "namgu", "bukgu", "geumjeonggu", "gangseogu", "yeonjegu",
+		   "suyeonggu", "sasanggu", "gijanggun"];
 
 document.querySelectorAll(".photo .title ul li").forEach(function(currentValue, currentIndex, listObj){
     currentValue.addEventListener("click",function(){
@@ -27,28 +29,6 @@ document.querySelectorAll(".photo .title ul li").forEach(function(currentValue, 
             //현재 클릭한 요소에 enable 클래스 추가
             
             currentValue.classList.add("enable");
-            switch(currentIndex){
-                case 0:
-                    imagesrc = imagesrc1;
-                    imagetext = imagetext1;
-                    break;
-                case 1:
-                    imagesrc = imagesrc2;
-                    imagetext = imagetext2;
-                    break;
-                case 2:
-                    imagesrc = imagesrc3;
-                    imagetext = imagetext3;
-                    break;
-                case 3:
-                    imagesrc = imagesrc4;
-                    imagetext = imagetext4;
-                    break;
-                case 4:
-                    imagesrc = imagesrc5;
-                    imagetext = imagetext5;
-                    break;
-            }
             
             for(var i=0; i<12; i++){
                 

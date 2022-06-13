@@ -1,0 +1,276 @@
+
+:root{
+  --normal-line:1px solid;
+  
+  --light-gray:#dcdcdc90;
+  --medium-gray: #b4b4b4;
+  --dark-gray: #969696;
+
+  --font-17 : 17px;
+  --font-22 : 22px;
+  --font-25 : 25px;
+
+}
+
+main{
+  padding-top: 50px;
+}
+
+/* main - section1 */
+.main-section1{
+  display: flex;
+  flex-direction : column;
+  width: 100vw;
+  height: 100vh;
+  background: #F2F2F2;
+  background-size : 100% 100%;
+  align-items : center;
+  justify-content: center;
+  color: black;
+  letter-spacing: 2px;
+}
+
+.main-section1-img img{
+  border-radius: 100%;
+  width: 600px;
+  height: 600px;
+  margin-left: 200px; 
+  margin-bottom: 70px;
+}
+
+.main-section1-text {
+  margin-left: 300px;
+}
+
+.main-section1-text h2{
+  font-weight: 700;
+  font-size: 60px;
+  margin-bottom: 70px;
+}
+
+.main-section1-text h3{
+  font-weight: 300;
+  font-size: 30px;
+  margin-bottom: 70px;
+  letter-spacing: 1px;
+}
+
+.main-section1 button {
+  border-radius: 40px;
+  background-color: var(--medium-gray);
+  color: black;
+  width: 300px;
+  height: 74px;
+  font-weight: 400;
+  font-size: 24px;
+  text-align : center;
+}
+
+/* main - section2 */
+
+.main-section2{
+  display: flex;
+  align-items : center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background: #ebedee ;
+  background-size: 100% 100%;
+}
+
+
+.main-section2-img img{
+  border-radius: 100%;
+  width: 600px;
+  height: 600px;
+  margin-left: 200px; 
+  margin-bottom: 70px;
+}
+
+.main-section2-text {
+  margin-left: 200px; 
+}
+
+.main-section2-text h2{
+  font-weight: 700;
+  font-size: 60px;
+  margin-bottom: 70px;
+}
+
+.main-section2-text h3{
+  font-weight: 300;
+  font-size: 30px;
+  margin-bottom: 70px;
+  letter-spacing: 1px;
+}
+
+.main-section2-text button {
+  border-radius: 40px;
+  background-color: black;
+  color: white;
+  width: 300px;
+  height: 74px;
+  font-weight: 400;
+  font-size: 24px;
+  text-align : center;
+}
+
+/* main - section3 */
+
+
+.main-section3{
+  display: flex;
+  align-items : center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background: #c3cfe2 ;
+  background-size: 100% 100%;
+
+}
+
+.main-section3-img img{
+  border-radius: 100%;
+  width: 600px;
+  height: 600px;
+  margin-left: 200px; 
+  margin-bottom: 70px;
+}
+
+.main-section3-text {
+  margin-left: 300px;
+}
+
+.main-section3-text h2{
+  font-weight: 700;
+  font-size: 60px;
+  margin-bottom: 70px;
+}
+
+.main-section3-text h3{
+  font-weight: 300;
+  font-size: 30px;
+  margin-bottom: 70px;
+  letter-spacing: 1px;
+}
+
+.main-section3-text button {
+  border-radius: 40px;
+  background-color: black;
+  color: white;
+  width: 300px;
+  height: 74px;
+  font-weight: 400;
+  font-size: 24px;
+  text-align : center;
+}
+
+/* main - section4 */
+.main-section4{
+  display: flex;
+  align-items : center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background:  #e2d1c3 ;
+  background-size: 100% 100%;
+
+}
+
+.main-section4-img img{
+  border-radius: 100%;
+  width: 600px;
+  height: 600px;
+  margin-left: 200px; 
+  margin-bottom: 70px;
+}
+
+.main-section4-text {
+  margin-left: 200px; 
+
+}
+
+.main-section4-text h2{
+  font-weight: 700;
+  font-size: 60px;
+  margin-bottom: 70px;
+}
+
+.main-section4-text h3{
+  font-weight: 300;
+  font-size: 30px;
+  margin-bottom: 70px;
+  letter-spacing: 1px;
+}
+
+.main-section4-text button {
+  border-radius: 40px;
+  background-color: black;
+  color: white;
+  width: 300px;
+  height: 74px;
+  font-weight: 400;
+  font-size: 24px;
+  text-align : center;
+}
+
+/* main - section5 */
+
+.main-section5{
+  display: flex;
+  align-items : center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #DCD9D4;
+  background-size: 100% 100%;
+
+
+}
+
+.main-section5-img img{
+  border-radius: 100%;
+  width: 600px;
+  height: 600px;
+  margin-left: 200px; 
+  margin-bottom: 70px;
+}
+
+.main-section5-text {
+  margin-left: 300px;
+}
+
+.main-section5-text h2{
+  font-weight: 700;
+  font-size: 60px;
+  margin-bottom: 70px;
+}
+
+.main-section5-text h3{
+  font-weight: 300;
+  font-size: 30px;
+  margin-bottom: 70px;
+  letter-spacing: 1px;
+}
+
+.main-section5-text button {
+  border-radius: 40px;
+  background-color: black;
+  color: white;
+  width: 300px;
+  height: 74px;
+  font-weight: 400;
+  font-size: 24px;
+  text-align : center;
+}
+
+
+
+
+footer{
+  position:fixed;
+  bottom: 0;
+  display:block;
+  width: 100%;
+  z-index:9;
+}

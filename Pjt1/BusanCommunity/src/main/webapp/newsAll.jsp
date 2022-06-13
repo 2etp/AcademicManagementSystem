@@ -1,0 +1,110 @@
+<%@ page contentType="text/html;charset=UTF-8" import="java.sql.*"%>
+<%@ page import="java.util.*"%>
+    
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>잘놀다갑니다</title>
+    <link rel="stylesheet" href="./css/destyle.css">
+    <link rel="stylesheet" href="./css/news.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="icon" href="./images/favicon.ico" type="image/x-icon" sizes="16x16">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+<script src="https://kit.fontawesome.com/536e37fbfc.js" crossorigin="anonymous"></script>
+<script defer src="./js/news.js"></script>
+<script defer src="./js/newsEmployment.js"></script>
+<script defer src="./js/newsKookje.js"></script>
+
+</head>
+<body>
+    <!-- 헤더 -->
+    <header>
+        <div class="header">
+          <a href="./main.jsp" class="header-logo">
+            <img src="./images/seagull.png">
+            <div>잘놀다갑니다</div>
+          </a>
+          <ul class="header-menu">
+            <li><a href="./busanIntroduce.jsp">부산소개</a></li>
+            <li><a href="./community.jsp">커뮤니티</a></li>
+            <li><a href="./newsAll.jsp">소식</a></li>
+            <li><a href="./photo.jsp">포토</a></li>
+          </ul>
+          <div class="header-login">
+            <a href="./login.jsp">로그인</a>        
+            <a href="./signup.jsp">회원가입</a>
+          </div>
+        </div>
+      </header>
+      <!-- 메인 -->
+      <main>
+        <div class="news">
+          <div class="title">
+            <ul>
+              <li><a href="./newsAll.jsp">전체</li></a>
+              <li><a href="./newsBusanIntegrated.jsp">부산 통합 공지사항</a></li>
+              <li><a href="./newsBusanEmployment.jsp">부산 채용공고</a></li>
+              <li><a href="./newsBusanKookje.jsp">국제신문:문화</a></li>
+            </ul>
+          </div>
+          <div class="content">
+            <div class="item">
+            <div class="item-text wrap1"></div><!-- 부산통합공지사항 영역 -->
+            </div>
+            <div class="item">
+              <div class="item-text wrap2"></div><!-- 부산 채용공고 영역 -->
+            </div>
+            <div class="item">
+              <div class="item-text wrap3"></div><!-- 국제신문 문화 영역 -->
+            </div>
+          </div>
+          <div class="pagemove">
+            <ul>
+              <li class="pagemove-Arrow">
+                <a href="javascript:void(0)">
+                  &lt
+                </a>
+              </li>
+              <li class="pagemove-number"><a href="javascript:void(0)">1</a></li>
+              <li class="pagemove-number"><a href="javascript:void(0)">2</a></li>
+              <li class="pagemove-number"><a href="javascript:void(0)">3</a></li>
+              <li class="pagemove-number"><a href="javascript:void(0)">4</a></li>
+              <li class="pagemove-Arrow">
+                <a href="javascript:void(0)">
+                  &gt
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </main>
+
+
+
+      <!-- 푸터 -->
+      <footer style="background: #dcdcdc90;">
+        <div class="footer">
+          <div class="footer-information">
+            팀장 : 박휘원 | 전화번호 : 010-4623-0195 <br><br>
+            팀원 : 송민영 | 전화번호 : 010-8800-3995 <br><br>
+            팀원 : 최낙원 | 전화번호 : 010-9753-0266 <br><br>
+            팀원 : 최영수 | 전화번호 : 010-6356-2213 <br><br>
+          </div>
+        </div>
+      </footer>
+
+
+      <div class="moveBnt">
+        <span id="moveup" class="material-symbols-outlined">arrow_circle_up</span>
+        <a href="#"><img class="bugi" src="./images/bugi3d100.png" /></a>
+      </div>
+
+  <!-- <script src="./js/busanIntroduce.js"></script> -->
+
+</body>
+</html>

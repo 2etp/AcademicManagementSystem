@@ -55,7 +55,7 @@ public class SystemMgr {
 		
 		try {
 			con = pool.getConnection();
-			sql = "insert tblmember(id, pw, mobile, regdate)values(?,?,?, now())";
+			sql = "insert tblmember(id, pw, mobile, regdate, pwresetdate)values(?,?,?, now(), now())";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberBean.getId());
 			pstmt.setString(2, memberBean.getPw());
@@ -222,7 +222,7 @@ public class SystemMgr {
 		
 		try {
 			con = pool.getConnection();
-			sql = "update tblmember set pw = ?, regdate = now() where id = ?";
+			sql = "update tblmember set pw = ?, pwresetdate = now() where id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, pw);
 			pstmt.setString(2, id);

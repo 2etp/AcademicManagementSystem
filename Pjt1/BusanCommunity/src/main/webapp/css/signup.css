@@ -1,4 +1,16 @@
 @import url('https://webfontworld.github.io/busan/Busan.css');
+:root{
+    --normal-line:1px solid;
+    
+    --light-gray:#dcdcdc90;
+    --medium-gray: #b4b4b4;
+    --dark-gray: #969696;
+  
+    --font-17 : 17px;
+    --font-22 : 22px;
+    --font-25 : 25px;
+  
+  }
 
 *{
   margin: 0px;
@@ -11,40 +23,11 @@ a{
     text-decoration: none;
 }
 
-header {
-    width: 100%;
-    height: 60px;
-    display: flex;
-    background-color: black;
-    color: white;
-    position: fixed;
-    z-index: 9;
-  }
-  
-  .header {
-    width: 350px;
-    
-    margin: 0 auto;
-  }
-  .header-logo{
-    display: flex;
-    align-items: center;
-    font-size: 25px;
-    letter-spacing: 2px;
-    margin: 0 auto;
-  }
-  
-  .header-logo img{
-    width: 100px;
-    height: 60px;
-    position: relative;
-    left: 25px;
-  }
-
 .container{
     min-height: 100vh;
     width: 100%;
-    background: rgba(0, 0, 0, 0.8);
+    background: url(../images/BusanCinemaCenter.jpg) no-repeat ;
+    background-size: cover;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,25 +37,24 @@ header {
     width: 400px;
     height: 415px;
     background: rgba(255, 255, 255, 0.3);
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(100px);
     border-radius: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .container form h4{
     margin-top: 30px;
     margin-bottom: 40px;
-    font-size: 25px;
+    font-size: var(--font-25);
     color: #fff;
     font-weight: 300;
 }
 
 .container form .id ,
 .container form .password {
-    border-bottom: 1px solid #fff;
+    border-bottom: var(--normal-line) var(--light-gray);
     width: 300px;
     height: 40px;
     display: flex;
@@ -85,9 +67,9 @@ header {
 .container form .password input{
     background: none;
     border: none;
-    color: #fff;
+    color: white;
     outline: none;
-    font-size: 16px;
+    font-size: var(--font-17);
     font-weight: 300;
     width: 270px;
 }
@@ -99,16 +81,16 @@ header {
 
 .container form i{
   color: #dadada;
-  font-size: 20px;
+  font-size: var(--font-17);
   padding: 4px;
 }
 .container form ion-icon{
     color: #dadada;
-    font-size: 25px;
+    font-size: var(--font-25);
 }
 
 .container form .forgot{
-    font-size: 14px;
+    font-size: var(--font-17);
     margin-bottom: 20px;
     margin-right: 20px;
 }
@@ -117,7 +99,7 @@ header {
     background: black;
     border: none;
     color: #fff;
-    font-size: 16px;
+    font-size: var(--font-17);
     font-weight: 300;
     width: 120px;
     height: 45px;
@@ -126,17 +108,6 @@ header {
     cursor: pointer;
     margin-right: 10px;
 }
-
-.container form .keepsignedIn{
-    color: #dadada;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    width: 200px;
-    margin-right: 100px;
-    margin-bottom: 30px;
-}
-
 
 
 .container form .lowForm{
@@ -175,11 +146,15 @@ header {
     font-size: 35px;
 }
 
+.btn > * {
+    text-align: center;
+}
+
 .go_login{
     background: white;
 
     border: none;
-    font-size: 16px;
+    font-size: var(--font-17);
     font-weight: 300;
     width: 120px;
     height: 45px;

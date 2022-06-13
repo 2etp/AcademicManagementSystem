@@ -49,7 +49,7 @@ modalclose_changePhone.addEventListener("click", modalPage_changePhone);
 // 회원탈퇴 변경 모달
 const modal_signOut = document.querySelector(".modal-signOut-background");
 const modalopen_signOut = document.querySelector(".signOut");
-const modalclose_signOute = document.querySelector(".modal-signOut-close");
+const modalclose_signOut = document.querySelector(".modal-signOut-close");
 
 function modalPage_signOut(event){
   event.preventDefault();

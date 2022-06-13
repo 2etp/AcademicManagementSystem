@@ -5,6 +5,8 @@
 
 <%
 	request.setCharacterEncoding("UTF-8");
+	String id = (String)session.getAttribute("idKey");
+
 	// DB의 tblnotice row 수만큼 배열 할당
 	int[] noticeSeq = {1, 2, 3, 4};
 	Vector<NoticeBean> vlist = sMgr.selectNotice(noticeSeq);
@@ -13,12 +15,16 @@
     
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
  <meta charset="UTF-8">
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <title>잘놀다갑니다</title>
  <link rel="stylesheet" href="./css/notice.css" >
+ <link rel="stylesheet" href="./css/common.css">
+ <link rel="stylesheet" href="./css/destyle.css">
  <link rel="stylesheet" href="./css/modal_inquiry.css">
+ <link rel="icon" href="./images/favicon.ico" type="image/x-icon" sizes="16x16">
 </head>
 
 <body>
@@ -26,18 +32,24 @@
   <header>
     <div class="header">
       <a href="#" class="header-logo">
-        <img src="./img/seagull.png">
+        <img src="./images/seagull.png">
         <div>잘놀다갑니다</div>
       </a>
       <ul class="header-menu">
-        <li><a href="./busanIntroduce.html">부산소개</a></li>
-        <li><a href="./community.html">커뮤니티</a></li>
+        <li><a href="./busanIntroduce.jsp">부산소개</a></li>
+        <li><a href="./community.jsp">커뮤니티</a></li>
         <li><a href="javascript:void(0)">소식</a></li>
         <li><a href="javascript:void(0)">포토</a></li>
       </ul>
       <div class="header-login">
-        <a href="./login.jsp">로그인</a>
-        <a href="./signup.jsp">회원가입</a>
+        <% if(id != null) { %>
+          <b class="login"><%=id %> 님이 로그인 했습니다.</b>
+          <a href="setting.jsp">설정</a>
+          <input type="button" value="로그아웃" onclick="location.href='logout.jsp'">
+        <% } else { %>
+          <a href="login.jsp">로그인</a>
+          <a href="signup.jsp">회원가입</a>
+        <% } %>
       </div>
     </div>
   </header>
@@ -45,7 +57,7 @@
   <!-- 메인 -->
   <main>
   
-	<div class="main">
+    <div class="main">
 	    <div class="leftSide">
 	      <div class="l-sidebar">
 	        <div class="l-menu">
@@ -58,7 +70,7 @@
 	          <a href="">문의하기</a><i class="fa-solid fa-person-circle-question"></i>
 	        </div>
 	        <div class="l-menu">
-	          <a href="">설정</a><i class="fa-solid fa-gear"></i>
+	          <a href="./setting.jsp">설정</a><i class="fa-solid fa-gear"></i>
 	        </div>
 	      </div>
 	    </div>
@@ -76,10 +88,9 @@
   		}
   	%>
 
-	<form name="noticeFrm" method="post" action="noticeProc.jsp">
-	    <div class="noti-container">
+	  <div class="noti-container">
 	      <div class="noti-main">
-	        <div class="noti-title">공지사항</div>
+	        <div class="noti-title">공지사항&nbsp&nbsp<i class="fa-solid fa-bullhorn"></i></div>
 	      </div>
 	      
 	      <ul class="noti-ul">
@@ -119,73 +130,57 @@
 	        <div class="a inactive">환영합니다</div>
 	      </ul>
 	    </div>
-	</form>
-	
 	
   </main>
   
 
-  <!-- 문의모달 -->
-  
-  <div class="modal-background inactive">
-    <div class="modal-container">
-    <div>
-      <form action="">
-        <p class="modal-title">문의하기</p>
-        <div class="modal-input">
-          <input type="text" class="modal-email" placeholder="이메일을 입력하세요"></input>
-        </div>
-        <div class="modal-text">
-          <textarea name="" id="" rows="5" maxlength="1000" placeholder="문의 내용을 입력하세요"></textarea>
-        </div>
-        <div class="modal-screen">
-          <p>스크린샷</p>
-          <div class="fileUploadSize">
-            <label class="fileUpload" for="imgFile">
-              <i class="fa-solid fa-folder-open"></i>
-              <input type="file" accept="image/*" id="imgFile">
-              <span style="margin-left: 10px;">파일 추가</span>
-            </label>
-          </div>
-        </div>
-        <div class="modal-bnt">
-          <button class="modal-send-bnt" type="submit">보내기</button>
-          <button class="modal-close">취소</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
+  	<!-- 문의모달 -->
+	<div class="modal-background inactive">
+	    <div class="modal-container">
+	     <div>
+	      <form action="">
+	        <p class="modal-title">문의하기</p>
+	        <div class="modal-input">
+	          <input type="text" class="modal-email" placeholder="이메일을 입력하세요"></input>
+	        </div>
+	        <div class="modal-text">
+	          <textarea name="" id="" rows="5" maxlength="1000" placeholder="문의 내용을 입력하세요"></textarea>
+	        </div>
+	        <div class="modal-screen">
+	          <p>스크린샷</p>
+	          <div class="fileUploadSize">
+	            <label class="fileUpload" for="imgFile">
+	              <i class="fa-solid fa-folder-open"></i>
+	              <input type="file" accept="image/*" id="imgFile">
+	              <span style="margin-left: 10px;">파일 추가</span>
+	            </label>
+	          </div>
+	        </div>
+	        <div class="modal-bnt">
+	          <button class="modal-send-bnt" type="submit">보내기</button>
+	          <button class="modal-close">취소</button>
+	        </div>
+	      </form>
+	    </div>
+	   </div>
+	</div>
 
 
-  <!-- 푸터 -->
-<!-- <footer>
-    <div class="footer">
-      <ul class="footer-menu">
-        <li><a href="javascript:void(0)">회사소개</a></li>
-        <li><a href="javascript:void(0)">이용약관</a></li>
-        <li><a href="javascript:void(0)">개인정보처리방침</a></li>
-        <li><a href="javascript:void(0)">도움말</a></li>
-        <li><a href="javascript:void(0)">광고 상품</a></li>
-        <li><a href="javascript:void(0)">문의하기</a></li>
-        <li><button>기업용 서비스</button></li>
-      </ul>
-      <div class="footer-information">
-        대표전화:02-556-4202<br><br>
-        06158 서울시 강남구 테헤란로79길 6, 6층(삼성동, 제이에스타워) (대표자:최재호)사업자등록번호 : 211-88-81111<br><br>
-        통신판매업 신고번호: 2016-서울강남-03104호 | 직업정보제공사업 신고번호: 서울강남 제2019-11호|유료직업소개사업 신고번호: 2020-3220237-14-5-00003<br><br>
-        Copyright 2019.Drama & Company All rights reserved
-      </div>
-    </div>
-  </footer> -->
-
-
-
+    <!-- 푸터 -->
+	<footer>
+	  <div class="footer">
+	    <div class="footer-information">
+	      팀장 : 박휘원 | 전화번호 : 010-4623-0195 <br><br>
+	      팀원 : 송민영 | 전화번호 : 010-8800-3995 <br><br>
+	      팀원 : 최낙원 | 전화번호 : 010-9753-0266 <br><br>
+	      팀원 : 최영수 | 전화번호 : 010-6356-2213 <br><br>
+	    </div>
+	  </div>
+	</footer>
 
   <script src="./js/noti-list.js"></script>
-  <script src="./js/inquiry-modal.js"></script>
+  <script src="./js/modal_inquiry.js"></script>
   <script src="https://kit.fontawesome.com/536e37fbfc.js" crossorigin="anonymous"></script>
 
 </body>
-
 </html>

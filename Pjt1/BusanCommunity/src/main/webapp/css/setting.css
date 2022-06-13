@@ -1,78 +1,18 @@
 /*import font*/
 @import url('https://webfontworld.github.io/busan/Busan.css');
 
+:root{
+  --normal-line:1px solid;
+  
+  --light-gray:#dcdcdc90;
+  --medium-gray: #b4b4b4;
+  --dark-gray: #969696;
 
-*{
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  text-decoration: none;
-  box-sizing: border-box;
-}
-/* body */
-body {
-  font-family: 'busan', sans-serif;
-}
-a{
-  cursor: pointer;
-}
+  --font-17 : 17px;
+  --font-22 : 22px;
+  --font-25 : 25px;
 
-
-/* Header */
-header {
-  width: 100%;
-  height: 60px;
-  background-color: black;
-  color: white;
-  justify-content:center;
-  z-index: 9;
 }
-
-.header {
-  width: 1200px;
-  display: flex;
-  align-items: center;
-  margin: 0 auto;
-}
-
-
-.header-logo{
-  display: flex;
-  align-items: center;
-  font-size: 25px;
-  letter-spacing: 2px;
-}
-
-.header-logo img{
-  width: 100px;
-  height: 60px;
-  position: relative;
-  left: 25px;
-}
-
-.header-menu{
-  list-style-type: none;
-  display: flex;
-  margin-left: 100px;
-}
-.header-menu li{
-  padding-right: 50px;
-}
-
-.header-menu li a,
-.header-login a,
-.header-logo{
-  color: white;
-}
-.header-login {
-  margin-left: 300px;
-}
-
-.header-login a{
-  margin-right: 10px;
-}
-
-
 
 
 
@@ -82,8 +22,9 @@ header {
 
 main{
   width: 100%;
-  height: 100%;
-  background: #fff;
+  height: 850px;
+  background: var(--light-gray);
+  padding-top: 70px;
 }
 
 .main{
@@ -101,14 +42,13 @@ main{
 .l-sidebar{
   width: 230px;
   height: 200px;
-  background: white;
   margin-top: 20px;
 
 }
 .l-menu{
   letter-spacing: 2px;
-  font-size: 16px;
-  border: 1px solid #e5e5e5;
+  font-size: var(--font-17);
+  border: var(--normal-line) var(--medium-gray);
   display: flex;
   padding: 15px;
   cursor: pointer;
@@ -118,7 +58,7 @@ main{
 .l-menu a{
   color: black;
   letter-spacing: 2px;
-  font-size: 16px;
+  font-size: var(--font-17);
 }
 
 .l-menu i{
@@ -150,21 +90,21 @@ main{
 }
 
 .noti-main{
-  border: 1px solid #e5e5e5;
+  border: var(--normal-line) var(--medium-gray);
   display: flex;
 }
 
 .noti-title{
   width: 100%;
-  font-size: 16px;
+  font-size: var(--font-22);
   padding: 15px;
   float: overflow;
 }
 
 .noti-list{
-  border-bottom: 1px solid #e5e5e5;
+  border-bottom: var(--normal-line) var(--medium-gray);
   padding: 20px;
-  font-size: 16px;
+  font-size: var(--font-17);
   display: flex;
   cursor: pointer;
   margin-bottom: 2px;

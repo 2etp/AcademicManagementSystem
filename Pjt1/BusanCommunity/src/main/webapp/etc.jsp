@@ -5,6 +5,8 @@
 
 <%
 	request.setCharacterEncoding("UTF-8");
+	String id = (String)session.getAttribute("idKey");
+	
 	// DB의 tblnotice row 수만큼 배열 할당
 	int[] helpSeq = {1, 2, 3, 4};
 	Vector<HelpBean> vlist = sMgr.selectHelp(helpSeq);
@@ -19,15 +21,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>잘놀다갑니다</title>
   <link rel="stylesheet" href="./css/help.css">
+  <link rel="stylesheet" href="./css/common.css">
+  <link rel="stylesheet" href="./css/destyle.css">
   <link rel="stylesheet" href="./css/modal_inquiry.css">
+  <link rel="icon" href="./images/favicon.ico" type="image/x-icon" sizes="16x16">
 </head>
 
 <body>
   <!-- 헤더 -->
   <header>
     <div class="header">
-      <a href="#" class="header-logo">
-        <img src="./img/seagull.png">
+      <a href="./main.jsp" class="header-logo">
+        <img src="./images/seagull.png">
         <div>잘놀다갑니다</div>
       </a>
       <ul class="header-menu">
@@ -37,8 +42,14 @@
         <li><a href="javascript:void(0)">포토</a></li>
       </ul>
       <div class="header-login">
-        <a href="./login.jsp">로그인</a>
-        <a href="javascript:void(0)">회원가입</a>
+        <% if(id != null) { %>
+          <b class="login"><%=id %> 님이 로그인 했습니다.</b>
+          <a href="setting.jsp">설정</a>
+          <input type="button" value="로그아웃" onclick="location.href='logout.jsp'">
+        <% } else { %>
+          <a href="login.jsp">로그인</a>
+          <a href="signup.jsp">회원가입</a>
+        <% } %>
       </div>
     </div>
   </header>
@@ -51,16 +62,16 @@
     <div class="leftSide">
       <div class="l-sidebar">
         <div class="l-menu">
-          <a href="./notice.jsp">공지사항</a><i class="fa-solid fa-bullhorn"></i>
+          <a href="./notice.html">공지사항</a><i class="fa-solid fa-bullhorn"></i>
         </div>
         <div class="l-menu">
-          <a href="./help.jsp">도움말</a><i class="fa-solid fa-circle-question"></i>
+          <a href="./help.html">도움말</a><i class="fa-solid fa-circle-question"></i>
         </div>
         <div class="l-menu inquiry">
           <a>문의하기</a><i class="fa-solid fa-person-circle-question"></i>
         </div>
         <div class="l-menu">
-          <a href="./setting.jsp">설정</a><i class="fa-solid fa-gear"></i>
+          <a href="./setting.html">설정</a><i class="fa-solid fa-gear"></i>
         </div>
       </div>
     </div>
@@ -79,7 +90,7 @@
   	
       <div class="noti-container">
         <div class="noti-main">
-          <div class="noti-title">도움말</div>
+          <div class="noti-title">도움말&nbsp&nbsp<i  class="fa-solid fa-circle-question"></i></div>
         </div>
         <div class="noti-sub">
           <ul>
@@ -89,14 +100,7 @@
             <li class="noti-sub-menu"><a href="./etc.jsp">기타</a></li>
           </ul>
         </div>
-        <div>
-          <ul class="noti-bg-list">
-            <li class="noti-sub-bg1 bg"><span class="noti-sub-bg"></span></li>
-            <li class="noti-sub-bg2 bg"><span class="noti-sub-bg"></span></li>
-            <li class="noti-sub-bg3 bg"><span class="noti-sub-bg"></span></li>
-            <li class="noti-sub-bg4 bg"><span class="noti-sub-bg"></span></li>
-          </ul>
-        </div>
+        
         <ul class="noti-ul">
           <li class="noti-list">
             <i class="fa-solid fa-caret-right"></i><div class="q">잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
@@ -128,30 +132,21 @@
   </main>
 
 
-
   <!-- 푸터 -->
   <footer>
     <div class="footer">
-      <ul class="footer-menu">
-        <li><a href="javascript:void(0)">회사소개</a></li>
-        <li><a href="javascript:void(0)">이용약관</a></li>
-        <li><a href="javascript:void(0)">개인정보처리방침</a></li>
-        <li><a href="javascript:void(0)">도움말</a></li>
-        <li><a href="javascript:void(0)">광고 상품</a></li>
-        <li><a href="javascript:void(0)">문의하기</a></li>
-      </ul>
       <div class="footer-information">
-        대표전화:02-556-4202<br><br>
-        06158 서울시 강남구 테헤란로79길 6, 6층(삼성동, 제이에스타워) (대표자:최재호)사업자등록번호 : 211-88-81111<br><br>
-        통신판매업 신고번호: 2016-서울강남-03104호 | 직업정보제공사업 신고번호: 서울강남 제2019-11호|유료직업소개사업 신고번호: 2020-3220237-14-5-00003<br><br>
-        Copyright 2019.Drama & Company All rights reserved
+        팀장 : 박휘원 | 전화번호 : 010-4623-0195 <br><br>
+        팀원 : 송민영 | 전화번호 : 010-8800-3995 <br><br>
+        팀원 : 최낙원 | 전화번호 : 010-9753-0266 <br><br>
+        팀원 : 최영수 | 전화번호 : 010-6356-2213 <br><br>
       </div>
     </div>
   </footer>
-
-
- <!-- 문의모달 -->
   
+
+
+ <!-- 문의모달 --> 
  <div class="modal-background inactive">
   <div class="modal-container">
   <div>
@@ -184,7 +179,7 @@
 
 
 <script src="./js/noti-list.js"></script>
-<script src="./js/modal.js"></script>
+<script src="./js/modal_inquiry.js"></script>
 <script src="https://kit.fontawesome.com/536e37fbfc.js" crossorigin="anonymous"></script>
 </body>
 

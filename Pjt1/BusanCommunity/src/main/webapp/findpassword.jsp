@@ -8,24 +8,27 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>잘놀다갑니다</title>
-  <link rel="stylesheet" href="./css/common.css">
   <link rel="stylesheet" href="./css/findpassword.css">
+  <link rel="stylesheet" href="./css/common.css">
+  <link rel="stylesheet" href="./css/destyle.css">
+  <link rel="icon" href="./images/favicon.ico" type="image/x-icon" sizes="16x16">
 </head>
+
 <body>
 
-<!-- 헤더 영역 -->
-  <header>
-    <div class="header">
-      <div class="header-logo">
-        <img src="./img/seagull.png">
-        <div>잘놀다갑니다</div>
-      </div>
-    </div>
-  </header>
+	<!-- 헤더 영역 -->
+	<header>
+	  <div class="header">
+	    <a href="./main.jsp" class="header-logo">
+	      <img src="./images/seagull.png">
+	      <div>잘놀다갑니다</div>
+	    </a>
+	  </div>
+	</header>
 
 
-<!-- 로그인 폼 -->
-  <div class="container">
+	<!-- 로그인 폼 -->
+   <div class="container">
     <form id="loginForm">
       <h4>비밀번호 찾기</h4>
       <div class="id">
@@ -37,7 +40,7 @@
         <ion-icon name="call"></ion-icon>
       </div>
       <div>
-        <input type="submit" value="인증번호 발송받기">
+        <input type="submit" value="인증번호 발송">
       </div>
       <div id="certificationNumber" class="password">
         <input type="passwordInput" placeholder="전송받은 인증번호를 입력하세요" maxlength="20" required>
