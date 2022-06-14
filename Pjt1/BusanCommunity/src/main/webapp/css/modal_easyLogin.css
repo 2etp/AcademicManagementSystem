@@ -1,0 +1,83 @@
+@import url('https://webfontworld.github.io/busan/Busan.css');
+
+
+*{
+  font-family: 'busan', sans-serif;
+}
+
+
+.inactive{
+    display: none;
+  }
+  
+  .modal-easyLogin-background{
+    position: absolute;
+    top:0; 
+    left: 0; 
+    bottom: 0; 
+    right: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 998;
+  }
+  
+  
+  .modal-easyLogin-container{
+    width: 350px;
+    height: 350px;
+    margin: 150px auto;
+    border-radius: 10px;
+    background-color: #f8f8f8;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 999;
+  }
+  
+  .modal-easyLogin-title{
+    text-align: center;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 16px;
+  }
+  
+  .modal-easyLogin-input,
+  .modal-easyLogin-origin{
+    text-align: center;
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  .modal-easyLogin-msg p{
+    padding: 10px;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .modal-easyLogin-input input{
+    width: 250px;
+    height: 40px;
+  }
+  
+  .modal-easyLogin-text{
+    text-align: center;
+    margin-top: 30px;
+    width: 100%;
+  }
+
+  
+  .modal-easyLogin-bnt{
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+  .modal-easyLogin-send-bnt,
+  .modal-easyLogin-close{
+    width: 80px;
+    height: 30px;
+  }
+  
+  .modal-easyLogin-send-bnt{
+    background: black;
+    color: #fff;
+  }

@@ -1,6 +1,6 @@
 $(()=>{
     $.ajax({
-        url:"php/busan.php", 
+        url:"busan.jsp", 
         dataType:"xml",
         error: function(request,status,error) {
 			alert("code:"+request.status+"\n" + 

@@ -1,6 +1,6 @@
 $(()=>{
     $.ajax({
-        url:"php/employment.php",
+        url:"employment.jsp",
         dataType:"xml",
         success:function(data){
             var $items = $(data).find("item");

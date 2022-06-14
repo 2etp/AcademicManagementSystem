@@ -1,6 +1,6 @@
 $(()=>{
     $.ajax({
-        url:"php/kookje.php",
+        url:"kookje.jsp",
         dataType:"xml",
         success:function(data){
             var $items = $(data).find("item");

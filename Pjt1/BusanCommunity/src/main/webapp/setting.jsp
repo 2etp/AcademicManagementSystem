@@ -24,6 +24,7 @@
  <link rel="stylesheet" href="./css/modal_changeNum.css">
  <link rel="stylesheet" href="./css/modal_changePhone.css">
  <link rel="stylesheet" href="./css/modal_signOut.css">
+ <link rel="stylesheet" href="./css/modal_easyLogin.css">
  <link rel="icon" href="./images/favicon.ico" type="image/x-icon" sizes="16x16">
 </head>
 
@@ -219,6 +220,26 @@
 	</div>
 </div>
 
+<!-- 간편로그인 모달 -->
+<div class="modal-easyLogin-background inactive">
+  <div class="modal-easyLogin-container">
+  <div>
+    <form action="">
+      <p class="modal-easyLogin-title">간편로그인</p>
+        <div class="modal-easyLogin-msg">
+        <p>현재 연동된 로그인</p>
+        </div>
+      <div class="modal-easyLogin-input">
+        <p>네이버</p>
+      </div>
+      <div class="modal-easyLogin-bnt">
+        <button class="modal-easyLogin-send-bnt" type="submit">연동해제</button>
+        <button class="modal-easyLogin-close">취소</button>
+      </div>
+    </form>
+  </div>
+</div>
+</div>
 
 <!-- 회원탈퇴 모달 -->
 <div class="modal-signOut-background inactive">
@@ -245,6 +266,7 @@
 <script src="./js/modal_changePhone.js"></script>
 <script src="./js/modal_inquiry.js"></script>
 <script src="./js/modal_signOut.js"></script>
+<script src="./js/modal-easyLogin.js"></script>
 
 <script src="https://kit.fontawesome.com/536e37fbfc.js" crossorigin="anonymous"></script>
 
