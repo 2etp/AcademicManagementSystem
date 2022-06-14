@@ -1,0 +1,158 @@
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 800px;
+  margin-left: auto;
+  background-color: azure;
+  padding-top: 100px;
+}
+.main-section{
+  display: flex;
+  justify-content: space-between;
+  height: 630px;
+}
+
+
+/* main-section-left1 */
+
+.main-section-left{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 700px;
+  margin-right: 100px;
+}
+
+.main-section-left1-header{
+  display: flex;
+  align-items: center;
+  background-color: beige;
+}
+
+.main-section-left1-header img{
+  width: 50px;
+  height: 50px;
+}
+
+.main-section-left1-header div{
+  position: relative;
+  right: 8px;
+}
+
+.main-section-left1-item{
+  background-color: white;
+}
+
+.main-section-left1-item li{
+  padding: 10px 10px;
+}
+
+
+.main-section-left1-item a{
+}
+
+.main-section-left1-item hr{
+  color: darkgray;
+}
+
+
+.main-section-left1-item div:first-child{
+  margin-bottom: 10px;
+}
+
+.main-section-left1-item div+div{
+  font-size: 14px;
+  color: darkgray;
+}
+
+/* main-section-left2 */
+
+
+/* main-section-center */
+
+.main-section-center{
+  margin-right: 100px;
+}
+
+.search {
+  border: 1px solid black;
+}
+
+.search input{
+  width: 300px;
+}
+
+.search button{
+  background-color: aquamarine;
+}
+
+.search button span{
+  font-size: 50px;
+  height: 50px;
+}
+
+
+.board table {
+  margin-top: 50px;
+  width : 600px;
+  height: 500px;
+  
+}
+
+.board table tr th{
+  border: 1px solid black;
+  background-color: beige;
+  vertical-align: middle;
+  text-align: center;
+  height: 50px;
+}
+
+.board table tr td{
+  border: 1px solid black;
+  vertical-align: middle;
+}
+
+
+.swiper img{
+  width: 50px;
+  height: 50px;
+}
+
+/* main-section-right */
+
+.main-section-right .realtimerank{
+  height: 18px;
+  overflow: hidden;
+}
+
+.main-section-right .realtimerank .realtimerank-item{ 
+  position: relative;
+  animation-name: slide;
+  animation-duration: 12s;
+  animation-iteration-count: infinite;
+}
+
+
+/*  animation */
+
+@keyframes slide {
+  from {
+    bottom: 0px;
+  }
+  20% {
+    bottom: 18px;
+  }
+  40%{
+    bottom: 36px;
+  }
+  60%{
+    bottom: 54px;
+  }
+  80%{
+    bottom: 72px;
+  }
+  to {
+    bottom: 90px;
+  }
+}

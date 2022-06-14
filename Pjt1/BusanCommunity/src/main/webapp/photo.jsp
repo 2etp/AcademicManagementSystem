@@ -44,7 +44,7 @@
 	end = numPerPage;
 	
 	// 총 게시물 수 받아오기(현재 2개)
-	totalRecord = sMgr.getTotalCount(keyWord);
+	totalRecord = sMgr.getPhotoTotalCnt(keyWord);
 	totalPage = (int)Math.ceil((double)totalRecord / numPerPage);  //전체페이지수
 	nowBlock = (int)Math.ceil((double)nowPage/pagePerBlock); //현재블럭 계산
 	
