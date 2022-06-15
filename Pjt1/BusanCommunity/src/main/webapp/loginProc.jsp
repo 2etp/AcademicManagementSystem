@@ -80,14 +80,11 @@
 	
 <script>
 	alert("<%=msg%>");
-	
 <%
 	if(days > 1) {
 		 
 		resetMsg = "비밀번호 재설정해라."; %>
 		alert("<%=resetMsg%>");
-<%	}%>
-
-	
-	location.href = "<%=url%>";
+		location.href = "<%=url%>";
+<%	} %>
 </script>

@@ -63,9 +63,10 @@
 
   <link rel="stylesheet" href="./css/common.css" >
   <link rel="stylesheet" href="./css/community.css">
-<!--   <script defer src="./js/community.js"></script> -->
+
   
   <script type="text/javascript">
+  
 	function list() {
 		document.listFrm.action = "community.jsp";
 		document.listFrm.submit();
@@ -95,6 +96,17 @@
 	     }
 	  document.searchFrm.submit();
 	 }
+	
+	function loginChk() {
+		if (document.postFrm.id.value == "") {
+			alert("로그인해 주세요.")
+			document.postFrm.action="login.jsp";
+			
+		} else {
+			document.postFrm.action= "post.jsp";
+		}
+		document.postFrm.submit();
+	}
 </script>
 </head>
 <body>
@@ -154,7 +166,7 @@
       </section>
       <section class="main-section-center">
         <div class="search" >
-        	<form  name="searchFrm"  method="get" action="list.jsp">
+        	<form  name="searchFrm"  method="get" action="community.jsp">
 				<table>
 			 		<tr>
 			  			<td>
@@ -232,13 +244,21 @@
    				<%}%>
  				<!-- 페이징 및 블럭 처리 End-->
 				</td>
-				<div style="float: right">
-					<a href="post.jsp">[글쓰기]</a> 
-					<a href="javascript:list()">[처음으로]</a>
-				</div>
 			
-			</tr>
-			</table>
+		</tr>
+		</table>
+			<form name="postFrm" method="post">
+				<div style="float: right">
+					<% if(id == null) { %>			
+					<input type="hidden" name="id"> 
+					<input type="button" value="[글쓰기]" onClick="javascript:loginChk()">
+					<a href="javascript:list()">[처음으로]</a>
+					<% } else {%>
+					<input type="button" value="[글쓰기]" onClick="javascript:loginChk()">
+					<a href="javascript:list()">[처음으로]</a>
+					<% } %>
+				</div>
+			</form>
 
 			<form name="listFrm" method="post">
 				<input type="hidden" name="reload" value="true"> 
@@ -267,7 +287,7 @@
       </section>
     </div>
     <!-- 페이지무브 버튼 -->
-    <div class="pagemove">
+<!--     <div class="pagemove">
       <ul>
         <li class="pagemove-Arrow">
           <a href="javascript:void(0)">
@@ -287,7 +307,7 @@
           </a>
         </li>
       </ul>
-    </div>
+    </div> -->
   </main>
   <!-- 푸터 -->
   <footer>

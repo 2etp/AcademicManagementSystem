@@ -24,7 +24,6 @@
  <link rel="stylesheet" href="./css/modal_changeNum.css">
  <link rel="stylesheet" href="./css/modal_changePhone.css">
  <link rel="stylesheet" href="./css/modal_signOut.css">
- <link rel="stylesheet" href="./css/modal_easyLogin.css">
  <link rel="icon" href="./images/favicon.ico" type="image/x-icon" sizes="16x16">
 </head>
 
@@ -181,13 +180,13 @@
 <div class="modal-changeNum-background inactive">
 	<div class="modal-changeNum-container">
 	  <div>
-	    <form name="settingFrm" method="post" action="resetPwProc.jsp">
+	    <form id="change-pw-form" name="settingFrm" method="post" action="resetPwProc.jsp">
 	      <p class="modal-changeNum-title">비밀번호 변경</p>
 	      <div class="modal-changeNum-input">
-	        <input type="password" class="" placeholder="변경 할 비밀번호" name="pw"></input>
+	        <input id="change-pw" type="password" class="" placeholder="변경 할 비밀번호" name="pw"></input>
 	      </div>
 	      <div class="modal-changeNum-input">
-	        <input type="password" class="" placeholder="변경 할 비밀번호 확인"></input>
+	        <input id = "change-pw-check" type="password" class="" placeholder="변경 할 비밀번호 확인"></input>
 	      </div>
 	      <div class="modal-changeNum-bnt">
 	        <button class="modal-changeNum-send-bnt" type="submit">보내기</button>
@@ -202,14 +201,14 @@
 <div class="modal-changePhone-background inactive">
   <div class="modal-changePhone-container">
 	  <div>
-	    <form name="settingFrm" method="post" action="resetMobileProc.jsp">
+	    <form id="change-phone-form" name="settingFrm" method="post" action="resetMobileProc.jsp">
 	      <p class="modal-changePhone-title">비밀번호 변경</p>
 	      <div class="modal-changePhone-origin">
 	        <p>기존 휴대폰 번호</p>
 	       <p><%=mobile1%>-<%=mobile2%>-<%=mobile3%></p>
 	      </div>
 	      <div class="modal-changePhone-input">
-	        <input type="text" class="" placeholder="변경 할 휴대폰 번호" name="mobile"></input>
+	        <input id="change-phone" type="text" class="" placeholder="변경 할 휴대폰 번호" name="mobile"></input>
 	      </div>
 	      <div class="modal-changePhone-bnt">
 	        <button class="modal-changePhone-send-bnt" type="submit">보내기</button>
@@ -220,26 +219,6 @@
 	</div>
 </div>
 
-<!-- 간편로그인 모달 -->
-<div class="modal-easyLogin-background inactive">
-  <div class="modal-easyLogin-container">
-  <div>
-    <form action="">
-      <p class="modal-easyLogin-title">간편로그인</p>
-        <div class="modal-easyLogin-msg">
-        <p>현재 연동된 로그인</p>
-        </div>
-      <div class="modal-easyLogin-input">
-        <p>네이버</p>
-      </div>
-      <div class="modal-easyLogin-bnt">
-        <button class="modal-easyLogin-send-bnt" type="submit">연동해제</button>
-        <button class="modal-easyLogin-close">취소</button>
-      </div>
-    </form>
-  </div>
-</div>
-</div>
 
 <!-- 회원탈퇴 모달 -->
 <div class="modal-signOut-background inactive">
@@ -266,7 +245,6 @@
 <script src="./js/modal_changePhone.js"></script>
 <script src="./js/modal_inquiry.js"></script>
 <script src="./js/modal_signOut.js"></script>
-<script src="./js/modal-easyLogin.js"></script>
 
 <script src="https://kit.fontawesome.com/536e37fbfc.js" crossorigin="anonymous"></script>
 

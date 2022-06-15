@@ -435,13 +435,13 @@ public class SystemMgr {
 		try {
 			con = pool.getConnection();
 			if (keyWord.equals("null") || keyWord.equals("")) {
-				sql = "select * from tblBoard order by board_seq desc limit ?, ?";
+				sql = "select * from tblboard order by board_seq desc limit ?, ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setInt(1, start);
 				pstmt.setInt(2, end);
 			} else {
 				sql = "select * from  tblboard where " + keyField + " like ? ";
-				sql += "order by board_seq desc limit ? , ?";
+				sql += "order by board_seq desc limit ?, ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, "%" + keyWord + "%");
 				pstmt.setInt(2, start);
@@ -481,10 +481,6 @@ public class SystemMgr {
 			sql = "select max(board_seq) from tblboard";
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
-			//int ref = 1;
-			/*
-			 * if (rs.next()) ref = rs.getInt(1) + 1;
-			 */
 			File file = new File(SAVEFOLDER);
 			if (!file.exists())
 				file.mkdirs();
@@ -542,7 +538,7 @@ public class SystemMgr {
 		ResultSet rs = null;
 		try {
 			con = pool.getConnection();
-			sql = "select filename from tblboard where board_seq = ?";
+			sql = "select board_filename from tblboard where board_seq = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, boardSeq);
 			rs = pstmt.executeQuery();

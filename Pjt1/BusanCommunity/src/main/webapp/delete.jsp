@@ -17,21 +17,18 @@
 		String dbId = bean.getBoardWriter();
 		if (inId.equals(dbId)) {
 			sMgr.deleteBoard(boardSeq);
-			String url = "list.jsp?nowPage=" + nowPage;
+			String url = "community.jsp?nowPage=" + nowPage;
 			response.sendRedirect(url);
 		}
 			
 %>
-<!-- <script type="text/javascript">
+<script type="text/javascript">
 	function check() {
-		if (document.delFrm.pass.value == "") {
-			alert("패스워드를 입력하세요.");
-			document.delFrm.pass.focus();
-			return false;
-		}
+
+		alert("삭제되었습니다.");
 		document.delFrm.submit();
 	}
-</script> -->
+</script>
 </head>
 <body bgcolor="#FFFFCC">
 	<div align="center">
@@ -61,7 +58,7 @@
 				</tr>
 			</table>
 			<input type="hidden" name="nowPage" value="<%=nowPage%>"> 
-			<input type="hidden" name="num" value="<%=boardSeq%>">
+			<input type="hidden" name="boardSeq" value="<%=boardSeq%>">
 		</form>
 	</div>
 	<%}%>

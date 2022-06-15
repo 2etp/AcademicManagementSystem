@@ -4,10 +4,10 @@
 <% 
 	  request.setCharacterEncoding("UTF-8");
 	  int boardSeq = Integer.parseInt(request.getParameter("boardSeq"));
+	  String id = (String)session.getAttribute("idKey");
 	  String nowPage = request.getParameter("nowPage");
 	  BoardBean bean = (BoardBean)session.getAttribute("bean");
 	  String boardTitle = bean.getBoardTitle();
-	  String boardWriter = bean.getBoardWriter(); 
 	  String boardContent = bean.getBoardContent(); 
 %>
 
@@ -35,21 +35,15 @@
  <tr>
   <td>
    <table>
-    <tr>
-     <td width="20%">성 명</td>
-     <td width="80%">
-	  <input name="name" value="<%=boardWriter%>" size="30" maxlength="20">
-	 </td>
-	</tr>
 	<tr>
      <td>제 목</td>
      <td>
-	  <input name="subject" size="50" value="<%=boardTitle%>" maxlength="50">
+	  <input name="boardTitle" size="50" value="<%=boardTitle%>" maxlength="50">
 	 </td>
     <tr>
      <td>내 용</td>
      <td>
-	  <textarea name="content" rows="10" cols="50"><%=boardContent%></textarea>
+	  <textarea name="boardContent" rows="10" cols="50"><%=boardContent%></textarea>
 	 </td>
     </tr>
 
@@ -68,7 +62,8 @@
  </tr>
 </table>
  <input type="hidden" name="nowPage" value="<%=nowPage%>">
- <input type='hidden' name="num" value="<%=boardSeq%>">
+ <input type='hidden' name="boardSeq" value="<%=boardSeq%>">
+ <input type="hidden" name="boardWriter" value="<%=id%>">
 </form> 
 </div>
 </body>

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse; 
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/BusanCommunityPack/boardUpdate")
+//@WebServlet("/BusanCommunityPack/boardUpdate")
 public class BoardUpdateServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -27,11 +27,12 @@ public class BoardUpdateServlet extends HttpServlet {
 		String nowPage = request.getParameter("nowPage");
 		
 		BoardBean upBean = new BoardBean();
-		upBean.setBoardSeq(Integer.parseInt(request.getParameter("board_seq")));
-		upBean.setBoardWriter(request.getParameter("board_writer"));
-		upBean.setBoardTitle(request.getParameter("board_title"));
-		upBean.setBoardContent(request.getParameter("board_content"));
-		upBean.setBoardIp(request.getParameter("board_ip"));
+		// 빈즈 객체에 요청되는 이름으로 각각 저장
+		upBean.setBoardSeq(Integer.parseInt(request.getParameter("boardSeq")));
+		upBean.setBoardWriter(request.getParameter("boardWriter"));
+		upBean.setBoardTitle(request.getParameter("boardTitle"));
+		upBean.setBoardContent(request.getParameter("boardContent"));
+		upBean.setBoardIp(request.getParameter("boardIp"));
 
 		String dbId = upBean.getBoardWriter();
 		// 세션에 저장했던 작성자(id)
@@ -39,14 +40,9 @@ public class BoardUpdateServlet extends HttpServlet {
 
 		if (dbId.equals(inId)) {
 			sMgr.updateBoard(upBean);
-			String url = "read.jsp?nowPage=" + nowPage + "&num=" + upBean.getBoardSeq();
+			String url = "read.jsp?nowPage=" + nowPage + "&boardSeq=" + upBean.getBoardSeq();
 			response.sendRedirect(url);
-		} else {
-			out.println("<script>");
-			out.println("alert('게시물이 수정되지 않았습니다.');");
-			out.println("history.back();");
-			out.println("</script>");
-		}
+		} 
 	}
 }
  

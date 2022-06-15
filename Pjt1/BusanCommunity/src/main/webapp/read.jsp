@@ -84,8 +84,8 @@
  	if(id != null) {
  %> 
  [ <a href="javascript:list()" >리스트</a> |
- <a href="update.jsp?nowPage=<%=nowPage%>&num=<%=boardSeq%>" >수 정</a> |
- <a href="delete.jsp?nowPage=<%=nowPage%>&num=<%=boardSeq%>">삭 제</a> ]<br/>
+ <a href="update.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>" >수 정</a> |
+ <a href="delete.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>">삭 제</a> ]<br/>
  <% } else { %>
  [ <a href="javascript:list()" >리스트</a> ]
  <% }%>
