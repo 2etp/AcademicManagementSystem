@@ -38,7 +38,7 @@
 	}
 </script>
 </head>
-<body bgcolor="#FFFFCC">
+<body>
 <br/><br/>
 <table align="center" width="600" cellspacing="3">
  <tr>
@@ -71,38 +71,44 @@
    </tr>
    <tr>
     <td colspan="4" align="right">
-     <%=boardIp%>로 부터 글을 남기셨습니다./  조회수  <%=boardCount%>
+      조회수  <%=boardCount%>
     </td>
    </tr>
    </table>
   </td>
  </tr>
  <tr>
-  <td align="center" colspan="2"> 
- <hr/>
- <%
- 	if(id != null) {
- %> 
- [ <a href="javascript:list()" >리스트</a> |
- <a href="update.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>" >수 정</a> |
- <a href="delete.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>">삭 제</a> ]<br/>
- <% } else { %>
- [ <a href="javascript:list()" >리스트</a> ]
- <% }%>
-  </td>
+	 <td align="center" colspan="2"> 
+	 <hr/>
+	 <%
+	 	if(id != null) {
+	 %> 
+	 [ <a href="javascript:list()" >리스트</a> |
+	 <a href="update.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>" >수 정</a> |
+	 <a href="delete.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>">삭 제</a> ]<br/>
+	 <% } else { %>
+	 [ <a href="javascript:list()" >리스트</a> ]
+	 <% }%>
+	 </td>
  </tr>
 </table>
 
-<form name="downFrm" action="download.jsp" method="post">
-	<input type="hidden" name="filename">
-</form>
-
-<form name="listFrm" method="post" action="community.jsp">
-	<input type="hidden" name="nowPage" value="<%=nowPage%>">
-	<%if(!(keyWord==null || keyWord.equals(""))){ %>
-	<input type="hidden" name="keyField" value="<%=keyField%>">
-	<input type="hidden" name="keyWord" value="<%=keyWord%>">
-	<%}%>
-</form>
+	<h2>댓글</h2>
+	<form name="commentFrm" method="post">
+		<textarea rows="" cols="">dtdtdtdfd</textarea>
+		<input type="button" name="comment" value="등록">
+	</form>
+	
+	<form name="downFrm" action="download.jsp" method="post">
+		<input type="hidden" name="filename">
+	</form>
+	
+	<form name="listFrm" method="post" action="community.jsp">
+		<input type="hidden" name="nowPage" value="<%=nowPage%>">
+		<%if(!(keyWord==null || keyWord.equals(""))){ %>
+		<input type="hidden" name="keyField" value="<%=keyField%>">
+		<input type="hidden" name="keyWord" value="<%=keyWord%>">
+		<%}%>
+	</form>
 </body>
 </html>

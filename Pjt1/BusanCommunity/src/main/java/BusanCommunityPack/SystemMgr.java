@@ -71,11 +71,12 @@ public class SystemMgr {
 		
 		try {
 			con = pool.getConnection();
-			sql = "insert tblmember(id, pw, mobile, regdate, pwresetdate)values(?,?,?, now(), now())";
+			sql = "insert tblmember(id, pw, mobile, regdate, pwresetdate, profileimage)values(?,?,?, now(), now(), ?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, memberBean.getId());
 			pstmt.setString(2, memberBean.getPw());
 			pstmt.setString(3, memberBean.getMobile());
+			pstmt.setString(4, memberBean.getProfileImage());
 			
 			if(pstmt.executeUpdate() == 1)
 				
@@ -467,6 +468,33 @@ public class SystemMgr {
 		return vlist;
 	}
 	
+	// 게시판 출력 시 유저 프로필 이미지 불러오기
+	public String getProfileImage(String id) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		String profileImage = null;
+		
+		try {
+			con = pool.getConnection();
+			sql = "select profileimage from tblmember where id = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				profileImage = rs.getString(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		return profileImage;
+		
+	}
+	
 	// 게시물 입력
 	public void insertBoard(HttpServletRequest req) {
 		Connection con = null;
@@ -491,15 +519,12 @@ public class SystemMgr {
 				filename = multi.getFilesystemName("filename");
 				filesize = (int) multi.getFile("filename").length();
 			}
-			String content = multi.getParameter("boardContent");
-			if (multi.getParameter("contentType").equalsIgnoreCase("TEXT")) {
-				content = UtilMgr.replace(content, "<", "&lt;");
-			}
+
 			sql = "insert tblboard(board_writer, board_content, board_title, board_pos, board_regdate, board_count, board_ip, board_filename, board_filesize)";
 			sql += "values(?, ?, ?, 0, now(), 0, ?, ?, ?)";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, multi.getParameter("boardWriter"));
-			pstmt.setString(2, content);
+			pstmt.setString(2, multi.getParameter("boardContent"));
 			pstmt.setString(3, multi.getParameter("boardTitle"));
 			pstmt.setString(4, multi.getParameter("boardIp"));
 			pstmt.setString(5, filename);

@@ -30,88 +30,44 @@
 			  placeholder: '최대 2048자까지 쓸 수 있습니다'	//placeholder 설정
 	          
 		});
+		// DB에서 불러올 시 <p>태그 제거하는 기능
+		$('#board_content').summernote('editor.insertText', "${board_data.BOARD_CONTENT}")
 	});
+	
+
 </script>
 </head>
 
 <body>
 
-<form name="postFrm" method="post" action="boardPost" enctype="multipart/form-data">
-	<table>
-         <colgroup>
-             <col style="width:150px">
-             <col style="width:850px">
-         </colgroup>
-         <tbody>
-             <tr>
-                 <th>TITLE</th>
-                 <td><input type="text" name="boardTitle" value=""></td>
-             </tr>
-             <tr>
-                 <th>CONTENTS</th>
-                 <td>
-                     <textarea name="contents" id="summernote"></textarea>
-                 </td>
-             </tr>
-         </tbody>
-	</table>
-	<div>
-		<input type="submit" value="등록">
-		<input type="reset" value="다시쓰기">
-		<input type="button" value="리스트" onClick="javascript:location.href='community.jsp'">
-	</div>
-	
-	<!-- 게시물을 등록한 사용자의 IP 주소를 가져옴 -->
-	<input type="hidden" name="boardIp" value="<%=request.getRemoteAddr()%>">
-	<input type="hidden" name="boardWriter" value="<%=id%>">
-</form>
-<!-- <div align="center">
-<br/><br/>
-<table width="600" cellpadding="3">
-	<tr>
-		<td bgcolor="84F399" height="25" align="center">글쓰기</td>
-	</tr>
-</table>
-<br/>
-<form name="postFrm" method="post" action="boardPost" enctype="multipart/form-data">
-<table width="600" cellpadding="3" align="center">
-	<tr>
-		<td align=center>
-		<table align="center">
-			<tr>
-				<td>제 목</td>
-				<td>
-				<input name="boardTitle" size="50" maxlength="30"></td>
-			</tr>
-			<tr>
-				<td>내 용</td>
-				<td><textarea name="boardContent" rows="10" cols="50"></textarea></td>
-			</tr>
-			<tr>
-			 <tr>
-     			<td>파일찾기</td> 
-     			<td><input type="file" name="filename" size="50" maxlength="50"></td>
-    		</tr>
- 			<tr>
- 				<td>내용타입</td>
- 				<td> HTML<input type=radio name="contentType" value="HTTP" >&nbsp;&nbsp;&nbsp;
-  			 	TEXT<input type=radio name="contentType" value="TEXT" checked>
-  			 	</td>
- 			</tr>
-			<tr>
-				<td colspan="2"><hr/></td>
-			</tr>
-			<tr>
-				<td colspan="2">
-					 <input type="submit" value="등록">
-					 <input type="reset" value="다시쓰기">
-					 <input type="button" value="리스트" onClick="javascript:location.href='community.jsp'">
-				</td>
-			</tr>
+	<form name="postFrm" method="post" action="boardPost" enctype="multipart/form-data">
+		<table>
+	         <colgroup>
+	             <col style="width:150px">
+	             <col style="width:850px">
+	         </colgroup>
+	         <tbody>
+	             <tr>
+	                 <th>TITLE</th>
+	                 <td><input type="text" name="boardTitle" value=""></td>
+	             </tr>
+	             <tr>
+	                 <th>CONTENTS</th>
+	                 <td>
+	                     <textarea name="boardContent" id="summernote"></textarea>
+	                 </td>
+	             </tr>
+	         </tbody>
 		</table>
-		</td>
-	</tr>
-</table>
- -->
+		<div>
+			<input type="submit" value="등록">
+			<input type="reset" value="다시쓰기">
+			<input type="button" value="리스트" onClick="javascript:location.href='community.jsp'">
+		</div>
+		
+		<!-- 게시물을 등록한 사용자의 IP 주소를 가져옴 -->
+		<input type="hidden" name="boardIp" value="<%=request.getRemoteAddr()%>">
+		<input type="hidden" name="boardWriter" value="<%=id%>">
+	</form>
 </body>
 </html>

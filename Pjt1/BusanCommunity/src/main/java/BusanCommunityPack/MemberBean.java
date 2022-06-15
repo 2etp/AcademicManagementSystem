@@ -7,7 +7,7 @@ public class MemberBean {
 	private String mobile;
 	private String regDate;
 	private String pwResetDate;
-	
+	private String profileImage;
 
 	public String getId() {
 		return id;
@@ -33,7 +33,6 @@ public class MemberBean {
 		this.mobile = mobile;
 	}
 	
-	
 	public String getRegDate() {
 		return regDate;
 	}
@@ -45,8 +44,17 @@ public class MemberBean {
 	public String getPwResetDate() {
 		return pwResetDate;
 	}
+	
 	public void setPwResetDate(String pwResetDate) {
 		this.pwResetDate = pwResetDate;
+	}
+	
+	public String getProfileImage() {
+		return profileImage;
+	}
+
+	public void setProfileImage(String profileImage) {
+		this.profileImage = profileImage;
 	}
 	
 }

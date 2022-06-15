@@ -54,6 +54,7 @@
         <input id="phonenumberInput" type="number" placeholder="휴대폰 번호 입력하세요" maxlength="11" required name ="mobile">
         <ion-icon name="call"></ion-icon>
       </div>
+      <input type="hidden" name="profileImage" value="ProfileImage.jpg">
       
       <div class="btn">
         <input type="button" id="action" value="회원가입">

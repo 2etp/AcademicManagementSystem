@@ -4,23 +4,23 @@
 <jsp:useBean id="sMgr" class="BusanCommunityPack.SystemMgr"/>
 
 <%	
-	  request.setCharacterEncoding("UTF-8");
-	  String id = (String)session.getAttribute("idKey");
-	  
-      int totalRecord=0; //전체레코드수
-	  int numPerPage=10; // 페이지당 레코드 수 
-	  int pagePerBlock=15; //블럭당 페이지수 
-	  
-	  int totalPage=0; //전체 페이지 수
-	  int totalBlock=0;  //전체 블럭수 
-
-	  int nowPage=1; // 현재페이지
-	  int nowBlock=1;  //현재블럭
-	  
-	  int start=0; //디비의 select 시작번호
-	  int end=10; //시작번호로 부터 가져올 select 갯수
-	  
-	  int listSize=0; //현재 읽어온 게시물의 수
+	 request.setCharacterEncoding("UTF-8");
+	 String id = (String)session.getAttribute("idKey");
+	 
+	 int totalRecord=0; //전체레코드수
+	 int numPerPage=10; // 페이지당 레코드 수 
+	 int pagePerBlock=15; //블럭당 페이지수 
+	 
+	 int totalPage=0; //전체 페이지 수
+	 int totalBlock=0;  //전체 블럭수 
+	
+	 int nowPage=1; // 현재페이지
+	 int nowBlock=1;  //현재블럭
+	 
+	 int start=0; //디비의 select 시작번호
+	 int end=10; //시작번호로 부터 가져올 select 갯수
+	 
+	 int listSize=0; //현재 읽어온 게시물의 수
 
 	String keyWord = "", keyField = "";
 	Vector<BoardBean> vlist = null;
@@ -177,8 +177,7 @@
 			  			</td>
 			 		</tr>
 				</table>
-			</form>
-          
+			</form>       
         </div>
         <!-- <div class="board"> -->
         	<table>
@@ -186,6 +185,7 @@
 					<td align="center">
 					<%
 						  vlist = sMgr.getBoardList(keyField, keyWord, start, end);
+						  
 						  listSize = vlist.size();//브라우저 화면에 보여질 게시물 번호
 						  if (vlist.isEmpty()) {
 							out.println("등록된 게시물이 없습니다.");
@@ -198,6 +198,8 @@
 									BoardBean bean = vlist.get(i);
 									int boardSeq = bean.getBoardSeq();
 									String boardWriter = bean.getBoardWriter();
+									// 유저 이미지 파일 불러오기
+									String profileImage = sMgr.getProfileImage(boardWriter);
 									String boardTitle = bean.getBoardTitle();
 									String boardContent = bean.getBoardContent();
 									
@@ -209,6 +211,7 @@
 								<a href="javascript:read('<%=boardSeq%>')">
 									<div><%=boardTitle%></div><br>
 									<div align="center"><%=boardContent%></div><br>
+									<img src="./images/<%=profileImage%>"/>
 									<div align="center"><%=boardWriter%></div><br>
 									<div align="center"><%=boardCount%></div><br>
 								</a>
