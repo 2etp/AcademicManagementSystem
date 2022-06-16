@@ -30,4 +30,14 @@
 		<url-pattern>/boardUpdate</url-pattern>
 	</servlet-mapping>
 	
+  	<servlet>
+		<servlet-name>CommentPostServlet</servlet-name>
+		<servlet-class>BusanCommunityPack.CommentPostServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>CommentPostServlet</servlet-name>
+		<url-pattern>/commentPost</url-pattern>
+	</servlet-mapping>
+	
 </web-app>

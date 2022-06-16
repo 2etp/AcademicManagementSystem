@@ -613,6 +613,7 @@ public class SystemMgr {
 		ResultSet rs = null;
 		String sql = null;
 		BoardBean bean = new BoardBean();
+		
 		try {
 			con = pool.getConnection();
 			sql = "select * from tblboard where board_seq = ?";
@@ -627,8 +628,8 @@ public class SystemMgr {
 				bean.setBoardPos(rs.getInt("board_pos"));
 				bean.setBoardRegdate(rs.getString("board_regdate"));
 				bean.setBoardCount(rs.getInt("board_count"));
-				bean.setFilename(rs.getString("filename"));
-				bean.setFilesize(rs.getInt("filesize"));
+				//bean.setFilename(rs.getString("filename"));
+				//bean.setFilesize(rs.getInt("filesize"));
 				bean.setBoardIp(rs.getString("board_ip"));
 			}
 		} catch (Exception e) {
@@ -639,7 +640,85 @@ public class SystemMgr {
 		return bean;
 	}
 	
-	//파일 다운로드
+	// 댓글 작성
+	public void insertComment(HttpServletRequest req, HttpServletResponse response) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		MultipartRequest multi = null;
+		
+		try {
+			con = pool.getConnection();
+			sql = "select max(comment_seq) from tblcomment";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			int commentRef = 1;
+			if(rs.next())
+				commentRef = rs.getInt(1) + 1;
+			File file = new File(SAVEFOLDER);
+			
+			if (!file.exists())
+				file.mkdirs();
+			multi = new MultipartRequest(req, SAVEFOLDER, MAXSIZE, ENCTYPE,
+					new DefaultFileRenamePolicy());
+
+			sql = "insert tblcomment(comment_board, comment_writer, comment_content, comment_regdate, comment_pos, comment_ref, comment_depth, comment_ip)";
+			sql += "values(?, ?, ?, now(), 0, ?, 0, ?)";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(multi.getParameter("commentBoard")));
+			pstmt.setString(2, multi.getParameter("commentWriter"));
+			pstmt.setString(3, multi.getParameter("commentContent"));
+			pstmt.setInt(4, commentRef);
+			pstmt.setString(5, multi.getParameter("commentIp"));
+			pstmt.executeUpdate();
+			
+			response.sendRedirect("read.jsp?boardSeq=" + multi.getParameter("boardSeq"));
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+
+	}
+	
+	// 댓글 리스트
+	public Vector<CommentBean> getCommentList(int commentBoard) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		Vector<CommentBean> vlist = new Vector<CommentBean>();
+		
+		try {
+			con = pool.getConnection();
+			sql = "select * from tblcomment where comment_board = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, commentBoard);			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				CommentBean bean = new CommentBean();
+				bean.setCommentSeq(rs.getInt("comment_seq"));
+				bean.setCommentBoard(rs.getInt("comment_board"));
+				bean.setCommentWriter(rs.getString("comment_writer"));
+				bean.setCommentContent(rs.getString("comment_content"));
+				bean.setCommentRegdate(rs.getString("comment_regdate"));
+				bean.setCommentPos(rs.getInt("comment_pos"));
+				bean.setCommentRef(rs.getInt("comment_ref"));			
+				bean.setCommentIp(rs.getString("comment_ip"));
+				bean.setCommentDepth(rs.getInt("comment_depth"));
+			}
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				pool.freeConnection(con, pstmt, rs);
+			}
+			return vlist;
+	}
+	
+	// 파일 다운로드
 	public void downLoad(HttpServletRequest req, HttpServletResponse res,
 			JspWriter out, PageContext pageContext) {
 		try {
