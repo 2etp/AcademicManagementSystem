@@ -57,7 +57,8 @@
 	}
 	
 	function reply() {
-		document.replycommentFrm.action="read.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>&commentRef=<%=commentRef%>"
+		document.replycommentFrm.action="read.jsp?nowPage=" + <%=nowPage%> + "&boardSeq=" + <%=boardSeq%> + "&commentRef=" + <%=commentRef%>;
+		document.replycommentFrm.submit();
 	}
 </script>
 </head>
@@ -158,16 +159,16 @@
 	 	 <%
 		 	if(id != null) {
 		 %> 
-		 [ <a href="javascript:reply()" >답변</a> |
+		 [ <a href="read.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>&commentRef=<%=commentRef%>">답변</a> |
 		 <a href="deleteComment.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>&commentSeq=<%=commentSeq%>">삭 제</a> ]<br/>
 		 <% } else { %>
-		 [ <a href="javascript:reply()" >답변</a> ]
+		 [ <a href="read.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>&commentRef=<%=commentRef%>" >답변</a> ]
 		 <% }%> 		    
 	 		
 	 <% } %>
 	 
 	<!-- 대댓글 기능 -->
-	<form name="replycommentFrm" method="post" action="commentPost" enctype="multipart/form-data">
+	<form name="replycommentFrm" method="post" action="replyCommentPost" enctype="multipart/form-data">
 		<textarea name="commentContent" placeholder="회원으로 등록할 수 있습니다."></textarea>
 		<!-- 댓글을 등록한 사용자의 IP 주소를 가져옴 -->
 		<input type="hidden" name="commentIp" value="<%=request.getRemoteAddr()%>">

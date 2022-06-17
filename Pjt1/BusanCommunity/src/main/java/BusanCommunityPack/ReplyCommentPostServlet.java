@@ -7,35 +7,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class ReplyCommentPostServlet
- */
-@WebServlet("/ReplyCommentPostServlet")
 public class ReplyCommentPostServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ReplyCommentPostServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+			throws ServletException, IOException {
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.setCharacterEncoding("UTF-8");
+		SystemMgr sMgr = new SystemMgr();
+		CommentBean reBean = new CommentBean();
+		reBean.setCommentWriter(request.getParameter("commentWriter"));
+		reBean.setCommentContent(request.getParameter("commentContent"));
+		reBean.setCommentRef(Integer.parseInt(request.getParameter("commentRef"))); 
+		reBean.setCommentPos(Integer.parseInt(request.getParameter("commentPos"))); 
+		reBean.setCommentDepth(Integer.parseInt(request.getParameter("commentDepth"))); 
+		reBean.setCommentIp(request.getParameter("commentIp"));
+
+		sMgr.replyUpComment(reBean.getCommentRef(), reBean.getCommentPos());
+		sMgr.replyComment(reBean);
+		
+		String nowPage = request.getParameter("nowPage");
+		String boardSeq = request.getParameter("boardSeq");
+		response.sendRedirect("read.jsp?nowPage=" + nowPage + "boardSeq=" + boardSeq);
+		System.out.println("´ë´ñ±Û ¼·¸£¸´");
+
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
+	
 }

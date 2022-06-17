@@ -16,7 +16,6 @@ public class CommentPostServlet extends HttpServlet {
 		SystemMgr sMgr = new SystemMgr();		
 		sMgr.insertComment(request, response);
 		
-		
 	}
 
 }

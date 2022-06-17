@@ -205,8 +205,6 @@
 									
 									int boardCount = bean.getBoardCount();
 							%>
-							<br><br><br><tr>
-								<%-- <td align="center"><%=totalRecord-((nowPage-1)*numPerPage)-i%></td> --%>
 																				
 								<a href="javascript:read('<%=boardSeq%>')">
 									<div><%=boardTitle%></div><br>
