@@ -7,16 +7,8 @@
 <%
 	  request.setCharacterEncoding("UTF-8");
 	  Vector<CommentBean> vlist = null;
-	  int commentBoard = 0;
 	  
 	  int boardSeq = Integer.parseInt(request.getParameter("boardSeq"));
-	  
-	  if(request.getParameter("commentBoard") != null) {
-		  commentBoard = Integer.parseInt(request.getParameter("commentBoard"));
-	  }
-
-	  System.out.println(boardSeq);
-
 	  String nowPage = request.getParameter("nowPage");
 	  String keyField = request.getParameter("keyField");
 	  String keyWord = request.getParameter("keyWord");
@@ -37,6 +29,10 @@
 	  int boardCount = bean.getBoardCount();
 
 	  session.setAttribute("bean", bean); //게시물을 세션에 저장
+	  session.setAttribute("commentBean", vlist);
+	  int commentRef = 0;
+	  int commentPos = 0;
+	  int commentDepth = 0;
 %>
 
 <html>
@@ -44,15 +40,25 @@
 <title>JSP Board</title>
 <link href="style.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
-	function list(){
+	function list() {
 	    document.listFrm.submit();
 	 } 
 	
-	function down(filename){
+	function down(filename) {
 		 document.downFrm.filename.value=filename;
 		 document.downFrm.submit();
 	}
 	
+
+	function commentLogin() {
+		<% if(id != null)  %>
+			alert("로그인해 주세요.");
+			//document.commentFrm.action="read.jsp";
+	}
+	
+	function reply() {
+		document.replycommentFrm.action="read.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>&commentRef=<%=commentRef%>"
+	}
 </script>
 </head>
 <body>
@@ -109,23 +115,70 @@
 	 </td>
  </tr>
 </table>
+
+	<!-- 댓글 기능 -->
+	<form name="commentFrm" method="post" action="commentPost" enctype="multipart/form-data">
+		<textarea name="commentContent" placeholder="회원으로 등록할 수 있습니다."></textarea>
+		<!-- 댓글을 등록한 사용자의 IP 주소를 가져옴 -->
+		<input type="hidden" name="commentIp" value="<%=request.getRemoteAddr()%>">
+		<input type="hidden" name="commentWriter" value="<%=id%>">
+		<input type="hidden" name="boardSeq" value="<%=boardSeq%>">
+		<input type="submit" value="등록" onClick="commentLogin()">
+	
+		<h2>댓글</h2>
+	</form>
+	
 	 <hr/>
+	 
 	 <% for(int i = 0; i < vlist.size(); ++i) {
 	 		CommentBean commentBean = vlist.get(i);
 	 		
+	 		int commentSeq = commentBean.getCommentSeq();
  		    String commentWriter = commentBean.getCommentWriter();
  		    String commentContent = commentBean.getCommentContent();
  		    String commentRegdate = commentBean.getCommentRegdate();
- 		    int commentDepth = commentBean.getCommentDepth();
+ 		    commentDepth = commentBean.getCommentDepth();
+ 		    commentRef = commentBean.getCommentRef();
+ 		    commentPos = commentBean.getCommentPos();
+ 		    
+ 		    if(commentDepth > 0) {
+ 		    	for(int j = 0; j < commentDepth; ++j) {
+ 		    		out.println("&nbsp;&nbsp;");
+ 		    	}
+ 		    }
  		    
  	 %>
+ 	 <!-- 댓글 작성자 이름 -->
  	 <div><%=commentWriter%></div>
+ 	 <!-- 댓글 내용 -->
  	 <div><%=commentContent%></div>
+ 	 <!-- 댓글 작성 날짜 -->
  	 <div><%=commentRegdate%></div>
- 	 <div><%=commentDepth%></div>
-	 		    
+ 	 
+	 	 <%
+		 	if(id != null) {
+		 %> 
+		 [ <a href="javascript:reply()" >답변</a> |
+		 <a href="deleteComment.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>&commentSeq=<%=commentSeq%>">삭 제</a> ]<br/>
+		 <% } else { %>
+		 [ <a href="javascript:reply()" >답변</a> ]
+		 <% }%> 		    
 	 		
 	 <% } %>
+	 
+	<!-- 대댓글 기능 -->
+	<form name="replycommentFrm" method="post" action="commentPost" enctype="multipart/form-data">
+		<textarea name="commentContent" placeholder="회원으로 등록할 수 있습니다."></textarea>
+		<!-- 댓글을 등록한 사용자의 IP 주소를 가져옴 -->
+		<input type="hidden" name="commentIp" value="<%=request.getRemoteAddr()%>">
+		<input type="hidden" name="nowPage" value="<%=nowPage%>">
+		<input type="hidden" name="commentRef" value="<%=commentRef%>">
+		<input type="hidden" name="commentPos" value="<%=commentPos%>">
+		<input type="hidden" name="commentDepth" value="<%=commentDepth%>">
+		<input type="hidden" name="commentWriter" value="<%=id%>">
+		<input type="hidden" name="boardSeq" value="<%=boardSeq%>">
+		<input type="submit" value="등록">
+	</form>
 
 	<!-- 파일 다운로드 폼 -->
 	<form name="downFrm" action="download.jsp" method="post">
@@ -142,19 +195,6 @@
 		<input type="hidden" name="nowPage" value="1">
 	</form>
 
-	<!-- 댓글 기능 -->
-	<form name="commentFrm" method="post" action="commentPost" enctype="multipart/form-data">
-		<textarea name="commentContent">회원으로 댓글 달기</textarea>
-		<!-- 댓글을 등록한 사용자의 IP 주소를 가져옴 -->
-		<input type="hidden" name="commentIp" value="<%=request.getRemoteAddr()%>">
-		<input type="hidden" name="commentWriter" value="<%=id%>">
-		<input type="hidden" name="commentBoard" value="<%=boardSeq%>">
-		<input type="hidden" name="boardSeq" value="<%=boardSeq%>">
-		<input type="submit" value="등록">
-	
-		<h2>댓글</h2>
-		
-		<input type="file" name="filename"> 
-	</form>
+
 </body>
 </html>

@@ -2,15 +2,12 @@
 <%@	page import="BusanCommunityPack.BoardBean"%>
 <jsp:useBean id="sMgr" class="BusanCommunityPack.SystemMgr"/>
 
-<html>
-<head>
-<title>JSP Board</title>
-<link href="style.css" rel="stylesheet" type="text/css">
 <%
 	request.setCharacterEncoding("UTF-8");
 	String nowPage = request.getParameter("nowPage");
 	int boardSeq = Integer.parseInt(request.getParameter("boardSeq"));
     String inId = (String)session.getAttribute("idKey");
+    String msg = null;
     
 	if (inId != null) {
 		BoardBean bean = (BoardBean) session.getAttribute("bean");
@@ -18,17 +15,24 @@
 		if (inId.equals(dbId)) {
 			sMgr.deleteBoard(boardSeq);
 			String url = "community.jsp?nowPage=" + nowPage;
+			msg = "삭제되었습니다.";
 			response.sendRedirect(url);
-		}
 			
 %>
+<html>
+<head>
 <script type="text/javascript">
-	function check() {
 
-		alert("삭제되었습니다.");
-		document.delFrm.submit();
-	}
+	alert("<%=msg%>");
+	//document.delFrm.submit();
 </script>
+
+	<%	
+	
+		} else {
+		}
+ 	} else { 
+ 	%>
 </head>
 <body bgcolor="#FFFFCC">
 	<div align="center">

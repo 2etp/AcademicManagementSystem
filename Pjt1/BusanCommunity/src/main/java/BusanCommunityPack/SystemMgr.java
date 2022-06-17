@@ -666,7 +666,7 @@ public class SystemMgr {
 			sql = "insert tblcomment(comment_board, comment_writer, comment_content, comment_regdate, comment_pos, comment_ref, comment_depth, comment_ip)";
 			sql += "values(?, ?, ?, now(), 0, ?, 0, ?)";
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, Integer.parseInt(multi.getParameter("commentBoard")));
+			pstmt.setInt(1, Integer.parseInt(multi.getParameter("boardSeq")));
 			pstmt.setString(2, multi.getParameter("commentWriter"));
 			pstmt.setString(3, multi.getParameter("commentContent"));
 			pstmt.setInt(4, commentRef);
@@ -674,6 +674,7 @@ public class SystemMgr {
 			pstmt.executeUpdate();
 			
 			response.sendRedirect("read.jsp?boardSeq=" + multi.getParameter("boardSeq"));
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -708,6 +709,8 @@ public class SystemMgr {
 				bean.setCommentRef(rs.getInt("comment_ref"));			
 				bean.setCommentIp(rs.getString("comment_ip"));
 				bean.setCommentDepth(rs.getInt("comment_depth"));
+				
+				vlist.add(bean);
 			}
 				
 			} catch (Exception e) {
@@ -716,6 +719,79 @@ public class SystemMgr {
 				pool.freeConnection(con, pstmt, rs);
 			}
 			return vlist;
+	}
+	
+	// 댓글 삭제
+	public void deleteComment(int commentBoard, int commentSeq) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		
+		try {
+			con = pool.getConnection();
+			sql = "delete from tblcomment where comment_board = ? and comment_seq = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, commentBoard);
+			pstmt.setInt(2, commentSeq);
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		
+	}
+	
+	// 대댓글 작성
+	public void replyComment(CommentBean bean) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			con = pool.getConnection();
+			sql = "insert tblcomment (comment_board, comment_writer, comment_content, comment_regdate, comment_pos, comment_ref, comment_depth, comment_ip)";
+			sql += "values(?, ?, ?, now(), ?, ?, ?, ?)";
+			int commentDepth = bean.getCommentDepth() + 1;
+			int commentPos = bean.getCommentPos() + 1;
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1,  bean.getCommentBoard());
+			pstmt.setString(2, bean.getCommentWriter());
+			pstmt.setString(3, bean.getCommentContent());
+			pstmt.setInt(4, commentPos);
+			pstmt.setInt(5, bean.getCommentRef());
+			pstmt.setInt(6, commentDepth);
+			pstmt.setString(7, bean.getCommentIp());
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt);
+		}
+	}
+	
+	// 댓글에 위치값 증가
+	public void replyUpComment(int commentRef, int commentPos) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			con = pool.getConnection();
+			sql = "update tblcomment set comment_pos = comment_pos + 1 where comment_ref = ? and comment_pos > ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, commentRef);
+			pstmt.setInt(2, commentPos);
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt);
+		}
 	}
 	
 	// 파일 다운로드
