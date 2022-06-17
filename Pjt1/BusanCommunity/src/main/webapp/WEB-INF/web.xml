@@ -40,4 +40,14 @@
 		<url-pattern>/commentPost</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>ReplyCommentPostServlet</servlet-name>
+		<servlet-class>BusanCommunityPack.ReplyCommentPostServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>CommentPostServlet</servlet-name>
+		<url-pattern>/replyCommentPost</url-pattern>
+	</servlet-mapping>
+	
 </web-app>
