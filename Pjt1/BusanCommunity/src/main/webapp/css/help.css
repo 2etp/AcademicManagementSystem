@@ -32,9 +32,10 @@
 
 main{
   width: 100%;
-  height: 850px;
+  height : auto;
   background: var(--light-gray);
   padding-top: 70px;
+  flex: 1;
 }
 
 .main{
