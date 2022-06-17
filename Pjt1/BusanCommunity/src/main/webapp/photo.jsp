@@ -29,14 +29,6 @@
 		keyWord = request.getParameter("keyWord");
 	}
 	
-	System.out.println(keyWord);
-	
-/* 	if (request.getParameter("reload") != null){
-		if(request.getParameter("reload").equals("true")) {
-			keyWord = "";
-		}
-	} */
-	
 	if (request.getParameter("nowPage") != null) {
 		nowPage = Integer.parseInt(request.getParameter("nowPage"));
 	}
@@ -203,18 +195,25 @@
 				out.println("등록된 게시물이 없습니다.");
 			  } else {
 				  
-				  for (int i = 0;i<numPerPage; i++) {
-						if (i == listSize) break;
-						PhotoBean bean = vlist.get(i);
-						String photoUrl = bean.getPhotoUrl();
-						
-				  %>
-				  <img src="./images/<%=photoUrl%>"/>
-				 <% 
-				  }
-			  }
-			  
-	  %>
+	              for (int i = 0;i<numPerPage; i++) {
+	                  if (i == listSize) break;
+	                  PhotoBean bean = vlist.get(i);
+	                  String photoUrl = bean.getPhotoUrl();
+	                  String[] urlInfo = photoUrl.split(";");
+	                  
+	                  String first = urlInfo[1]; //장소이름
+	                  String second = urlInfo[2]; // 장소 이미지
+	              %>
+	             
+	              <p><%=urlInfo[1]%><img src="./images/<%=urlInfo[2]%>"/></p>
+	             <% 
+	             
+	         
+	              }
+	           }
+	           
+	     %>
+
 
       </div>
       <div class="pagemove">

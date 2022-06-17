@@ -673,7 +673,7 @@ public class SystemMgr {
 			pstmt.setString(5, multi.getParameter("commentIp"));
 			pstmt.executeUpdate();
 			
-			response.sendRedirect("read.jsp?boardSeq=" + multi.getParameter("boardSeq"));
+			response.sendRedirect("read.jsp?nowPage=" + multi.getParameter("nowPage") + "&boardSeq=" + multi.getParameter("boardSeq"));
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -730,11 +730,21 @@ public class SystemMgr {
 		
 		try {
 			con = pool.getConnection();
+			
+			if(commentSeq == 0) {
+				sql = "delete from tblcomment where comment_board = ?";
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, commentBoard);
+				pstmt.executeUpdate();
+				
+			} else {
 			sql = "delete from tblcomment where comment_board = ? and comment_seq = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, commentBoard);
 			pstmt.setInt(2, commentSeq);
 			pstmt.executeUpdate();
+			
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();

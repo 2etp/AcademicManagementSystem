@@ -120,7 +120,7 @@
       <ul class="header-menu">
         <li><a href="./busanIntroduce.jsp">부산소개</a></li>
         <li><a href="./community.jsp">커뮤니티</a></li>
-        <li><a href="./news.jsp">소식</a></li>
+        <li><a href="./newsAll.jsp">소식</a></li>
         <li><a href="./photo.jsp">포토</a></li>
       </ul>
       <div class="header-login">

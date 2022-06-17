@@ -33,6 +33,7 @@
 	  int commentRef = 0;
 	  int commentPos = 0;
 	  int commentDepth = 0;
+	  
 %>
 
 <html>
@@ -51,15 +52,15 @@
 	
 
 	function commentLogin() {
-		<% if(id != null)  %>
+		<% if(id == null)  %>
 			alert("로그인해 주세요.");
 			//document.commentFrm.action="read.jsp";
 	}
 	
-	function reply() {
+<%-- 	function reply() {
 		document.replycommentFrm.action="read.jsp?nowPage=" + <%=nowPage%> + "&boardSeq=" + <%=boardSeq%> + "&commentRef=" + <%=commentRef%>;
 		document.replycommentFrm.submit();
-	}
+	} --%>
 </script>
 </head>
 <body>
@@ -80,7 +81,7 @@
  <tr> 
     <td align="center" bgcolor="#DDDDDD"> 제 목</td>
     <td bgcolor="#FFFFE8" colspan="3"><%=boardTitle%></td>
-   </tr>
+ </tr>
    <tr> 
      <td align="center" bgcolor="#DDDDDD">첨부파일</td>
      <td bgcolor="#FFFFE8" colspan="3">
@@ -124,7 +125,8 @@
 		<input type="hidden" name="commentIp" value="<%=request.getRemoteAddr()%>">
 		<input type="hidden" name="commentWriter" value="<%=id%>">
 		<input type="hidden" name="boardSeq" value="<%=boardSeq%>">
-		<input type="submit" value="등록" onClick="commentLogin()">
+		<input type="hidden" name="nowPage" value="<%=nowPage%>">
+		<input type="submit" value="등록">
 	
 		<h2>댓글</h2>
 	</form>
@@ -168,7 +170,7 @@
 	 <% } %>
 	 
 	<!-- 대댓글 기능 -->
-	<form name="replycommentFrm" method="post" action="replyCommentPost" enctype="multipart/form-data">
+<%-- 	<form name="replycommentFrm" method="post" action="replyCommentPost" enctype="multipart/form-data">
 		<textarea name="commentContent" placeholder="회원으로 등록할 수 있습니다."></textarea>
 		<!-- 댓글을 등록한 사용자의 IP 주소를 가져옴 -->
 		<input type="hidden" name="commentIp" value="<%=request.getRemoteAddr()%>">
@@ -179,7 +181,7 @@
 		<input type="hidden" name="commentWriter" value="<%=id%>">
 		<input type="hidden" name="boardSeq" value="<%=boardSeq%>">
 		<input type="submit" value="등록">
-	</form>
+	</form> --%>
 
 	<!-- 파일 다운로드 폼 -->
 	<form name="downFrm" action="download.jsp" method="post">
