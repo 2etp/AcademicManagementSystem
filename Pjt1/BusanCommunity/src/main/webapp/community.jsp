@@ -53,7 +53,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>잘놀다갑니다</title>
   <!-- CSS 초기화 -->
   <link rel="stylesheet" href="./css/destyle.css">
   
@@ -67,9 +67,10 @@
   <!-- Other -->
   <link rel="stylesheet" href="./css/common.css" >
   <link rel="stylesheet" href="./css/community.css">
+   <link rel="stylesheet" href="./css/dropdown.css" >
   <script defer src="./js/community.js"></script>
-
-  
+ <link rel="icon" href="./images/favicon.ico" type="image/x-icon" sizes="16x16">
+  	<script src="./js/dropdown.js"></script>
   <script type="text/javascript">
   
 	function list() {
@@ -143,6 +144,8 @@
   </header>
   <!-- 메인 -->
   <main>
+  
+  
     <div class="main-section">
       <section class="main-section-left">
         <div class="main-section-left1">
@@ -291,6 +294,8 @@
         	
       </section>
       
+      
+      
       <section class="main-section-right">
         <div class="realtimerank swiper">
           <div class="swiper-wrapper">
@@ -318,6 +323,8 @@
     </div>
   </main>
   
+
+  
   <!-- 푸터 -->
   <footer>
     <div class="footer">
@@ -330,5 +337,33 @@
       </div>
     </div>
   </footer>
+  
+    <div class="dropdown inactive">
+   <div class="drop-container">
+	  <div>
+	      <p class="droptitle"><% if(id != null) { %>
+          <b class="login"><%=id %> 님</b></p>
+          <% } else { %>
+          <a href="login.jsp">로그인</a>
+          <a href="signup.jsp">회원가입</a>
+          <% } %>
+	        <div class="dropmenu">
+		        <div class="dropmenuList">
+		          <a href="setting.jsp">공지사항</a>
+	            </div>
+   		        <div class="dropmenuList">
+		          <a href="setting.jsp">도움말</a>
+	            </div>
+   		        <div class="dropmenuList">
+		          <a href="setting.jsp">설정</a>
+	            </div>
+	        </div>
+	      <div class="btn">
+	        <input type="button" value="로그아웃" onclick="location.href='logout.jsp'">
+	        <button class="close">취소</button>
+	      </div>
+	  </div>
+   </div>
+</div>
 </body>
 </html>

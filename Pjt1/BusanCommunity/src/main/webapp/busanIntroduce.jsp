@@ -66,6 +66,34 @@
       </div>
     </div>
   </header>
+  
+  <div class="dropdown inactive">
+   <div class="drop-container">
+	  <div>
+	      <p class="droptitle"><% if(id != null) { %>
+          <b class="login"><%=id %> 님</b></p>
+          <% } else { %>
+          <a href="login.jsp">로그인</a>
+          <a href="signup.jsp">회원가입</a>
+          <% } %>
+	        <div class="dropmenu">
+		        <div class="dropmenuList">
+		          <a href="setting.jsp">공지사항</a>
+	            </div>
+   		        <div class="dropmenuList">
+		          <a href="setting.jsp">도움말</a>
+	            </div>
+   		        <div class="dropmenuList">
+		          <a href="setting.jsp">설정</a>
+	            </div>
+	        </div>
+	      <div class="btn">
+	        <input type="button" value="로그아웃" onclick="location.href='logout.jsp'">
+	        <button class="close">취소</button>
+	      </div>
+	  </div>
+   </div>
+</div>
 
 
     <!-- 푸터 -->
@@ -125,33 +153,7 @@
       </div>
     </div>
 
-<div class="dropdown inactive">
-   <div class="drop-container">
-	  <div>
-	      <p class="droptitle"><% if(id != null) { %>
-          <b class="login"><%=id %> 님</b></p>
-          <% } else { %>
-          <a href="login.jsp">로그인</a>
-          <a href="signup.jsp">회원가입</a>
-          <% } %>
-	        <div class="dropmenu">
-		        <div class="dropmenuList">
-		          <a href="setting.jsp">공지사항</a>
-	            </div>
-   		        <div class="dropmenuList">
-		          <a href="setting.jsp">도움말</a>
-	            </div>
-   		        <div class="dropmenuList">
-		          <a href="setting.jsp">설정</a>
-	            </div>
-	        </div>
-	      <div class="btn">
-	        <input type="button" value="로그아웃" onclick="location.href='logout.jsp'">
-	        <button class="close">취소</button>
-	      </div>
-	  </div>
-   </div>
-</div>
+
  
 
   <script type="text/javascript" src="./js/dropdown.js"></script> 

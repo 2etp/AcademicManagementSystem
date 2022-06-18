@@ -8,6 +8,7 @@
 
 .inactive{
     display: none;
+    z-index: -10000;
   }
 
   

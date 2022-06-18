@@ -6,7 +6,7 @@
 %>
 <html>
 <head>
-<title>JSP Board</title>
+<title>잘놀다갑니다</title>
   	<link href="style.css" rel="stylesheet" type="text/css">
   	<!-- include libraries(jQuery, bootstrap) -->
 	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
@@ -16,6 +16,10 @@
 	<!-- include summernote css/js-->
 	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+	<link rel="stylesheet" href="./css/destyle.css">
+	<link rel="stylesheet" href="./css/common.css">
+	<link rel="stylesheet" href="./css/post.css">
+	 <link rel="icon" href="./images/favicon.ico" type="image/x-icon" sizes="16x16">
   
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -39,35 +43,46 @@
 </head>
 
 <body>
-
+	<!-- 헤더 영역 -->
+    <header>
+      <div class="header">
+        <a href="./main.jsp" class="header-logo">
+          <img src="./images/seagull.png">
+          <div>잘놀다갑니다</div>
+        </a>
+      </div>
+    </header>
+    
+    
+ <div class="postForm">
 	<form name="postFrm" method="post" action="boardPost" enctype="multipart/form-data">
 		<table>
-	         <colgroup>
-	             <col style="width:150px">
-	             <col style="width:850px">
-	         </colgroup>
+
 	         <tbody>
 	             <tr>
-	                 <th>TITLE</th>
-	                 <td><input type="text" name="boardTitle" value=""></td>
+	            
+	                 <td>
+	                 	<input class="boardTitle" type="text" name="boardTitle" placeholder="제목을 입력하세요" value="">
+	                 </td>
 	             </tr>
 	             <tr>
-	                 <th>CONTENTS</th>
+	       
 	                 <td>
-	                     <textarea name="boardContent" id="summernote"></textarea>
+	                     <textarea class="boardContent" name="boardContent" id="summernote"></textarea>
 	                 </td>
 	             </tr>
 	         </tbody>
 		</table>
-		<div>
-			<input type="submit" value="등록">
-			<input type="reset" value="다시쓰기">
-			<input type="button" value="리스트" onClick="javascript:location.href='community.jsp'">
+		<div class="buttons">
+			<input class="sendBnt button" type="submit" value="등록">
+			<input class="cancelBnt button " type="reset" value="다시쓰기">
+			<input class="listBnt button " type="button" value="리스트" onClick="javascript:location.href='community.jsp'">
 		</div>
-		
+
 		<!-- 게시물을 등록한 사용자의 IP 주소를 가져옴 -->
 		<input type="hidden" name="boardIp" value="<%=request.getRemoteAddr()%>">
 		<input type="hidden" name="boardWriter" value="<%=id%>">
 	</form>
+</div> <!-- 폼 -->
 </body>
 </html>
