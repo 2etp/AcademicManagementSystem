@@ -142,10 +142,9 @@
       </div>
     </div>
   </header>
+  
   <!-- 메인 -->
   <main>
-  
-  
     <div class="main-section">
       <section class="main-section-left">
         <div class="main-section-left1">
