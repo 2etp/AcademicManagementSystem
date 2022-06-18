@@ -100,6 +100,7 @@ height: 130px;
   width: 100%;
 }
 .footer-information{
+  text-align: center;
   font-size: 12px;
   margin: 0 auto;
   padding-top: 15px;

@@ -8,7 +8,7 @@
 	 String id = (String)session.getAttribute("idKey");
 	 
 	 int totalRecord=0; //전체레코드수
-	 int numPerPage=10; // 페이지당 레코드 수 
+	 int numPerPage=6; // 페이지당 레코드 수 
 	 int pagePerBlock=15; //블럭당 페이지수 
 	 
 	 int totalPage=0; //전체 페이지 수
@@ -56,11 +56,18 @@
   <title>Document</title>
   <!-- CSS 초기화 -->
   <link rel="stylesheet" href="./css/destyle.css">
+  
   <!-- Google API -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
+  <!-- swiper.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.2.4/swiper-bundle.css" integrity="sha512-303pOWiYlJMbneUN488MYlBISx7PqX8Lo/lllysH56eKO8nWIMEMGRHvkZzfXYrHj4j4j5NtBuWmgPnkLlzFCg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.2.4/swiper-bundle.min.js" integrity="sha512-Hvn3pvXhhG39kmZ8ue3K8hw8obT4rfLXHE5n+IWNCMkR6oV3cfkQNUQqVvX3fNJO/JtFeo/MfLmqp5bqAT+8qg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  
+  <!-- Other -->
   <link rel="stylesheet" href="./css/common.css" >
   <link rel="stylesheet" href="./css/community.css">
+  <script defer src="./js/community.js"></script>
 
   
   <script type="text/javascript">
@@ -124,7 +131,6 @@
       <div class="header-login">
         <% if(id != null) { %>
           <b class="login"><%=id %> 님이 로그인 했습니다.</b>
-          <a href="setting.jsp">설정</a>
           <input type="button" value="로그아웃" onclick="location.href='logout.jsp'">
         <% } else { %>
           <a href="login.jsp">로그인</a>
@@ -168,19 +174,21 @@
 				<table>
 			 		<tr>
 			  			<td>
-			   				<input size="16" name="keyWord">
+			   				<input type="text" size="16" placeholder="검색할 글을 입력해주세요." name="keyWord">
 			   				<input type="hidden" name="nowPage" value="1">
-			   				<input type="text" placeholder="검색할 글을 입력해주세요.">
-	          				<input type="button" onClick="javascript:check()"><span class="material-symbols-outlined">search</span>
+	          				<button onClick="javascript:check()"><span class="material-symbols-outlined">search</span></button>
 			  			</td>
 			 		</tr>
 				</table>
 			</form>       
         </div>
-        <!-- <div class="board"> -->
-        	<table>
+       <table class="content-table">
+        	<thead>
         		<tr>
-					<td align="center">
+        			<td>게시판</td>
+        		</tr>
+        	</thead>
+        	<tbody>
 					<%
 						  vlist = sMgr.getBoardList(keyWord, start, end);
 						  
@@ -188,64 +196,76 @@
 						  if (vlist.isEmpty()) {
 							out.println("등록된 게시물이 없습니다.");
 						  } else {
+
+						  for (int i = 0;i<numPerPage; i++) {
+								if (i == listSize) break;
+								BoardBean bean = vlist.get(i);
+								int boardSeq = bean.getBoardSeq();
+								String boardWriter = bean.getBoardWriter();
+								// 유저 이미지 파일 불러오기
+								String profileImage = sMgr.getProfileImage(boardWriter);
+								String boardTitle = bean.getBoardTitle();
+								String boardContent = bean.getBoardContent();
+								
+								int boardCount = bean.getBoardCount();
 					%>
-				<table>
-							<%
-								  for (int i = 0;i<numPerPage; i++) {
-									if (i == listSize) break;
-									BoardBean bean = vlist.get(i);
-									int boardSeq = bean.getBoardSeq();
-									String boardWriter = bean.getBoardWriter();
-									// 유저 이미지 파일 불러오기
-									String profileImage = sMgr.getProfileImage(boardWriter);
-									String boardTitle = bean.getBoardTitle();
-									String boardContent = bean.getBoardContent();
-									
-									int boardCount = bean.getBoardCount();
-							%>
-																				
-								<a href="javascript:read('<%=boardSeq%>')">
-									<div><%=boardTitle%></div><br>
-									<div align="center"><%=boardContent%></div><br>
+					<tr>
+					<td>																					
+						<a href="javascript:read('<%=boardSeq%>')">
+							<div><%=boardTitle%></div>
+							<div class="boardContent"><%=boardContent%></div>
+							<div class="boardUser">
+								<% if(profileImage != null) { %>
 									<img src="./images/<%=profileImage%>"/>
-									<div align="center"><%=boardWriter%></div><br>
-									<div align="center"><%=boardCount%></div><br>
-								</a>
-							</tr>
-					<%}//for%>
-				</table> <%
- 			}//if
- 		%>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2"><br /><br /></td>
-		</tr>
-		<tr>
-			<td>
-			<!-- 페이징 및 블럭 처리 Start--> 
-			<%
-   				  int pageStart = (nowBlock -1)*pagePerBlock + 1 ; //하단 페이지 시작번호
-   				  int pageEnd = ((pageStart + pagePerBlock ) <= totalPage) ?  (pageStart + pagePerBlock): totalPage+1; 
-   				  //하단 페이지 끝번호
-   				  if(totalPage !=0){
-    			  	if (nowBlock > 1) {%>
-    			  		<a href="javascript:block('<%=nowBlock-1%>')">prev...</a><%}%>&nbsp; 
-    			  		<%for ( ; pageStart < pageEnd; pageStart++){%>
-     			     	<a href="javascript:pageing('<%=pageStart %>')"> 
-     					<%if(pageStart==nowPage) {%><font color="blue"> <%}%>
-     					[<%=pageStart %>] 
-     					<%if(pageStart==nowPage) {%></font> <%}%></a> 
-    					<%}//for%>&nbsp; 
-    					<%if (totalBlock > nowBlock ) {%>
-    					<a href="javascript:block('<%=nowBlock+1%>')">.....next</a>
-    				<%}%>&nbsp;  
-   				<%}%>
- 				<!-- 페이징 및 블럭 처리 End-->
-			</td>
-			
-		</tr>
+								<% } else {%>
+									<img src="./images/ProfileImage.jpg"/>
+								<% } %>
+								<div><%=boardWriter%></div>
+							</div>
+							<div class="boardCount">
+								<div class="time"></div>
+								<div class="count">
+									<img src="./images/eye.png"/>
+									<span><%=boardCount%></span>
+								</div>
+							</div>
+							
+							
+						</a>
+					</td>
+        		</tr>
+				<%} // end for
+			}%> <!-- end else -->  		
+        	</tbody>
+        </table>
+        <table>
+			<tr>
+				<td>
+				<!-- 페이징 및 블럭 처리 Start--> 
+				<%
+					  //하단 페이지 시작번호
+	   				  int pageStart = (nowBlock -1)*pagePerBlock + 1 ; 
+				      //하단 페이지 끝번호
+	   				  int pageEnd = ((pageStart + pagePerBlock ) <= totalPage) ?  (pageStart + pagePerBlock): totalPage+1; 
+	   				  
+	   				  if(totalPage !=0){
+	    			  	if (nowBlock > 1) {%>
+	    			  		<a href="javascript:block('<%=nowBlock-1%>')">prev...</a><%}%>&nbsp; 
+	    			  		<%for ( ; pageStart < pageEnd; pageStart++){%>
+	     			     	<a href="javascript:pageing('<%=pageStart %>')"> 
+	     					<%if(pageStart==nowPage) {%><font color="blue"> <%}%>
+	     					[<%=pageStart %>] 
+	     					<%if(pageStart==nowPage) {%></font> <%}%></a> 
+	    					<%}//for%>&nbsp; 
+	    					<%if (totalBlock > nowBlock ) {%>
+	    					<a href="javascript:block('<%=nowBlock+1%>')">.....next</a>
+	    				<%}%>&nbsp;  
+	   				<%}%>
+	 				<!-- 페이징 및 블럭 처리 End-->
+				</td>		
+			</tr>
 		</table>
+		
 			<form name="postFrm" method="post">
 				<div style="float: right">
 					<% if(id == null) { %>			
@@ -269,44 +289,35 @@
 				<input type="hidden" name="keyWord" value="<%=keyWord%>">
 			</form>
         	
-
-       <!--  </div> -->
       </section>
+      
       <section class="main-section-right">
-        <div class="realtimerank">
-          <div class="realtimerank-item"><a href="javascript:void(0)">111111111111111111111111111111</a></div>
-          <div class="realtimerank-item"><a href="javascript:void(0)">2222222222222222222222222222</a></div>
-          <div class="realtimerank-item"><a href="javascript:void(0)">333333333333333333333333333</a></div>
-          <div class="realtimerank-item"><a href="javascript:void(0)">44444444444444444444444444</a></div>
-          <div class="realtimerank-item"><a href="javascript:void(0)">55555555555555555555555555</a></div>
-          <div class="realtimerank-item"><a href="javascript:void(0)">6666666666666666666666666666</a></div>
+        <div class="realtimerank swiper">
+          <div class="swiper-wrapper">
+          	<div class="swiper-slide">
+          		<a href="javascript:void(0)">test</a>
+          	</div>
+          	<div class="swiper-slide">
+          		<a href="javascript:void(0)">admin</a>
+          	</div>
+          	<div class="swiper-slide">
+          		<a href="javascript:void(0)">Busan</a>
+          	</div>
+          	<div class="swiper-slide">
+          		<a href="javascript:void(0)">Nickname</a>
+          	</div>
+          	<div class="swiper-slide">
+          		<a href="javascript:void(0)">hahaha</a>
+          	</div>
+          	<div class="swiper-slide">
+          		<a href="javascript:void(0)">dsaiadu</a>
+          	</div>
+          </div>
         </div>
-
       </section>
     </div>
-    <!-- 페이지무브 버튼 -->
-<!--     <div class="pagemove">
-      <ul>
-        <li class="pagemove-Arrow">
-          <a href="javascript:void(0)">
-            &lt
-          </a>
-        </li>
-        <span class="pagemove-number">
-          <li><a class="current" href="javascript:void(0)">1</a></li>
-          <li><a href="javascript:void(0)">2</a></li>
-          <li><a href="javascript:void(0)">3</a></li>
-          <li><a href="javascript:void(0)">4</a></li>
-          
-        </span>
-        <li class="pagemove-Arrow">
-          <a href="javascript:void(0)">
-            &gt
-          </a>
-        </li>
-      </ul>
-    </div> -->
   </main>
+  
   <!-- 푸터 -->
   <footer>
     <div class="footer">

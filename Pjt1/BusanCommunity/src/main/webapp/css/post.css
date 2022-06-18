@@ -1,0 +1,55 @@
+
+:root{
+  --normal-line:1px solid;
+  
+  --light-gray:#dcdcdc90;
+  --medium-gray: #b4b4b4;
+  --dark-gray: #969696;
+
+  --font-17 : 17px;
+  --font-22 : 22px;
+  --font-25 : 25px;
+
+}
+.header-logo{
+	text-decoration:none;
+}
+
+div.buttons{
+	padding-top:30px;
+	text-align: center;
+}
+
+.button{
+    background: var(--light-gray);
+    border: none;
+    color: black;
+    width: 120px;
+    height: 45px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.button:active{
+	background: black;
+    color: white;
+}
+
+.postForm{
+	padding-top: 150px;
+	margin: 0 auto;
+	width:1000px;
+}
+
+input.boardTitle{
+	border:3px solid var(--dark-gray);
+	border-radius: 5px;
+}
+.boardTitle{
+	width:1000px;
+	height:50px;
+	background: var(--light-gray);
+	margin-bottom: 50px;
+}

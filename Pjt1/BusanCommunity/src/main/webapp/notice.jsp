@@ -21,6 +21,7 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <title>잘놀다갑니다</title>
  <link rel="stylesheet" href="./css/notice.css" >
+  <link rel="stylesheet" href="./css/dropdown.css">
  <link rel="stylesheet" href="./css/common.css">
  <link rel="stylesheet" href="./css/destyle.css">
  <link rel="stylesheet" href="./css/modal_inquiry.css">
@@ -38,13 +39,12 @@
       <ul class="header-menu">
         <li><a href="./busanIntroduce.jsp">부산소개</a></li>
         <li><a href="./community.jsp">커뮤니티</a></li>
-        <li><a href="javascript:void(0)">소식</a></li>
-        <li><a href="javascript:void(0)">포토</a></li>
+        <li><a href="./newsAll.jsp">소식</a></li>
+        <li><a href="./photo.jsp">포토</a></li>
       </ul>
       <div class="header-login">
         <% if(id != null) { %>
           <b class="login"><%=id %> 님이 로그인 했습니다.</b>
-          <a href="setting.jsp">설정</a>
           <input type="button" value="로그아웃" onclick="location.href='logout.jsp'">
         <% } else { %>
           <a href="login.jsp">로그인</a>
@@ -177,8 +177,35 @@
 	    </div>
 	  </div>
 	</footer>
-
+<div class="dropdown inactive">
+   <div class="drop-container">
+	  <div>
+	      <p class="droptitle"><% if(id != null) { %>
+          <b class="login"><%=id %> 님</b></p>
+          <% } else { %>
+          <a href="login.jsp">로그인</a>
+          <a href="signup.jsp">회원가입</a>
+          <% } %>
+	        <div class="dropmenu">
+		        <div class="dropmenuList">
+		          <a href="setting.jsp">공지사항</a>
+	            </div>
+   		        <div class="dropmenuList">
+		          <a href="setting.jsp">도움말</a>
+	            </div>
+   		        <div class="dropmenuList">
+		          <a href="setting.jsp">설정</a>
+	            </div>
+	        </div>
+	      <div class="btn">
+	        <input type="button" value="로그아웃" onclick="location.href='logout.jsp'">
+	        <button class="close">취소</button>
+	      </div>
+	  </div>
+   </div>
+</div>
   <script src="./js/noti-list.js"></script>
+  <script src="./js/dropdown.js"></script>
   <script src="./js/modal_inquiry.js"></script>
   <script src="https://kit.fontawesome.com/536e37fbfc.js" crossorigin="anonymous"></script>
 

@@ -29,6 +29,7 @@
  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
  <!-- 기타 -->
  <link rel="stylesheet" href="./css/common.css" >
+  <link rel="stylesheet" href="./css/dropdown.css" >
  <link rel="stylesheet" href="./css/main.css">
  <link rel="stylesheet" href="./css/jquery.multiscroll.css">
  <link rel="icon" href="./images/favicon.ico" type="image/x-icon" sizes="16x16">
@@ -58,14 +59,11 @@
       <div class="header-login">
         <% if(id != null) { %>
           <b class="login"><%=id %> 님이 로그인 했습니다.</b>
-          <a href="setting.jsp">설정</a>
           <input type="button" value="로그아웃" onclick="location.href='logout.jsp'">
         <% } else { %>
           <a href="login.jsp">로그인</a>
           <a href="signup.jsp">회원가입</a>
-        <% } %>
-      
-		
+        <% } %>	
       </div>
     </div>
   </header>
@@ -105,7 +103,7 @@
           <div class="main-section3-text">
             <h2>정보공유</h2>
             <h3>다양한 사람들과 정보를 공유해요</h3>
-            <a href="#"><button>커뮤니티 바로가기</button></a>
+            <a href="community.jsp"><button>커뮤니티 바로가기</button></a>
           </div>
         </div>
 
@@ -119,7 +117,7 @@
           <div class="main-section5-text">
             <h2>항구도시 부산</h2>
             <h3>부산의 아름다운 view가 궁금하다면?</h3>
-            <a href="#"><button>포토 바로가기</button></a>
+            <a href="photo.jsps"><button>포토 바로가기</button></a>
           </div>
         </div>
     </div>
@@ -162,7 +160,35 @@
 </div>
 </main>
 
-
+<div class="dropdown inactive">
+   <div class="drop-container">
+	  <div>
+	      <p class="droptitle"><% if(id != null) { %>
+          <b class="login"><%=id %> 님</b></p>
+          <% } else { %>
+          <a href="login.jsp">로그인</a>
+          <a href="signup.jsp">회원가입</a>
+          <% } %>
+	        <div class="dropmenu">
+		        <div class="dropmenuList">
+		          <a href="setting.jsp">공지사항</a>
+	            </div>
+   		        <div class="dropmenuList">
+		          <a href="setting.jsp">도움말</a>
+	            </div>
+   		        <div class="dropmenuList">
+		          <a href="setting.jsp">설정</a>
+	            </div>
+	        </div>
+	      <div class="btn">
+	        <input type="button" value="로그아웃" onclick="location.href='logout.jsp'">
+	        <button class="close">취소</button>
+	      </div>
+	  </div>
+   </div>
+</div>
+	
+	<script src="./js/dropdown.js"></script>
     <script src="./js/scroll.js"></script>
     <script src="./js/jquery.multiscroll.js"></script>
 </body>

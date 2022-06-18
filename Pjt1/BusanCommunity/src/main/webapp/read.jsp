@@ -13,8 +13,9 @@
 	  String keyField = request.getParameter("keyField");
 	  String keyWord = request.getParameter("keyWord");
 	  String id = (String)session.getAttribute("idKey");
-	  
+		  
 	  sMgr.upCount(boardSeq); // 조회수 증가
+	 
 	  BoardBean bean = sMgr.getBoard(boardSeq); // 게시물 가져오기
 	  
 	  vlist = sMgr.getCommentList(boardSeq); // 댓글 가져오기

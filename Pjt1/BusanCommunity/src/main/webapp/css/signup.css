@@ -149,6 +149,18 @@ a{
 .btn > * {
     text-align: center;
 }
+.btn input[type="button"]{
+    cursor: pointer;
+    width: 120px;
+    height: 45px;
+    background: black;
+    color: white;
+    border: none;
+    font-size: var(--font-17);
+    font-weight: 300;
+    margin-bottom: 5px;
+    border-radius: 10px;
+}
 
 .go_login{
     background: white;

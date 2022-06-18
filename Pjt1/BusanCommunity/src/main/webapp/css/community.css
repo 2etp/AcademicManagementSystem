@@ -2,14 +2,13 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 800px;
-  background-color: azure;
+  background-color: #e0e0e0;
   padding-top: 100px;
+  flex : 1;
 }
 .main-section{
   display: flex;
   justify-content: space-between;
-  height: 630px;
 }
 
 
@@ -72,21 +71,94 @@ main {
 
 .main-section-center{
   margin-right: 100px;
+  width: 35vw;
 }
 
-.search {
+.main-section-center .content-table{
+  margin-top: 1vh;
+  width: 100%;
+  
+}
+
+.main-section-center .content-table tr{
+  border-bottom: 1px solid #e0e0e0;;
+  background-color : white;
+}
+
+.main-section-center .content-table td a > *{
+  margin-bottom: 2vh;
+}
+
+.main-section-center .content-table thead{
+  height: 5vh;
+  text-align: center;
+  
+}
+
+.main-section-center .content-table thead td{
+  height: 5vh;
+  vertical-align: middle;
+  background-color : gray;
+}
+
+.main-section-center .content-table tbody td{
+	padding: 1vh 1vw;
+}
+
+
+.main-section-center .content-table td{
+  width: 100%;
+}
+
+.main-section-center .content-table .boardContent{
+  height: 2vh;
+  overflow: hidden;
+}
+
+.main-section-center .content-table .boardUser{
+  display: flex;
+  align-items: center;
+}
+
+.main-section-center .content-table .boardUser img{
+  width: 25px;
+  height: 25px;
+  margin-right : 1vw;
+}
+
+.main-section-center .boardCount{
+	display: flex;
+	justify-content: space-between;
+}
+
+.main-section-center .boardCount img{
+	width: 25px;
+	height: 25px;
+}
+
+.main-section-center .boardCount span{
+	font-size: 20px;
+}
+
+
+.main-section-center .search {
   border: 1px solid black;
 }
 
-.search input{
-  width: 300px;
+.main-section-center .search table{
+  width: 100%;
 }
 
-.search button{
+.main-section-center .search input{
+  width: 90%;
+}
+
+.main-section-center .search button{
   background-color: aquamarine;
+  width: 9%;
 }
 
-.search button span{
+.main-section-center .search button span{
   font-size: 50px;
   height: 50px;
 }
@@ -125,6 +197,7 @@ main {
   overflow: hidden;
 }
 
+/*
 .main-section-right .realtimerank .realtimerank-item{ 
   position: relative;
   animation-name: slide;
@@ -132,8 +205,6 @@ main {
   animation-iteration-count: infinite;
 }
 
-
-/*  animation */
 
 @keyframes slide {
   from {
@@ -155,3 +226,4 @@ main {
     bottom: 90px;
   }
 }
+*/

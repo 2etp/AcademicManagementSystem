@@ -1,5 +1,21 @@
 <%@ page contentType="text/html;charset=UTF-8" import="java.sql.*"%>
 <%@ page import="java.util.*"%>
+
+<%
+	Cookie[] cookies = request.getCookies();
+	if(cookies != null) {
+		for(Cookie tempCookie : cookies) {
+			if(tempCookie.getName().equals("idKey")) {
+				//쿠키 값으로 대신 로그인 처리함
+				session.setAttribute("idKey", tempCookie.getValue());
+			}
+		}
+	}
+	
+    //세션값 가져오기, Object형으로 저장되기에 다운캐스팅이 필요함
+    String id = (String)session.getAttribute("idKey");
+    
+%>
     
 <!DOCTYPE html>
 <html lang="ko">
@@ -10,6 +26,7 @@
     <title>잘놀다갑니다</title>
     <link rel="stylesheet" href="./css/destyle.css">
     <link rel="stylesheet" href="./css/news.css">
+      <link rel="stylesheet" href="./css/dropdown.css">
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="icon" href="./images/favicon.ico" type="image/x-icon" sizes="16x16">
@@ -30,9 +47,13 @@
             <li><a href="./photo.jsp">포토</a></li>
           </ul>
           <div class="header-login">
-            <a href="./login.jsp">로그인</a>
-            
-            <a href="./signUp.jsp">회원가입</a>
+        <% if(id != null) { %>
+          <b class="login"><%=id %> 님이 로그인 했습니다.</b>
+          <input type="button" value="로그아웃" onclick="location.href='logout.jsp'">
+        <% } else { %>
+          <a href="login.jsp">로그인</a>
+          <a href="signup.jsp">회원가입</a>
+        <% } %>
           </div>
         </div>
       </header>
@@ -109,6 +130,7 @@
     <script defer src="./js/news.js"></script>
     <script defer src="./js/newsEmployment.js"></script>
     <script defer src="./js/newsKookje.js"></script>
+    <script src="./js/dropdown.js"></script>
 </body>
 
 

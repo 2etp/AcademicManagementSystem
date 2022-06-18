@@ -100,7 +100,9 @@
     width: 80px;
     height: 30px;
   }
-  
+    .modal-close{
+border:1px solid var(--dark-gray);
+    }
   .modal-send-bnt{
     background: black;
     color: #fff;

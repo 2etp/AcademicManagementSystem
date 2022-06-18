@@ -21,6 +21,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>잘놀다갑니다</title>
   <link rel="stylesheet" href="./css/help.css">
+   <link rel="stylesheet" href="./css/dropdown.css">
   <link rel="stylesheet" href="./css/common.css">
   <link rel="stylesheet" href="./css/destyle.css">
   <link rel="stylesheet" href="./css/modal_inquiry.css">
@@ -31,7 +32,7 @@
   <!-- 헤더 -->
   <header>
     <div class="header">
-      <a href="#" class="header-logo">
+      <a href="./main.jsp" class="header-logo">
         <img src="./images/seagull.png">
         <div>잘놀다갑니다</div>
       </a>
@@ -44,7 +45,6 @@
       <div class="header-login">
         <% if(id != null) { %>
           <b class="login"><%=id %> 님이 로그인 했습니다.</b>
-          <a href="setting.jsp">설정</a>
           <input type="button" value="로그아웃" onclick="location.href='logout.jsp'">
         <% } else { %>
           <a href="login.jsp">로그인</a>
@@ -89,25 +89,17 @@
 
       <div class="noti-container">
         <div class="noti-main">
-          <div class="noti-title">도움말</div>
+          <div class="noti-title">도움말&nbsp&nbsp<i  class="fa-solid fa-circle-question"></i></div>
         </div>
         <div class="noti-sub">
           <ul>
-            <li class="noti-sub-menu"><a href="#">도움말</a></li>
+            <li class="noti-sub-menu"><a href="./help.jsp">도움말</a></li>
             <li class="noti-sub-menu"><a href="./account.jsp">계정</a></li>
             <li class="noti-sub-menu"><a href="./privacyPolicy.jsp">개인정보정책</a></li>
             <li class="noti-sub-menu"><a href="./etc.jsp">기타</a></li>
           </ul>
         </div>
-        <div>
-          <ul class="noti-bg-list">
-            <li class="noti-sub-bg1 bg"><span class="noti-sub-bg"></span></li>
-            <li class="noti-sub-bg2 bg"><span class="noti-sub-bg"></span></li>
-            <li class="noti-sub-bg3 bg"><span class="noti-sub-bg"></span></li>
-            <li class="noti-sub-bg4 bg"><span class="noti-sub-bg"></span></li>
-          </ul>
-        </div>
-        
+
         <ul class="noti-ul">
           <li class="noti-list">
             <i class="fa-solid fa-caret-right"></i><div class="q">잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
@@ -184,7 +176,35 @@
 </div>
 </div>
 
+<div class="dropdown inactive">
+   <div class="drop-container">
+	  <div>
+	      <p class="droptitle"><% if(id != null) { %>
+          <b class="login"><%=id %> 님</b></p>
+          <% } else { %>
+          <a href="login.jsp">로그인</a>
+          <a href="signup.jsp">회원가입</a>
+          <% } %>
+	        <div class="dropmenu">
+		        <div class="dropmenuList">
+		          <a href="setting.jsp">공지사항</a>
+	            </div>
+   		        <div class="dropmenuList">
+		          <a href="setting.jsp">도움말</a>
+	            </div>
+   		        <div class="dropmenuList">
+		          <a href="setting.jsp">설정</a>
+	            </div>
+	        </div>
+	      <div class="btn">
+	        <input type="button" value="로그아웃" onclick="location.href='logout.jsp'">
+	        <button class="close">취소</button>
+	      </div>
+	  </div>
+   </div>
+</div>
 
+<script src="./js/dropdown.js"></script>
 <script src="./js/noti-list.js"></script>
 <script src="./js/modal_inquiry.js"></script>
 <script src="https://kit.fontawesome.com/536e37fbfc.js" crossorigin="anonymous"></script>
