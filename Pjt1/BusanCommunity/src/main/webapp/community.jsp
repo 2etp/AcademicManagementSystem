@@ -22,18 +22,16 @@
 	 
 	 int listSize=0; //현재 읽어온 게시물의 수
 
-	String keyWord = "", keyField = "";
+	String keyWord = "";
 	Vector<BoardBean> vlist = null;
 	
 	if (request.getParameter("keyWord") != null) {
 		keyWord = request.getParameter("keyWord");
-		keyField = request.getParameter("keyField");
 	}
 	
 	if (request.getParameter("reload") != null){
 		if(request.getParameter("reload").equals("true")) {
 			keyWord = "";
-			keyField = "";
 		}
 	}
 	
@@ -43,7 +41,7 @@
 	 start = (nowPage * numPerPage)-numPerPage;
 	 end = numPerPage;
 	 
-	totalRecord = sMgr.getBoardTotalCnt(keyField, keyWord);
+	totalRecord = sMgr.getBoardTotalCnt(keyWord);
 	totalPage = (int)Math.ceil((double)totalRecord / numPerPage);  //전체페이지수
 	nowBlock = (int)Math.ceil((double)nowPage/pagePerBlock); //현재블럭 계산
 	  
@@ -173,7 +171,7 @@
 			   				<input size="16" name="keyWord">
 			   				<input type="hidden" name="nowPage" value="1">
 			   				<input type="text" placeholder="검색할 글을 입력해주세요.">
-	          				<button onClick="javascript:check()"><span class="material-symbols-outlined">search</span></button>
+	          				<input type="button" onClick="javascript:check()"><span class="material-symbols-outlined">search</span>
 			  			</td>
 			 		</tr>
 				</table>
@@ -184,7 +182,7 @@
         		<tr>
 					<td align="center">
 					<%
-						  vlist = sMgr.getBoardList(keyField, keyWord, start, end);
+						  vlist = sMgr.getBoardList(keyWord, start, end);
 						  
 						  listSize = vlist.size();//브라우저 화면에 보여질 게시물 번호
 						  if (vlist.isEmpty()) {
@@ -244,7 +242,7 @@
     				<%}%>&nbsp;  
    				<%}%>
  				<!-- 페이징 및 블럭 처리 End-->
-				</td>
+			</td>
 			
 		</tr>
 		</table>
@@ -268,7 +266,6 @@
 			<form name="readFrm" method="get">
 				<input type="hidden" name="boardSeq"> 
 				<input type="hidden" name="nowPage" value="<%=nowPage%>"> 
-				<input type="hidden" name="keyField" value="<%=keyField%>"> 
 				<input type="hidden" name="keyWord" value="<%=keyWord%>">
 			</form>
         	

@@ -397,7 +397,7 @@ public class SystemMgr {
 	}
 	
 	// 게시판 총 게시물 수
-	public int getBoardTotalCnt(String keyField, String keyWord) {
+	public int getBoardTotalCnt(String keyWord) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -410,9 +410,10 @@ public class SystemMgr {
 				sql = "select count(board_seq) from tblboard";
 				pstmt = con.prepareStatement(sql);
 			} else {
-				sql = "select count(board_seq) from tblboard where " + keyField + " like ? ";
+				sql = "select count(board_seq) from tblboard where board_title like ? or board_content like ? ";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, "%" + keyWord + "%");
+				pstmt.setString(2, "%" + keyWord + "%");
 			}
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
@@ -427,7 +428,7 @@ public class SystemMgr {
 	}
 	
 	// 게시판 리스트
-	public Vector<BoardBean> getBoardList(String keyField, String keyWord, int start, int end) {
+	public Vector<BoardBean> getBoardList(String keyWord, int start, int end) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -441,12 +442,13 @@ public class SystemMgr {
 				pstmt.setInt(1, start);
 				pstmt.setInt(2, end);
 			} else {
-				sql = "select * from  tblboard where " + keyField + " like ? ";
+				sql = "select * from tblboard where board_title like ? or board_content like ? ";
 				sql += "order by board_seq desc limit ?, ?";
 				pstmt = con.prepareStatement(sql);
 				pstmt.setString(1, "%" + keyWord + "%");
-				pstmt.setInt(2, start);
-				pstmt.setInt(3, end);
+				pstmt.setString(2, "%" + keyWord + "%");
+				pstmt.setInt(3, start);
+				pstmt.setInt(4, end);
 			}
 			rs = pstmt.executeQuery();
 			while (rs.next()) {

@@ -19,7 +19,6 @@
 			sMgr.deleteBoard(boardSeq);
 			url = "community.jsp?nowPage=" + nowPage;
 			msg = "삭제되었습니다.";
-			//response.sendRedirect(url);
 		}
 	}
 %>

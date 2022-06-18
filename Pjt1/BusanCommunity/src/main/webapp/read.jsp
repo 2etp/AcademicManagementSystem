@@ -29,10 +29,11 @@
 	  int boardCount = bean.getBoardCount();
 
 	  session.setAttribute("bean", bean); //게시물을 세션에 저장
-	  session.setAttribute("commentBean", vlist);
-	  int commentRef = 0;
-	  int commentPos = 0;
-	  int commentDepth = 0;
+
+	  //session.setAttribute("commentBean", vlist);
+	 // int commentRef = 0;
+	 // int commentPos = 0;
+	 // int commentDepth = 0;
 	  
 %>
 
@@ -52,9 +53,13 @@
 	
 
 	function commentLogin() {
-		<% if(id == null)  %>
+		<% if(id == null) { %>
 			alert("로그인해 주세요.");
-			//document.commentFrm.action="read.jsp";
+			document.commentFrm.commentContent.focus();
+			return;
+		<%} else {%>
+		document.commentFrm.submit();
+		<%}%>
 	}
 	
 <%-- 	function reply() {
@@ -106,7 +111,7 @@
 	 <td align="center" colspan="2"> 
 	 <hr/>
 	 <%
-	 	if(id != null) {
+	 	if(id != null && id.equals(boardWriter)) {
 	 %> 
 	 [ <a href="javascript:list()" >리스트</a> |
 	 <a href="update.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>" >수 정</a> |
@@ -126,7 +131,7 @@
 		<input type="hidden" name="commentWriter" value="<%=id%>">
 		<input type="hidden" name="boardSeq" value="<%=boardSeq%>">
 		<input type="hidden" name="nowPage" value="<%=nowPage%>">
-		<input type="submit" value="등록">
+		<input type="button" value="등록" onClick="commentLogin()">
 	
 		<h2>댓글</h2>
 	</form>
@@ -140,9 +145,9 @@
  		    String commentWriter = commentBean.getCommentWriter();
  		    String commentContent = commentBean.getCommentContent();
  		    String commentRegdate = commentBean.getCommentRegdate();
- 		    commentDepth = commentBean.getCommentDepth();
- 		    commentRef = commentBean.getCommentRef();
- 		    commentPos = commentBean.getCommentPos();
+ 		    int commentDepth = commentBean.getCommentDepth();
+ 		    int commentRef = commentBean.getCommentRef();
+ 		    int commentPos = commentBean.getCommentPos();
  		    
  		    if(commentDepth > 0) {
  		    	for(int j = 0; j < commentDepth; ++j) {
@@ -159,7 +164,7 @@
  	 <div><%=commentRegdate%></div>
  	 
 	 	 <%
-		 	if(id != null) {
+		 	if(id != null && id.equals(commentWriter)) {
 		 %> 
 		 [ <a href="read.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>&commentRef=<%=commentRef%>">답변</a> |
 		 <a href="deleteComment.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>&commentSeq=<%=commentSeq%>">삭 제</a> ]<br/>
@@ -191,7 +196,6 @@
 	<form name="listFrm" method="post" action="community.jsp">
 		<input type="hidden" name="nowPage" value="<%=nowPage%>">
 		<%if(!(keyWord==null || keyWord.equals(""))){ %>
-		<input type="hidden" name="keyField" value="<%=keyField%>">
 		<input type="hidden" name="keyWord" value="<%=keyWord%>">
 		<%}%>
 		<input type="hidden" name="reload" value="true">
