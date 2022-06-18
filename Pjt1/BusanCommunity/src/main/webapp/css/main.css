@@ -22,7 +22,7 @@ main{
   flex-direction : column;
   width: 100vw;
   height: 100vh;
-  background: #F2F2F2;
+  background: #fff;
   background-size : 100% 100%;
   align-items : center;
   justify-content: center;
@@ -74,7 +74,7 @@ main{
   justify-content: center;
   width: 100vw;
   height: 100vh;
-  background: #ebedee ;
+  background: #fff;
   background-size: 100% 100%;
 }
 
@@ -124,7 +124,7 @@ main{
   justify-content: center;
   width: 100vw;
   height: 100vh;
-  background: #c3cfe2 ;
+  background: #fff;
   background-size: 100% 100%;
 
 }
@@ -172,7 +172,7 @@ main{
   justify-content: center;
   width: 100vw;
   height: 100vh;
-  background:  #e2d1c3 ;
+  background: #fff;
   background-size: 100% 100%;
 
 }
@@ -222,7 +222,7 @@ main{
   justify-content: center;
   width: 100vw;
   height: 100vh;
-  background-color: #DCD9D4;
+  background: #fff;
   background-size: 100% 100%;
 
 

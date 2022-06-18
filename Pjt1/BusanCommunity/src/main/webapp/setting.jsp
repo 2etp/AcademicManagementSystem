@@ -59,22 +59,22 @@
   <!-- 메인 -->
   <main>
     <div class="main">
-	    <div class="leftSide">
-	      <div class="l-sidebar">
-	        <div class="l-menu">
-	          <a href="./notice.jsp">공지사항</a><i class="fa-solid fa-bullhorn"></i>
-	        </div>
-	        <div class="l-menu">
-	          <a href="./help.jsp">도움말</a><i class="fa-solid fa-circle-question"></i>
-	        </div>
-	        <div class="l-menu inquiry">
-	          <a href="">문의하기</a><i class="fa-solid fa-person-circle-question"></i>
-	        </div>
-	        <div class="l-menu">
-	          <a href="#">설정</a><i class="fa-solid fa-gear"></i>
-	        </div>
-	      </div>
-	    </div>
+    <div class="leftSide">
+      <div class="l-sidebar">
+        <div class="l-menu">
+          <a href="./notice.jsp">공지사항<i class="fa-solid fa-bullhorn"></i></a>
+        </div>
+        <div class="l-menu">
+          <a href="./help.jsp">도움말<i class="fa-solid fa-circle-question"></i></a>
+        </div>
+        <div class="l-menu inquiry">
+          <a>문의하기<i class="fa-solid fa-person-circle-question"></i></a>
+        </div>
+        <div class="l-menu">
+          <a href="./setting.jsp">설정<i class="fa-solid fa-gear"></i></a>
+        </div>
+      </div>
+    </div>
 
 	<%
 		String mobile1 = null;

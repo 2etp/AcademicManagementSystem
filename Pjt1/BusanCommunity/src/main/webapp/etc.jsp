@@ -59,19 +59,19 @@
   <!-- 메인 -->
   <main>
     <div class="main">
-    <div class="leftSide">
+     <div class="leftSide">
       <div class="l-sidebar">
         <div class="l-menu">
-          <a href="./notice.html">공지사항</a><i class="fa-solid fa-bullhorn"></i>
+          <a href="./notice.jsp">공지사항<i class="fa-solid fa-bullhorn"></i></a>
         </div>
         <div class="l-menu">
-          <a href="./help.html">도움말</a><i class="fa-solid fa-circle-question"></i>
+          <a href="./help.jsp">도움말<i class="fa-solid fa-circle-question"></i></a>
         </div>
         <div class="l-menu inquiry">
-          <a>문의하기</a><i class="fa-solid fa-person-circle-question"></i>
+          <a>문의하기<i class="fa-solid fa-person-circle-question"></i></a>
         </div>
         <div class="l-menu">
-          <a href="./setting.html">설정</a><i class="fa-solid fa-gear"></i>
+          <a href="./setting.jsp">설정<i class="fa-solid fa-gear"></i></a>
         </div>
       </div>
     </div>
@@ -95,9 +95,9 @@
         <div class="noti-sub">
           <ul>
             <li class="noti-sub-menu"><a href="./help.jsp">도움말</a></li>
-            <li class="noti-sub-menu"><a href="#">계정</a></li>
+            <li class="noti-sub-menu"><a href="./account.jsp">계정</a></li>
             <li class="noti-sub-menu"><a href="./privacyPolicy.jsp">개인정보정책</a></li>
-            <li class="noti-sub-menu"><a href="./etc.jsp">기타</a></li>
+            <li class="noti-sub-menu"><a href="#">기타</a></li>
           </ul>
         </div>
         
