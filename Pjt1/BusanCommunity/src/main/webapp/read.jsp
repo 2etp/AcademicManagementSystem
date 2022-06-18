@@ -58,6 +58,7 @@
 			document.commentFrm.commentContent.focus();
 			return;
 		<%} else {%>
+		//event.preventDefault();
 		document.commentFrm.submit();
 		<%}%>
 	}
@@ -132,6 +133,7 @@
 		<input type="hidden" name="boardSeq" value="<%=boardSeq%>">
 		<input type="hidden" name="nowPage" value="<%=nowPage%>">
 		<input type="button" value="등록" onClick="commentLogin()">
+
 	
 		<h2>댓글</h2>
 	</form>

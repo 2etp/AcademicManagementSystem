@@ -658,13 +658,10 @@ public class SystemMgr {
 			int commentRef = 1;
 			if(rs.next())
 				commentRef = rs.getInt(1) + 1;
-			File file = new File(SAVEFOLDER);
-			
-			if (!file.exists())
-				file.mkdirs();
+
 			multi = new MultipartRequest(req, SAVEFOLDER, MAXSIZE, ENCTYPE,
 					new DefaultFileRenamePolicy());
-
+			
 			sql = "insert tblcomment(comment_board, comment_writer, comment_content, comment_regdate, comment_pos, comment_ref, comment_depth, comment_ip)";
 			sql += "values(?, ?, ?, now(), 0, ?, 0, ?)";
 			pstmt = con.prepareStatement(sql);
@@ -673,6 +670,11 @@ public class SystemMgr {
 			pstmt.setString(3, multi.getParameter("commentContent"));
 			pstmt.setInt(4, commentRef);
 			pstmt.setString(5, multi.getParameter("commentIp"));
+			pstmt.executeUpdate();
+			
+			sql = "update tblboard set board_count= board_count-1 where board_seq = ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, Integer.parseInt(multi.getParameter("boardSeq")));
 			pstmt.executeUpdate();
 			
 			response.sendRedirect("read.jsp?nowPage=" + multi.getParameter("nowPage") + "&boardSeq=" + multi.getParameter("boardSeq"));
