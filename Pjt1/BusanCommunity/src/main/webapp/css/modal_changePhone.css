@@ -79,3 +79,7 @@
     background: black;
     color: #fff;
   }
+  
+  .modal-changePhone-close{
+  border: 1px solid var(--dark-gray);
+}

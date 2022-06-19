@@ -49,7 +49,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>잘놀다갑니다</title>
   <link rel="stylesheet" href="./css/destyle.css">
   <link rel="stylesheet" href="./css/common.css" >
   <link rel="stylesheet" href="./css/photo.css">
@@ -237,7 +237,7 @@
     			  		<%for ( ; pageStart < pageEnd; pageStart++){%>
      			     	<a href="javascript:pageing('<%=pageStart %>')"> 
      					<%if(pageStart==nowPage) {%><font color="blue"> <%}%>
-     					[<%=pageStart %>] 
+     					<%=pageStart %> 
      					<%if(pageStart==nowPage) {%></font> <%}%></a> 
     					<%}//for%>&nbsp; 
     					<%if (totalBlock > nowBlock ) {%>

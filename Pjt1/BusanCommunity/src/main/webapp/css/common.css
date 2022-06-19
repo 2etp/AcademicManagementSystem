@@ -89,6 +89,17 @@ header {
 .header-login {
   margin-left: 300px;
 }
+.header-login b{
+	margin-right:20px;
+}
+.header-login b,
+.header-login input{
+	color:black;
+}
+
+.header-login input{
+	border: 1px solid black;
+}
 
 
 /* footer */
