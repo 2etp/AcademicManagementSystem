@@ -80,3 +80,7 @@
     background: black;
     color: #fff;
   }
+  
+.modal-signOut-close{
+border:1px solid var(--dark-gray);
+}
