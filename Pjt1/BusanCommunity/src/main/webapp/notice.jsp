@@ -32,7 +32,7 @@
   <!-- 헤더 -->
   <header>
     <div class="header">
-      <a href="#" class="header-logo">
+      <a href="./main.jsp" class="header-logo">
         <img src="./images/seagull.png">
         <div>잘놀다갑니다</div>
       </a>
