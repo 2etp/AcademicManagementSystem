@@ -1,0 +1,123 @@
+body{
+	background-color: #e0e0e0;
+	display: flex;
+	flex-direction: column;
+	justify-content : space-between;
+}
+
+main{
+	display : flex;
+	justify-content : center;
+	margin-bottom : 1vh;
+}
+
+
+
+main:nth-child(1){
+	flex-basis: 50%;
+}
+
+main:nth-child(2){
+	flex-basis: 15%;
+}
+
+main:nth-child(3){
+	flex-basis: 20%;
+}
+
+main:nth-child(4) a{
+	color : blue;
+}
+
+main .main{
+	flex: .25;
+	background-color: white;
+}
+
+main .main hr{
+	border-color: #e0e0e0;
+}
+
+main .main > *{
+	margin: 1vh 1vw;
+}
+
+
+main .main thead{
+	height: 5vh;
+	text-align: center;
+}
+
+main .main thead td{
+  vertical-align: middle;
+  background-color : gray;
+}
+
+main .main tbody td{
+	border-bottom : 1px solid #e0e0e0;
+}
+
+main .main tbody td > *{
+	margin: 1vh 1vw;
+}
+
+
+main .time-count{
+	display: flex;
+}
+
+main .user{
+	display: flex;
+	align-items: center;
+}
+
+main .user img{
+	width: 25px;
+	height: 25px;
+	margin-right : 1vw;
+}
+
+main form {
+	flex: .25;
+	background-color: white;
+	text-align: right;
+	display: flex;
+	flex-direction: column;
+}
+
+
+
+main form .comment{
+	border-bottom: 1px solid #e0e0e0;
+	text-align: left;
+	flex: .85;
+}
+
+main form .comment textarea{
+	width: 100%;	
+	height: 90%;
+	padding: 1vh 1vw;
+	
+	
+}
+
+main form .submit{
+	flex: 0.15;
+	display: flex;
+	justify-content: right;
+	align-items : center;
+}
+
+main form .submit input{
+	margin-right : 1vw;
+	background-color : black;
+	color : white;
+	padding : .5vh .5vw;
+	border-radius: 10%;
+}
+
+.time-count{
+	font-size: 13px;
+	color: #a0a0a0;
+	font-weight: bold;
+}

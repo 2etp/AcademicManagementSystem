@@ -30,6 +30,9 @@
 	  int boardCount = bean.getBoardCount();
 
 	  session.setAttribute("bean", bean); //게시물을 세션에 저장
+	  
+	  // 유저 이미지 파일 불러오기
+	  String profileImage = sMgr.getProfileImage(boardWriter);
 
 	  //session.setAttribute("commentBean", vlist);
 	 // int commentRef = 0;
@@ -41,7 +44,8 @@
 <html>
 <head>
 <title>JSP Board</title>
-<link href="style.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="./css/destyle.css">
+<link href="./css/read.css" rel="stylesheet" type="text/css">
 <script type="text/javascript">
 	function list() {
 	    document.listFrm.submit();
@@ -71,111 +75,111 @@
 </script>
 </head>
 <body>
-<br/><br/>
-<table align="center" width="600" cellspacing="3">
- <tr>
-  <td bgcolor="#9CA2EE" height="25" align="center">글읽기</td>
- </tr>
- <tr>
-  <td colspan="2">
-   <table cellpadding="3" cellspacing="0" width="100%"> 
-    <tr> 
-  <td align="center" bgcolor="#DDDDDD" width="10%"> 이 름 </td>
-  <td bgcolor="#FFFFE8"><%=boardWriter%></td>
-  <td align="center" bgcolor="#DDDDDD" width="10%"> 등록날짜 </td>
-  <td bgcolor="#FFFFE8"><%=boardRegdate%></td>
- </tr>
- <tr> 
-    <td align="center" bgcolor="#DDDDDD"> 제 목</td>
-    <td bgcolor="#FFFFE8" colspan="3"><%=boardTitle%></td>
- </tr>
-   <tr> 
-     <td align="center" bgcolor="#DDDDDD">첨부파일</td>
-     <td bgcolor="#FFFFE8" colspan="3">
-     <% if( filename !=null && !filename.equals("")) {%>
-  		<a href="javascript:down('<%=filename%>')"><%=filename%></a>
-  		 &nbsp;&nbsp;<font color="blue">(<%=filesize%>KBytes)</font>  
-  		 <%} else{%> 등록된 파일이 없습니다.<%}%>
-     </td>
-   </tr>
-   <tr> 
-    <td colspan="4"><br/><pre><%=boardContent%></pre><br/></td>
-   </tr>
-   <tr>
-    <td colspan="4" align="right">
-      조회수  <%=boardCount%>
-    </td>
-   </tr>
-   </table>
-  </td>
- </tr>
- <tr>
-	 <td align="center" colspan="2"> 
-	 <hr/>
-	 <%
-	 	if(id != null && id.equals(boardWriter)) {
-	 %> 
-	 [ <a href="javascript:list()" >리스트</a> |
-	 <a href="update.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>" >수 정</a> |
-	 <a href="delete.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>">삭 제</a> ]<br/>
-	 <% } else { %>
-	 [ <a href="javascript:list()" >리스트</a> ]
-	 <% }%>
-	 </td>
- </tr>
-</table>
-
-	<!-- 댓글 기능 -->
-	<form name="commentFrm" method="post" action="commentPost" enctype="multipart/form-data">
-		<textarea name="commentContent" placeholder="회원으로 등록할 수 있습니다."></textarea>
-		<!-- 댓글을 등록한 사용자의 IP 주소를 가져옴 -->
-		<input type="hidden" name="commentIp" value="<%=request.getRemoteAddr()%>">
-		<input type="hidden" name="commentWriter" value="<%=id%>">
-		<input type="hidden" name="boardSeq" value="<%=boardSeq%>">
-		<input type="hidden" name="nowPage" value="<%=nowPage%>">
-		<input type="button" value="등록" onClick="commentLogin()">
-
-	
-		<h2>댓글</h2>
-	</form>
-	
-	 <hr/>
-	 
-	 <% for(int i = 0; i < vlist.size(); ++i) {
-	 		CommentBean commentBean = vlist.get(i);
-	 		
-	 		int commentSeq = commentBean.getCommentSeq();
- 		    String commentWriter = commentBean.getCommentWriter();
- 		    String commentContent = commentBean.getCommentContent();
- 		    String commentRegdate = commentBean.getCommentRegdate();
- 		    int commentDepth = commentBean.getCommentDepth();
- 		    int commentRef = commentBean.getCommentRef();
- 		    int commentPos = commentBean.getCommentPos();
- 		    
- 		    if(commentDepth > 0) {
- 		    	for(int j = 0; j < commentDepth; ++j) {
- 		    		out.println("&nbsp;&nbsp;");
- 		    	}
- 		    }
- 		    
- 	 %>
- 	 <!-- 댓글 작성자 이름 -->
- 	 <div><%=commentWriter%></div>
- 	 <!-- 댓글 내용 -->
- 	 <div><%=commentContent%></div>
- 	 <!-- 댓글 작성 날짜 -->
- 	 <div><%=commentRegdate%></div>
+	<main>
+		<div class="main">
+			<div class="title">
+				<%=boardTitle%>
+			</div>
+			<div class="time-count">
+				<div class="time"><%=boardRegdate%></div>
+				&nbsp;
+				<div>|</div>
+				&nbsp;
+				<div class="count">조회수 <%=boardCount%></div>
+			</div>
+			<div class="user">
+				<% if(profileImage != null) { %>
+				<img src="./images/<%=profileImage%>"/>
+				<% } else {%>
+				<img src="./images/ProfileImage.jpg"/>
+				<% } %>
+				<div class="name"><%=boardWriter%></div>
+			</div>
+			<hr>
+			<div class="content">
+				<%=boardContent%>	
+			</div>
+		</div>
+	</main>
+<main>
+		<!-- 댓글 기능 -->
+		<form name="commentFrm" method="post" action="commentPost" enctype="multipart/form-data">
+			<div class="comment">
+				<textarea name="commentContent" placeholder="댓글 등록하기"></textarea>
+			</div>
+			
+			<!-- 댓글을 등록한 사용자의 IP 주소를 가져옴 -->
+			<input type="hidden" name="commentIp" value="<%=request.getRemoteAddr()%>">
+			<input type="hidden" name="commentWriter" value="<%=id%>">
+			<input type="hidden" name="boardSeq" value="<%=boardSeq%>">
+			<input type="hidden" name="nowPage" value="<%=nowPage%>">
+			<div class="submit">
+				<input type="submit" value="등록">
+			</div>
+			
+		</form>
+	</main>
+	<main>
+		<table class="main">
+			<thead>
+				<tr>
+					<td>댓글 </td>
+				</tr>
+			</thead>
+			<tbody>
+				<% for(int i = 0; i < vlist.size(); ++i) {
+		 				CommentBean commentBean = vlist.get(i);
+		 		
+		 				int commentSeq = commentBean.getCommentSeq();
+					    String commentWriter = commentBean.getCommentWriter();
+					    String commentContent = commentBean.getCommentContent();
+					    String commentRegdate = commentBean.getCommentRegdate();
+					    int commentDepth = commentBean.getCommentDepth();
+					    int commentRef = commentBean.getCommentRef();
+					    int commentPos = commentBean.getCommentPos();
+				    
+					    if(commentDepth > 0) {
+					    	for(int j = 0; j < commentDepth; ++j) {
+					    		out.println("&nbsp;&nbsp;");
+					    	}
+					    }
+				    
+			 	%>
+			 	<tr>
+			 		<td>
+						 <!-- 댓글 작성자 이름 -->
+						 <div class="user">
+							<% if(profileImage != null) { %>
+							<img src="./images/<%=profileImage%>"/>
+							<% } else {%>
+							<img src="./images/ProfileImage.jpg"/>
+							<% } %>
+							<div class="name"><%=commentWriter%></div>
+					     </div>
+						 <!-- 댓글 작성 날짜 -->
+						 <div class="time-count"><%=commentRegdate%></div>
+						 <div><%=commentContent%></div>
  	 
-	 	 <%
-		 	if(id != null && id.equals(commentWriter)) {
-		 %> 
-		 [ <a href="read.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>&commentRef=<%=commentRef%>">답변</a> |
-		 <a href="deleteComment.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>&commentSeq=<%=commentSeq%>">삭 제</a> ]<br/>
-		 <% } else { %>
-		 [ <a href="read.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>&commentRef=<%=commentRef%>" >답변</a> ]
-		 <% }%> 		    
-	 		
-	 <% } %>
+					 	 <%
+						 	if(id != null && id.equals(commentWriter)) {
+						 %> 
+						 <div>
+						 	[ <a href="read.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>&commentRef=<%=commentRef%>">답변</a> |
+						 	<a href="deleteComment.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>&commentSeq=<%=commentSeq%>">삭 제</a> ]<br/>
+						 	<% } else { %>
+						 	[ <a href="read.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>&commentRef=<%=commentRef%>" >답변</a> ]
+						 	<% }%> 		    
+					 	 </div>
+					 	<% } %>
+			 		</td>
+			 	</tr>
+			</tbody>
+		</table>	
+	</main>	
+	
+	<main>
+		<a href=./community.jsp>목록으로</a>
+	</main>
 	 
 	<!-- 대댓글 기능 -->
 <%-- 	<form name="replycommentFrm" method="post" action="replyCommentPost" enctype="multipart/form-data">
