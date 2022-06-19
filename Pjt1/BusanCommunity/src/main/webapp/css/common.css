@@ -97,10 +97,6 @@ header {
 	color:black;
 }
 
-.header-login input{
-	border: 1px solid black;
-}
-
 
 /* footer */
 footer {
@@ -161,4 +157,15 @@ height: 130px;
   height: 37px;
   padding-top: 7px;
   text-align: center;
+}
+
+.header-login b,
+.header-login input{
+   color:black;
+   cursor: pointer;
+}
+
+.header-login b:hover,
+.header-login input:hover{
+   border-bottom:1px solid black;
 }

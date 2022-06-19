@@ -45,7 +45,7 @@
       </ul>
       <div class="header-login">
         <% if(id != null) { %>
-          <b class="login"><%=id %> 님이 로그인 했습니다.</b></a>
+          <b class="login"><%=id %> 님</b></a>
           <input type="button" value="로그아웃" onclick="location.href='logout.jsp'">
         <% } else { %>
           <a href="login.jsp">로그인</a>
@@ -270,15 +270,12 @@
    </div>
 </div> 
 
-
-
-
-
 <script src="./js/modal_changeNum.js"></script>
 <script src="./js/modal_changePhone.js"></script>
 <script src="./js/modal_inquiry.js"></script>
 <script src="./js/modal_signOut.js"></script>
 <script src="./js/dropdown.js"></script>
+<script src="./js/setting.js"></script>
 
 <script src="https://kit.fontawesome.com/536e37fbfc.js" crossorigin="anonymous"></script>
 

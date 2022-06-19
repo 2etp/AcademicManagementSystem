@@ -26,7 +26,7 @@
     <title>잘놀다갑니다</title>
     <link rel="stylesheet" href="./css/destyle.css">
     <link rel="stylesheet" href="./css/news.css">
-      <link rel="stylesheet" href="./css/dropdown.css">
+    <link rel="stylesheet" href="./css/dropdown.css">
     <link rel="stylesheet" href="./css/common.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="icon" href="./images/favicon.ico" type="image/x-icon" sizes="16x16">
@@ -37,7 +37,7 @@
     <script defer src="./js/news.js"></script>
     <script defer src="./js/newsEmployment.js"></script>
     <script defer src="./js/newsKookje.js"></script>
-    <script src="./js/dropdown.js"></script>
+    <script defer src="./js/dropdown.js"></script>
 </head>
 <body>
     <!-- 헤더 -->
@@ -55,7 +55,7 @@
           </ul>
           <div class="header-login">
         <% if(id != null) { %>
-          <b class="login"><%=id %> 님이 로그인 했습니다.</b>
+          <b class="login"><%=id %> 님</b>
           <input type="button" value="로그아웃" onclick="location.href='logout.jsp'">
         <% } else { %>
           <a href="login.jsp">로그인</a>
@@ -104,7 +104,6 @@
       </main>
 
 
-
       <!-- 푸터 -->
       <footer style="background: #dcdcdc90;">
         <div class="footer">
@@ -122,15 +121,38 @@
         <a href="#"><img class="bugi" src="./images/bugi3d100.png" /></a>
       </div>
 
+<div class="dropdown inactive">
+   <div class="drop-container">
+	  <div>
+	      <p class="droptitle"><% if(id != null) { %>
+          <b class="login"><%=id %> 님</b></p>
+          <% } else { %>
+          <a href="login.jsp">로그인</a>
+          <a href="signup.jsp">회원가입</a>
+          <% } %>
+	        <div class="dropmenu">
+		        <div class="dropmenuList">
+		          <a href="setting.jsp">공지사항</a>
+	            </div>
+   		        <div class="dropmenuList">
+		          <a href="setting.jsp">도움말</a>
+	            </div>
+   		        <div class="dropmenuList">
+		          <a href="setting.jsp">설정</a>
+	            </div>
+	        </div>
+	      <div class="btn">
+	        <input type="button" value="로그아웃" onclick="location.href='logout.jsp'">
+	        <button class="close">취소</button>
+	      </div>
+	  </div>
+   </div>
+</div>
 
 
 
 
 
-
-
-   <script src="./js/busanIntroduce.js"></script>
- 
 </body>
 
 

@@ -67,10 +67,12 @@
   <!-- Other -->
   <link rel="stylesheet" href="./css/common.css" >
   <link rel="stylesheet" href="./css/community.css">
-   <link rel="stylesheet" href="./css/dropdown.css" >
+  <link rel="stylesheet" href="./css/dropdown.css">
+  <link rel="icon" href="./images/favicon.ico" type="image/x-icon" sizes="16x16">
   <script defer src="./js/community.js"></script>
- <link rel="icon" href="./images/favicon.ico" type="image/x-icon" sizes="16x16">
-  	<script src="./js/dropdown.js"></script>
+  <script defer src="./js/dropdown.js"></script>
+ 
+ 
   <script type="text/javascript">
   
 	function list() {
@@ -131,7 +133,7 @@
       </ul>
       <div class="header-login">
         <% if(id != null) { %>
-          <b class="login"><%=id %> 님이 로그인 했습니다.</b>
+          <b class="login"><%=id %> 님</b>
           <input type="button" value="로그아웃" onclick="location.href='logout.jsp'">
         <% } else { %>
           <a href="login.jsp">로그인</a>
@@ -322,22 +324,8 @@
     </div>
   </main>
   
-
   
-  <!-- 푸터 -->
-  <footer>
-    <div class="footer">
-      <div class="footer-information">
-        <br><br>
-        팀장 : 박휘원 | 전화번호 : 010-4623-0195 <br><br>
-        팀원 : 송민영 | 전화번호 : 010-8800-3995 <br><br>
-        팀원 : 최낙원 | 전화번호 : 010-9753-0266 <br><br>
-        팀원 : 최영수 | 전화번호 : 010-6356-2213 <br><br>
-      </div>
-    </div>
-  </footer>
-  
-    <div class="dropdown inactive">
+     <div class="dropdown inactive">
    <div class="drop-container">
 	  <div>
 	      <p class="droptitle"><% if(id != null) { %>
@@ -364,5 +352,21 @@
 	  </div>
    </div>
 </div>
+
+  
+  <!-- 푸터 -->
+  <footer>
+    <div class="footer">
+      <div class="footer-information">
+        <br><br>
+        팀장 : 박휘원 | 전화번호 : 010-4623-0195 <br><br>
+        팀원 : 송민영 | 전화번호 : 010-8800-3995 <br><br>
+        팀원 : 최낙원 | 전화번호 : 010-9753-0266 <br><br>
+        팀원 : 최영수 | 전화번호 : 010-6356-2213 <br><br>
+      </div>
+    </div>
+  </footer>
+  
+ 
 </body>
 </html>

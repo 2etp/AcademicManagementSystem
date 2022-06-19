@@ -153,7 +153,7 @@
       </ul>
       <div class="header-login">
         <% if(id != null) { %>
-          <b class="login"><%=id %> 님이 로그인 했습니다.</b>
+          <b class="login"><%=id %> 님</b>
           <input type="button" value="로그아웃" onclick="location.href='logout.jsp'">
         <% } else { %>
           <a href="login.jsp">로그인</a>

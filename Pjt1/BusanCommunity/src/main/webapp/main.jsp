@@ -59,7 +59,7 @@
       </ul>
       <div class="header-login">
         <% if(id != null) { %>
-          <b class="login"><%=id %> 님이 로그인 했습니다.</b>
+          <b class="login"><%=id %> 님</b>
           <input type="button" value="로그아웃" onclick="location.href='logout.jsp'">
         <% } else { %>
           <a href="login.jsp">로그인</a>
@@ -118,7 +118,7 @@
           <div class="main-section5-text">
             <h2>항구도시 부산</h2>
             <h3>부산의 아름다운 view가 궁금하다면?</h3>
-            <a href="photo.jsps"><button>포토 바로가기</button></a>
+            <a href="photo.jsp"><button>포토 바로가기</button></a>
           </div>
         </div>
     </div>

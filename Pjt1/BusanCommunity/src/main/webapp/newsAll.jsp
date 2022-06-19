@@ -26,8 +26,8 @@
     <title>잘놀다갑니다</title>
     <link rel="stylesheet" href="./css/destyle.css">
     <link rel="stylesheet" href="./css/news.css">
-      <link rel="stylesheet" href="./css/dropdown.css">
     <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/dropdown.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="icon" href="./images/favicon.ico" type="image/x-icon" sizes="16x16">
     <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
@@ -36,7 +36,8 @@
 <script defer src="./js/news.js"></script>
 <script defer src="./js/newsEmployment.js"></script>
 <script defer src="./js/newsKookje.js"></script>
-<script src="./js/dropdown.js"></script>
+<script defer src="./js/dropdown.js"></script>
+
 
 </head>
 <body>
@@ -55,7 +56,7 @@
           </ul>
           <div class="header-login">
         <% if(id != null) { %>
-          <b class="login"><%=id %> 님이 로그인 했습니다.</b>
+          <b class="login"><%=id %> 님</b>
           <input type="button" value="로그아웃" onclick="location.href='logout.jsp'">
         <% } else { %>
           <a href="login.jsp">로그인</a>
@@ -107,8 +108,6 @@
         </div>
       </main>
 
-
-
       <!-- 푸터 -->
       <footer style="background: #dcdcdc90;">
         <div class="footer">
@@ -121,11 +120,6 @@
         </div>
       </footer>
 
-
-      <div class="moveBnt">
-        <span id="moveup" class="material-symbols-outlined">arrow_circle_up</span>
-        <a href="#"><img class="bugi" src="./images/bugi3d100.png" /></a>
-      </div>
 
 <div class="dropdown inactive">
    <div class="drop-container">
@@ -154,6 +148,14 @@
 	  </div>
    </div>
 </div>
+
+
+      <div class="moveBnt">
+        <span id="moveup" class="material-symbols-outlined">arrow_circle_up</span>
+        <a href="#"><img class="bugi" src="./images/bugi3d100.png" /></a>
+      </div>
+
+
 
 </body>
 </html>

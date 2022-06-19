@@ -10,7 +10,7 @@
 	String url = null;
 	String msg = null;
 	
-	boolean result = sMgr.resetMobile(id, pw);
+	boolean result = sMgr.resetPw(id, pw);
 	
 	if(result) {
 		 msg = "비밀번호를 재설정하였습니다.";

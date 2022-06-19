@@ -8,10 +8,7 @@
 
 .inactive{
     display: none;
-<<<<<<< HEAD
-=======
     z-index: 10000;
->>>>>>> 1dcde6b44fbb947713f0ed4340fbca9ae9a88a77
   }
 
   
@@ -35,22 +32,26 @@
     padding: 16px;
   }
 .dropmenu{
-  	text-align: center;
+     text-align: center;
     font-size: 22px;
     height: 150px;
     margin-top: 20px;
   }
 
 .dropmenu div{
-	margin-bottom:20px;
+   margin-bottom:20px;
 }
 .dropmenuList a{
-	text-decoration: none;
+   text-decoration: none;
     color: black;
+}
+
+.dropmenuList a:hover{
+   color:#969696;
 }
   
 .btn{
-	text-align: center;
+   text-align: center;
   }
   
   
@@ -60,10 +61,11 @@ button.close{
     height: 30px;
 }
 .btn input[type="button"]{
-	background: black;
+   background: black;
     color: #fff; 
 }
 
 button.close{
-	border: 1px solid #e5e5e5;
+   border: 1px solid #e5e5e5;
 }
+  
