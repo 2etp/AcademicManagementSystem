@@ -29,6 +29,7 @@
     		 }
      	}
      }
+     
      // 쿠키가 없다면 쿠키를 만들어 주고 조회수 올리기
      if(visitor == 0) {
     	 Cookie cookie1 = new Cookie("visit", request.getParameter("boardSeq"));
@@ -85,13 +86,20 @@
    }
    
    function commentLogin() {
+		var commentTextareaEl = document.querySelector("textarea[name='commentContent']");
+		
       <% if(id == null) { %>
          alert("로그인해 주세요.");
          document.commentFrm.commentContent.focus();
          return;
-      <%} else {%>
-      document.commentFrm.submit();
-      <%}%>
+       <%} %>
+       
+         if(commentTextareaEl.value == ''){
+       		alert("댓글을 입력해주세요");
+       		return 0;
+       	  }
+           
+           document.commentFrm.submit();
    }
    
 <%--    function reply() {
@@ -174,7 +182,7 @@
          <input type="hidden" name="boardSeq" value="<%=boardSeq%>">
          <input type="hidden" name="nowPage" value="<%=nowPage%>">
          <div class="submit">
-            <input type="button" value="등록" onClick="commentLogin()">
+            <input type="button"  id="commentSubmit" value="등록" onClick="commentLogin()">
          </div>
          
       </form>

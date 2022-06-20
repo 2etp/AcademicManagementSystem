@@ -771,6 +771,7 @@ public class SystemMgr {
 			pstmt.setString(5, filename);
 			pstmt.setInt(6, filesize);
 			pstmt.executeUpdate();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -901,6 +902,25 @@ public class SystemMgr {
 			multi = new MultipartRequest(req, SAVEFOLDER, MAXSIZE, ENCTYPE,
 					new DefaultFileRenamePolicy());
 			
+			String[] arr = {"붕산", "개나리", "식판"};
+			boolean flag = false;
+			for(int i = 0; i < arr.length; ++i) {
+				if(multi.getParameter("commentContent").contains(arr[i])) {
+					sql = "insert tblcomment(comment_board, comment_writer, comment_content, comment_regdate, comment_pos, comment_ref, comment_depth, comment_ip)";
+					sql += "values(?, ?, ?, now(), 0, ?, 0, ?)";
+					pstmt = con.prepareStatement(sql);
+					pstmt.setInt(1, Integer.parseInt(multi.getParameter("boardSeq")));
+					pstmt.setString(2, multi.getParameter("commentWriter"));
+					pstmt.setString(3, "관리자에 의해 삭제되었습니다.");
+					pstmt.setInt(4, commentRef);
+					pstmt.setString(5, multi.getParameter("commentIp"));
+					pstmt.executeUpdate();
+					flag = true;
+					break;			
+				} 							
+			}
+			
+			if(flag != true) {
 			sql = "insert tblcomment(comment_board, comment_writer, comment_content, comment_regdate, comment_pos, comment_ref, comment_depth, comment_ip)";
 			sql += "values(?, ?, ?, now(), 0, ?, 0, ?)";
 			pstmt = con.prepareStatement(sql);
@@ -911,6 +931,7 @@ public class SystemMgr {
 			pstmt.setString(5, multi.getParameter("commentIp"));
 			pstmt.executeUpdate();
 			
+			}
 			response.sendRedirect("read.jsp?nowPage=" + multi.getParameter("nowPage") + "&boardSeq=" + multi.getParameter("boardSeq"));
 			
 		} catch (Exception e) {

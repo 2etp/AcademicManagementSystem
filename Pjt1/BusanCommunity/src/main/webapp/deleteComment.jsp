@@ -20,6 +20,7 @@
 		for(int i = 0; i < vlist.size(); ++i) {
 			 CommentBean commentBean = vlist.get(i);
 			 dbId = commentBean.getCommentWriter();
+			 System.out.println(dbId);
 		}
 		
 		// 현재 로그인 한 id와 댓글 작성자의 id가 같으면 삭제하고 게시글 읽기 페이지로 다시 이동
