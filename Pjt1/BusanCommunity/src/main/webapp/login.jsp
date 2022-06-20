@@ -52,14 +52,14 @@
            </div>
            
            <div id="password" class="password">
-             <input type="password" placeholder="비밀번호를 입력하세요." maxlength="20" required name="pw">
+             <input id="passwordInput" type="password" placeholder="비밀번호를 입력하세요." maxlength="20" required name="pw">
              <ion-icon name="lock"></ion-icon>
            </div>
            
            <label class="keepsignedIn">
            <input type="checkbox" name="loginChk" value="true">자동로그인</label>
            
-           <input type="submit" value="로그인" onclick="return check_recaptcha();">
+           <input id="action" type="submit" value="로그인" onclick="return check_recaptcha();">
            <a id="naverIdLogin_loginButton" href="javascript:void(0)">
              <img src="./images/btnW_로그인.png" alt="">
            </a>
@@ -67,7 +67,7 @@
            <a id="kakaoBtn" href="javascript:void(0)" onclick="kakaoLogin();">
              <img src="./images/kakao_login_medium_narrow.png"></img>
            </a>
-            
+   
          <div class="lowForm">
               <label class="SignUp">
                 <a href="./findpassword.jsp" class="forgot">비밀번호 찾기</a><a href="./signup.jsp">회원가입</a>

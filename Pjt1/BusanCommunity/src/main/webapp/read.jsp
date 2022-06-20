@@ -22,7 +22,7 @@
      
      String boardWriter = bean.getBoardWriter();
      String boardTitle = bean.getBoardTitle();
-      String boardRegdate = bean.getBoardRegdate();
+     String boardRegdate = bean.getBoardRegdate();
      String boardContent = bean.getBoardContent();
      String filename = bean.getFilename();
      int filesize = bean.getFilesize();
