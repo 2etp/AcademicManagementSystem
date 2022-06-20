@@ -7,10 +7,17 @@
 	request.setCharacterEncoding("UTF-8");
 	String id = (String)session.getAttribute("idKey");
 
-	// DB의 tblnotice row 수만큼 배열 할당
-	int[] noticeSeq = {1, 2, 3, 4};
+	// 공지사항의 총 개수 불러오기
+	int NoticeCnt = sMgr.getNoticeCnt();
+	
+	// 총 개수에 맞는 크기의 배열 생성
+	int[] noticeSeq = new int[NoticeCnt];
+	
+	for(int i = 0; i < NoticeCnt; ++i) {
+		noticeSeq[i] = (i + 1);
+	}
+	
 	Vector<NoticeBean> vlist = sMgr.selectNotice(noticeSeq);
-
 %>
     
 <!DOCTYPE html>
@@ -76,13 +83,14 @@
     </div>
     
 	<%
-		// 쿼리문 각각의 결괏값을 할당하기 위한 배열 선언(vlist의 사이즈가 4이므로 그에 맞게 크기 4로 지정)
-		String[] noticeContent = new String[4];
+		String[] noticeTitle = new String[NoticeCnt];
+		String[] noticeContent = new String[NoticeCnt];
 		
   		for(int i = 0; i < vlist.size(); ++i) {
   			
   			NoticeBean bean = vlist.get(i);
   			// bean 객체로부터 가져온 결괏값들을 배열의 각 위치에 할당
+  			noticeTitle[i] = bean.getNoticeTitle();
 	  		noticeContent[i] = bean.getNoticeContent();
 
   		}
@@ -95,39 +103,35 @@
 	      
 	      <ul class="noti-ul">
 	        <li class="noti-list">
-	          <div class="q" name="1"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
+	          <div class="q" name="1"><i class="fa-solid fa-caret-right"></i><%=noticeTitle[0]%></div>
 	        </li>       
 	        <div class="a inactive"><%=noticeContent[0]%></div>
 	            
 	        <li class="noti-list">
-	          <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
+	          <div class="q"><i class="fa-solid fa-caret-right"></i><%=noticeTitle[1]%></div>
 	        </li>
 	        <div class="a inactive"><%=noticeContent[1]%></div>
 	        
 	        <li class="noti-list">
-	          <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
+	          <div class="q"><i class="fa-solid fa-caret-right"></i><%=noticeTitle[2]%></div>
 	        </li>
 	        <div class="a inactive"><%=noticeContent[2]%></div>
 	        
 	        <li class="noti-list">
-	          <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
+	          <div class="q"><i class="fa-solid fa-caret-right"></i><%=noticeTitle[3]%></div>
 	        </li>
 	        <div class="a inactive"><%=noticeContent[3]%></div>
 	        
 	        <li class="noti-list">
-	          <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
+	          <div class="q"><i class="fa-solid fa-caret-right"></i><%=noticeTitle[4]%></div>
 	        </li>
-	        <div class="a inactive">환영합니다</div>
+	        <div class="a inactive"><%=noticeContent[4]%></div>
 	        
 	        <li class="noti-list">
-	          <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
+	          <div class="q"><i class="fa-solid fa-caret-right"></i><%=noticeTitle[5]%></div>
 	        </li>
-	        <div class="a inactive">환영합니다</div>
-	        
-	        <li class="noti-list">
-	          <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
-	        </li>
-	        <div class="a inactive">환영합니다</div>
+	        <div class="a inactive"><%=noticeContent[5]%></div>
+	  
 	      </ul>
 	    </div>
 	

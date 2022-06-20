@@ -119,6 +119,31 @@ public class SystemMgr {
 		
 	}
 	
+	// 공지사항 개수
+	public int getNoticeCnt() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int NoticeCnt = 0;
+		
+		try {
+			con = pool.getConnection();
+			sql = "select count(notice_seq) from tblnotice";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				NoticeCnt = rs.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		return NoticeCnt;
+	}
+	
 	// 로그인 시 공지사항 불러오기
 	public Vector<NoticeBean> selectNotice(int[] seq) {
 		
@@ -141,6 +166,7 @@ public class SystemMgr {
 				while (rs.next()) {
 					NoticeBean bean = new NoticeBean();
 					bean.setNoticeSeq(rs.getInt("notice_seq"));
+					bean.setNoticeTitle(rs.getString("notice_title"));
 					bean.setNoticeContent(rs.getString("notice_content"));
 					
 					vlist.add(bean);
@@ -154,6 +180,31 @@ public class SystemMgr {
 		}
 		
 		return vlist;
+	}
+	
+	// 도움말 개수
+	public int getHelpCnt() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int helpCnt = 0;
+		
+		try {
+			con = pool.getConnection();
+			sql = "select count(help_seq) from tblhelp";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				helpCnt = rs.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		return helpCnt;
 	}
 	
 	// 로그인 시 도움말 불러오기
@@ -178,10 +229,8 @@ public class SystemMgr {
 				while (rs.next()) {
 					HelpBean bean = new HelpBean();
 					bean.setHelpSeq(rs.getInt("help_seq"));
+					bean.setHelpTitle(rs.getString("help_title"));
 					bean.setHelpContent(rs.getString("help_content"));
-					bean.setHelpAccount(rs.getString("help_account"));
-					bean.setHelpPrivacyPolicy(rs.getString("help_policy"));
-					bean.setHelpEtc(rs.getNString("help_etc"));
 					
 					vlist.add(bean);
 				}
@@ -196,6 +245,196 @@ public class SystemMgr {
 		return vlist;
 	}
 	
+	// 도움말 부분의 계정 개수
+	public int getAccountCnt() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int accountCnt = 0;
+		
+		try {
+			con = pool.getConnection();
+			sql = "select count(account_seq) from tblaccount";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				accountCnt = rs.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		return accountCnt;
+	}
+	
+	// 로그인 시 도움말 부분의 계정 불러오기
+	public Vector<AccountBean> selectAccount(int[] seq) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		Vector<AccountBean> vlist = new Vector<AccountBean>();
+		
+		try {
+			con = pool.getConnection();
+			sql = "select * from tblaccount where account_seq = ?";
+			pstmt = con.prepareStatement(sql);
+			
+			for(int i = 0; i < seq.length; ++i) {
+					
+				pstmt.setInt(1, seq[i]);
+				rs = pstmt.executeQuery();
+				
+				while (rs.next()) {
+					AccountBean bean = new AccountBean();
+					bean.setAccountSeq(rs.getInt("account_seq"));
+					bean.setAccountTitle(rs.getString("account_title"));
+					bean.setAccountContent(rs.getString("account_content"));
+					
+					vlist.add(bean);
+				}
+			}
+					
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		
+		return vlist;
+	}
+	
+	// 도움말 부분의 개인정보정책 개수
+	public int getPrivacyPolicyCnt() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int privacyPolicyCnt = 0;
+		
+		try {
+			con = pool.getConnection();
+			sql = "select count(policy_seq) from tblpolicy";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				privacyPolicyCnt = rs.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		return privacyPolicyCnt;
+	}
+		
+	// 로그인 시 도움말 부분의 개인정보정책 불러오기
+	public Vector<PrivacyPolicyBean> selectPrivacyPolicy(int[] seq) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		Vector<PrivacyPolicyBean> vlist = new Vector<PrivacyPolicyBean>();
+		
+		try {
+			con = pool.getConnection();
+			sql = "select * from tblpolicy where policy_seq = ?";
+			pstmt = con.prepareStatement(sql);
+			
+			for(int i = 0; i < seq.length; ++i) {
+					
+				pstmt.setInt(1, seq[i]);
+				rs = pstmt.executeQuery();
+				
+				while (rs.next()) {
+					PrivacyPolicyBean bean = new PrivacyPolicyBean();
+					bean.setPrivacyPolicySeq(rs.getInt("policy_seq"));
+					bean.setPrivacyPolicyTitle(rs.getString("policy_title"));
+					bean.setPrivacyPolicyContent(rs.getString("policy_content"));
+					
+					vlist.add(bean);
+				}
+			}
+					
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		
+		return vlist;
+	}
+	
+	
+	// 도움말 부분의 기타 개수
+	public int getEtcCnt() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int etcCnt = 0;
+		
+		try {
+			con = pool.getConnection();
+			sql = "select count(etc_seq) from tbletc";
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				etcCnt = rs.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		return etcCnt;
+	}
+		
+	// 로그인 시 도움말 부분의 기타 불러오기
+	public Vector<EtcBean> selectEtc(int[] seq) {
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		Vector<EtcBean> vlist = new Vector<EtcBean>();
+		
+		try {
+			con = pool.getConnection();
+			sql = "select * from tbletc where etc_seq = ?";
+			pstmt = con.prepareStatement(sql);
+			
+			for(int i = 0; i < seq.length; ++i) {
+					
+				pstmt.setInt(1, seq[i]);
+				rs = pstmt.executeQuery();
+				
+				while (rs.next()) {
+					EtcBean bean = new EtcBean();
+					bean.setEtcSeq(rs.getInt("etc_seq"));
+					bean.setEtcTitle(rs.getString("etc_title"));
+					bean.setEtcContent(rs.getString("etc_content"));
+					
+					vlist.add(bean);
+				}
+			}
+					
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			pool.freeConnection(con, pstmt, rs);
+		}
+		
+		return vlist;
+	}
+		
 	// 일정기간 지난 후 pw 재설정 메시지 띄우기
 	public Vector<MemberBean> resetPwMsg(String id, String pw) {
 		

@@ -3,6 +3,7 @@ package BusanCommunityPack;
 public class NoticeBean {
 
 	private int noticeSeq;
+	private String noticeTitle;
 	private String noticeContent;
 
 	public int getNoticeSeq() {
@@ -20,5 +21,12 @@ public class NoticeBean {
 	public void setNoticeContent(String noticeContent) {
 		this.noticeContent = noticeContent;
 	}
+	
+	public String getNoticeTitle() {
+		return noticeTitle;
+	}
 
+	public void setNoticeTitle(String noticeTitle) {
+		this.noticeTitle = noticeTitle;
+	}
 }

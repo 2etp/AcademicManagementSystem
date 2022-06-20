@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%> 
-<%@ page import="BusanCommunityPack.HelpBean"%>
+<%@ page import="BusanCommunityPack.AccountBean"%>
 <%@ page import="java.util.*"%>
 <jsp:useBean id="sMgr" class="BusanCommunityPack.SystemMgr"/>
 
@@ -7,9 +7,17 @@
 	request.setCharacterEncoding("UTF-8");
 	String id = (String)session.getAttribute("idKey");
 	
-	// DB의 tblnotice row 수만큼 배열 할당
-	int[] helpSeq = {1, 2, 3, 4};
-	Vector<HelpBean> vlist = sMgr.selectHelp(helpSeq);
+	// 도움말 부분의 계정의 총 개수 불러오기
+	int accountCnt = sMgr.getAccountCnt();
+	
+	// 총 개수에 맞는 크기의 배열 생성
+	int[] accountSeq = new int[accountCnt];
+	
+	for(int i = 0; i < accountCnt; ++i) {
+		accountSeq[i] = (i + 1);
+	}
+	
+	Vector<AccountBean> vlist = sMgr.selectAccount(accountSeq);
 
 %>
 
@@ -54,8 +62,6 @@
     </div>
   </header>
 
-
-
   <!-- 메인 -->
   <main>
     <div class="main">
@@ -77,14 +83,16 @@
     </div>
     
 	<%
-		// 쿼리문 각각의 결괏값을 할당하기 위한 배열 선언(vlist의 사이즈가 4이므로 그에 맞게 크기 4로 지정)
-		String[] helpAccount = new String[2];
+		
+		String[] accountTitle = new String[accountCnt];
+		String[] accountContent = new String[accountCnt];
 		
   		for(int i = 0; i < vlist.size(); ++i) {
   			
-  			HelpBean bean = vlist.get(i);
+  			AccountBean bean = vlist.get(i);
   			// bean 객체로부터 가져온 결괏값들을 배열의 각 위치에 할당
-	  		helpAccount[i] = bean.getHelpAccount();
+  			accountTitle[i] = bean.getAccountTitle();
+  			accountContent[i] = bean.getAccountContent();
   		}
   	%>
 
@@ -103,29 +111,29 @@
         
         <ul class="noti-ul">
           <li class="noti-list">
-            <i class="fa-solid fa-caret-right"></i><div class="q">잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
+            <i class="fa-solid fa-caret-right"></i><div class="q"><%=accountTitle[0]%></div>
           </li>
-          <div class="a inactive"><%=helpAccount[0]%></div>
+          <div class="a inactive"><%=accountContent[0]%></div>
           <li class="noti-list">
-            <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
+            <div class="q"><i class="fa-solid fa-caret-right"></i><%=accountTitle[1]%></div>
           </li>
-          <div class="a inactive"><%=helpAccount[1]%></div>
+          <div class="a inactive"><%=accountContent[1]%></div>
           <li class="noti-list">
-            <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
+            <div class="q"><i class="fa-solid fa-caret-right"></i><%=accountTitle[2]%></div>
           </li>
-          <div class="a inactive">환영합니다</div>
+          <div class="a inactive"><%=accountContent[2]%></div>
           <li class="noti-list">
-            <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
+            <div class="q"><i class="fa-solid fa-caret-right"></i><%=accountTitle[3]%></div>
           </li>
-          <div class="a inactive">환영합니다</div>
+          <div class="a inactive"><%=accountContent[3]%></div>
           <li class="noti-list">
-            <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
+            <div class="q"><i class="fa-solid fa-caret-right"></i><%=accountTitle[4]%></div>
           </li>
-          <div class="a inactive">환영합니다</div>
+          <div class="a inactive"><%=accountContent[4]%></div>
           <li class="noti-list">
-            <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
+            <div class="q"><i class="fa-solid fa-caret-right"></i><%=accountTitle[5]%></div>
           </li>
-          <div class="a inactive">환영합니다</div>
+          <div class="a inactive"><%=accountContent[5]%></div>
         </ul>
       </div>
     </div>

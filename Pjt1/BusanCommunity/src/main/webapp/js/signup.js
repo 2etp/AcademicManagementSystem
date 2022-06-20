@@ -5,7 +5,6 @@ var phonenumberEl = document.querySelector("#phonenumberInput");
 
 var formEl = document.querySelector("#loginForm");
 var submitEl = document.querySelector("#action");
-// var ponnumberRegexp = new RegExp("^010\-\d\d\d\d\-\d\d\d\d");
 var ponnumberRegexp = new RegExp("010[0-9]{3,4}[0-9]{4}");
 
 submitEl.addEventListener("click", function(){

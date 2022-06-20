@@ -85,12 +85,17 @@
 		for(int i = 0; i < vlist.size(); ++i) {
 			
 			MemberBean bean = vlist.get(i);			
-			
 			String mobile = bean.getMobile();
-			mobile1 = mobile.substring(0, 3);
-			mobile2 = mobile.substring(3, 7);
-			mobile3 = mobile.substring(7, 11);
-		
+
+			try{
+				mobile1 = mobile.substring(0, 3);
+				mobile2 = mobile.substring(3, 7);
+				mobile3 = mobile.substring(7, 11);
+			} catch(StringIndexOutOfBoundsException e){
+				mobile1 = null;
+				mobile2 = null;
+				mobile3 = null;
+			}
 		}
 	%>
 
@@ -231,7 +236,7 @@
   <div class="modal-changePhone-container">
 	  <div>
 	    <form id="change-phone-form" name="settingFrm" method="post" action="resetMobileProc.jsp">
-	      <p class="modal-changePhone-title">비밀번호 변경</p>
+	      <p class="modal-changePhone-title">휴대폰 번호 변경</p>
 	      <div class="modal-changePhone-origin">
 	        <p>기존 휴대폰 번호</p>
 	       <p><%=mobile1%>-<%=mobile2%>-<%=mobile3%></p>
@@ -253,13 +258,13 @@
 <div class="modal-signOut-background inactive">
    <div class="modal-signOut-container">
 	  <div>
-	    <form name="settingFrm" method="post" action="deleteMemberProc.jsp">
+	    <form id="signOut-form" name="settingFrm" method="post" action="deleteMemberProc.jsp">
 	      <p class="modal-signOut-title">회원 탈퇴</p>
 	        <div class="modal-signOut-msg">
 	        <p>회원 탈퇴하면 모든 데이터가 삭제됩니다<br>계속 하시겠습니까?</p>
 	        </div>
 	      <div class="modal-signOut-input">
-	        <input type="password" class="" placeholder="비밀번호 입력" name="pw"></input>
+	        <input id="signOut-password" type="password" class="" placeholder="비밀번호 입력" name="pw"></input>
 	      </div>
 	      <div class="modal-signOut-bnt">
 	        <button class="modal-signOut-send-bnt" type="submit">보내기</button>

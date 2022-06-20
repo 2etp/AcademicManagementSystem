@@ -68,9 +68,6 @@
              <img src="./images/kakao_login_medium_narrow.png"></img>
            </a>
             
-         <!-- <input type = "checkbox" name="loginChk" value = "true">로그인 상태유지
-         <button type="submit" id="regLogBtn" onclick="return check_recaptcha();">Login</button> -->
-   
          <div class="lowForm">
               <label class="SignUp">
                 <a href="./findpassword.jsp" class="forgot">비밀번호 찾기</a><a href="./signup.jsp">회원가입</a>

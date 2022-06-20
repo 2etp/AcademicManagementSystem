@@ -1,17 +1,22 @@
 var pwChangeFormEl = document.querySelector("#change-pw-form");
 var pwChangeEl = document.querySelector("#change-pw");
 var pwChangeCheckEl = document.querySelector("#change-pw-check");
-var pwChangeFormSubmitEl = document.querySelector(".modal-changePhone-send-bnt");
+var pwChangeFormSubmitEl = document.querySelector(".modal-changeNum-send-bnt");
 
 var phoneChangeFormEl = document.querySelector("#change-phone-form");
 var phoneChangeEl = document.querySelector("#change-phone");
 var phoneChangeFormSubmitEl = document.querySelector(".modal-changePhone-send-bnt");
 
+var signOutFormEl = document.querySelector("#signOut-form");
+var signOutPasswordEl = document.querySelector("#signOut-password");
+var signOutFormSubmitEl = document.querySelector(".modal-signOut-send-bnt");
 
-var ponnumberRegexp = new RegExp("010-[0-9]{3,4}-[0-9]{4}");
+var ponnumberRegexp = new RegExp("010[0-9]{8}");
 
-pwChangeFormSubmitEl.addEventListener("click", function(){
+pwChangeFormSubmitEl.addEventListener("click", function(event){
 
+	event.preventDefault();
+	
     if(pwChangeEl.value == "")
     {
       alert("변경할 패스워드를 입력하지 않았습니다.");
@@ -29,24 +34,40 @@ pwChangeFormSubmitEl.addEventListener("click", function(){
       return 0;
     }
 
-    pwChangeFormSubmitEl.submit();
+    pwChangeFormEl.submit();
 })
 
-phoneChangeFormSubmitEl.addEventListener("click", function(){
 
+phoneChangeFormSubmitEl.addEventListener("click", function(event){
+	
+  event.preventDefault();
+  
   if(phoneChangeEl.value == "")
   {
-    alert("변경할 전화번호를 입력하지 않았습니다.");
+    alert("변경할 휴대폰 번호를 입력해주세요");
     return 0;
   }
 
-  if(!(ponnumberRegexp.test(phoneChangeEl)))
+  if(!(ponnumberRegexp.test(phoneChangeEl.value)))
   {
+	alert("휴대폰 번호를 -를 제외한 11자리 숫자로 작성해주세요.");
     return 0;
   }
-
-  phoneChangeFormSubmitEl.submit();
-    
+  
+  phoneChangeFormEl.submit();
+  
 })
 
-
+signOutFormSubmitEl.addEventListener("click", function(event){
+	
+  event.preventDefault();
+  
+  if(signOutPasswordEl.value == "")
+  {
+    alert("패스워드를 입력해주세요");
+    return 0;
+  }
+  
+  signOutFormEl.submit();
+  
+})

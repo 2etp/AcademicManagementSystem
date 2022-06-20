@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8"%> 
-<%@ page import="BusanCommunityPack.HelpBean"%>
+<%@ page import="BusanCommunityPack.PrivacyPolicyBean"%>
 <%@ page import="java.util.*"%>
 <jsp:useBean id="sMgr" class="BusanCommunityPack.SystemMgr"/>
 
@@ -7,9 +7,17 @@
 	request.setCharacterEncoding("UTF-8");
 	String id = (String)session.getAttribute("idKey");
 
-	// DB의 tblnotice row 수만큼 배열 할당
-	int[] helpSeq = {1, 2, 3, 4};
-	Vector<HelpBean> vlist = sMgr.selectHelp(helpSeq);
+	// 도움말 부분의 개인정보젇책 총 개수 불러오기
+	int privacyPolicyCnt = sMgr.getPrivacyPolicyCnt();
+	
+	// 총 개수에 맞는 크기의 배열 생성
+	int[] privacyPolicySeq = new int[privacyPolicyCnt];
+	
+	for(int i = 0; i < privacyPolicyCnt; ++i) {
+		privacyPolicySeq[i] = (i + 1);
+	}
+	
+	Vector<PrivacyPolicyBean> vlist = sMgr.selectPrivacyPolicy(privacyPolicySeq);
 
 %>
 
@@ -78,14 +86,15 @@
     </div>
     
 	<%
-		// 쿼리문 각각의 결괏값을 할당하기 위한 배열 선언(vlist의 사이즈가 4이므로 그에 맞게 크기 4로 지정)
-		String[] helpPrivacyPolicy = new String[2];
+		String[] privacyPolicyTitle = new String[privacyPolicyCnt];
+		String[] privacyPolicyContent = new String[privacyPolicyCnt];
 		
   		for(int i = 0; i < vlist.size(); ++i) {
   			
-  			HelpBean bean = vlist.get(i);
+  			PrivacyPolicyBean bean = vlist.get(i);
   			// bean 객체로부터 가져온 결괏값들을 배열의 각 위치에 할당
-	  		helpPrivacyPolicy[i] = bean.getHelpPrivacyPolicy();
+	  		privacyPolicyTitle[i] = bean.getPrivacyPolicyTitle();
+	  		privacyPolicyContent[i] = bean.getPrivacyPolicyContent();
   		}
   	%>
 
@@ -104,29 +113,29 @@
 
         <ul class="noti-ul">
           <li class="noti-list">
-            <i class="fa-solid fa-caret-right"></i><div class="q">잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
+            <i class="fa-solid fa-caret-right"></i><div class="q"><%=privacyPolicyTitle[0]%></div>
           </li>
-          <div class="a inactive"><%=helpPrivacyPolicy[0]%></div>
+          <div class="a inactive"><%=privacyPolicyContent[0]%></div>
           <li class="noti-list">
-            <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
+            <div class="q"><i class="fa-solid fa-caret-right"></i><%=privacyPolicyTitle[1]%></div>
           </li>
-          <div class="a inactive"><%=helpPrivacyPolicy[1]%></div>
+          <div class="a inactive"><%=privacyPolicyContent[1]%></div>
           <li class="noti-list">
-            <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
+            <div class="q"><i class="fa-solid fa-caret-right"></i><%=privacyPolicyTitle[2]%></div>
           </li>
-          <div class="a inactive">환영합니다</div>
+          <div class="a inactive"><%=privacyPolicyContent[2]%></div>
           <li class="noti-list">
-            <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
+            <div class="q"><i class="fa-solid fa-caret-right"></i><%=privacyPolicyTitle[3]%></div>
           </li>
-          <div class="a inactive">환영합니다</div>
+          <div class="a inactive"><%=privacyPolicyContent[3]%></div>
           <li class="noti-list">
-            <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
+            <div class="q"><i class="fa-solid fa-caret-right"></i><%=privacyPolicyTitle[4]%></div>
           </li>
-          <div class="a inactive">환영합니다</div>
+          <div class="a inactive"><%=privacyPolicyContent[4]%></div>
           <li class="noti-list">
-            <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
+            <div class="q"><i class="fa-solid fa-caret-right"></i><%=privacyPolicyTitle[5]%></div>
           </li>
-          <div class="a inactive">환영합니다</div>
+          <div class="a inactive"><%=privacyPolicyContent[5]%></div>
         </ul>
       </div>
     </div>

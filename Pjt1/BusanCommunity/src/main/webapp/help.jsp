@@ -6,9 +6,17 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	String id = (String)session.getAttribute("idKey");
+	
+	// 도움말 총 개수 불러오기
+	int helpCnt = sMgr.getHelpCnt();
+	
+	// 총 개수에 맞는 크기의 배열 생성
+	int[] helpSeq = new int[helpCnt];
+	
+	for(int i = 0; i < helpCnt; ++i) {
+		helpSeq[i] = (i + 1);
+	}
 
-	// DB의 tblnotice row 수만큼 배열 할당
-	int[] helpSeq = {1, 2};
 	Vector<HelpBean> vlist = sMgr.selectHelp(helpSeq);
 
 %>
@@ -75,13 +83,14 @@
     </div>
     
     <%
-		// 쿼리문 각각의 결괏값을 할당하기 위한 배열 선언(vlist의 사이즈가 4이므로 그에 맞게 크기 4로 지정)
-		String[] helpContent = new String[2];
+		String[] helpTitle = new String[helpCnt];
+		String[] helpContent = new String[helpCnt];
 		
   		for(int i = 0; i < vlist.size(); ++i) {
   			
   			HelpBean bean = vlist.get(i);
   			// bean 객체로부터 가져온 결괏값들을 배열의 각 위치에 할당
+  			helpTitle[i] = bean.getHelpTitle();
 	  		helpContent[i] = bean.getHelpContent();
 
   		}
@@ -102,35 +111,33 @@
 
         <ul class="noti-ul">
           <li class="noti-list">
-            <i class="fa-solid fa-caret-right"></i><div class="q">잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
+            <i class="fa-solid fa-caret-right"></i><div class="q"><%=helpTitle[0]%></div>
           </li>
           <div class="a inactive"><%=helpContent[0]%></div>
           <li class="noti-list">
-            <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
+            <div class="q"><i class="fa-solid fa-caret-right"></i><%=helpTitle[1]%></div>
           </li>
           <div class="a inactive"><%=helpContent[1]%></div>
           <li class="noti-list">
-            <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>          
+            <div class="q"><i class="fa-solid fa-caret-right"></i><%=helpTitle[2]%></div>          
           </li>
-          <div class="a inactive">환영합니다</div>
+          <div class="a inactive"><%=helpContent[2]%></div>
           <li class="noti-list">
-            <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
+            <div class="q"><i class="fa-solid fa-caret-right"></i><%=helpTitle[3]%></div>
           </li>
-          <div class="a inactive">환영합니다</div>
+          <div class="a inactive"><%=helpContent[3]%></div>
           <li class="noti-list">
-            <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
+            <div class="q"><i class="fa-solid fa-caret-right"></i><%=helpTitle[4]%></div>
           </li>
-          <div class="a inactive">환영합니다</div>
+          <div class="a inactive"><%=helpContent[4]%></div>
           <li class="noti-list">
-            <div class="q"><i class="fa-solid fa-caret-right"></i>잘 놀다 갑니다 홈페이지에 오신 것을 환영 합니다.</div>
+            <div class="q"><i class="fa-solid fa-caret-right"></i><%=helpTitle[5]%></div>
           </li>
-          <div class="a inactive">환영합니다</div>
+          <div class="a inactive"><%=helpContent[5]%></div>
         </ul>
       </div>
     </div>
   </main>
-
-
 
 
   <!-- 푸터 -->
