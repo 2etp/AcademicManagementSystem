@@ -881,7 +881,7 @@ public class SystemMgr {
 		return bean;
 	}
 	
-	// ¥Ò±€ ¿€º∫
+	// ¥Ò±€ µÓ∑œ
 	public void insertComment(HttpServletRequest req, HttpServletResponse response) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -909,11 +909,6 @@ public class SystemMgr {
 			pstmt.setString(3, multi.getParameter("commentContent"));
 			pstmt.setInt(4, commentRef);
 			pstmt.setString(5, multi.getParameter("commentIp"));
-			pstmt.executeUpdate();
-			
-			sql = "update tblboard set board_count= board_count-1 where board_seq = ?";
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, Integer.parseInt(multi.getParameter("boardSeq")));
 			pstmt.executeUpdate();
 			
 			response.sendRedirect("read.jsp?nowPage=" + multi.getParameter("nowPage") + "&boardSeq=" + multi.getParameter("boardSeq"));
@@ -968,7 +963,6 @@ public class SystemMgr {
 	public void deleteComment(int commentBoard, int commentSeq) {
 		Connection con = null;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 		String sql = null;
 		
 		try {
@@ -992,7 +986,7 @@ public class SystemMgr {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			pool.freeConnection(con, pstmt, rs);
+			pool.freeConnection(con, pstmt);
 		}
 		
 	}

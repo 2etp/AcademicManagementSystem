@@ -1,3 +1,4 @@
+<%@page import="javax.swing.plaf.basic.BasicSplitPaneUI.KeyboardResizeToggleHandler"%>
 <%@ page contentType="text/html;charset=UTF-8" import="java.sql.*"%> 
 <%@ page import="BusanCommunityPack.BoardBean"%>
 <%@ page import="BusanCommunityPack.CommentBean"%>
@@ -7,15 +8,38 @@
 <%
      request.setCharacterEncoding("UTF-8");
      Vector<CommentBean> vlist = null;
-     
      int boardSeq = Integer.parseInt(request.getParameter("boardSeq"));
+     
+     // 쿠키들을 불러오고 쿠키가 있는지 변수 확인
+     Cookie[] cookies = request.getCookies();
+     int visitor = 0;
+     
+     for(Cookie cookie : cookies) {
+    	 // 쿠키들 중에 visit 이름이 있는지 확인
+    	 if(cookie.getName().equals("visit")) {
+    		 visitor = 1;
+    		 //visit 안에 접속한 게시글 번호가 있는지 확인
+    		 if(cookie.getValue().contains(request.getParameter("boardSeq"))) {
+    			System.out.println("visit if 통과");
+    		 } else {
+    			 // 쿠키에 게시글 번호가 없다면 추가해 주고 조회수 올리기
+    			 cookie.setValue(cookie.getValue() + "_" + request.getParameter("boardSeq"));
+    			 response.addCookie(cookie);
+    			 sMgr.upCount(boardSeq);
+    		 }
+     	}
+     }
+     // 쿠키가 없다면 쿠키를 만들어 주고 조회수 올리기
+     if(visitor == 0) {
+    	 Cookie cookie1 = new Cookie("visit", request.getParameter("boardSeq"));
+    	 response.addCookie(cookie1);
+     }
+     
      String nowPage = request.getParameter("nowPage");
      String keyField = request.getParameter("keyField");
      String keyWord = request.getParameter("keyWord");
      String id = (String)session.getAttribute("idKey");
-        
-     sMgr.upCount(boardSeq); // 조회수 증가
-    
+    	 
      BoardBean bean = sMgr.getBoard(boardSeq); // 게시물 가져오기
      
      vlist = sMgr.getCommentList(boardSeq); // 댓글 가져오기
@@ -34,7 +58,7 @@
      // 유저 이미지 파일 불러오기
      String profileImage = sMgr.getProfileImage(boardWriter);
 
-     //session.setAttribute("commentBean", vlist);
+     session.setAttribute("commentBean", vlist);
     // int commentRef = 0;
     // int commentPos = 0;
     // int commentDepth = 0;
@@ -60,14 +84,12 @@
        document.downFrm.submit();
    }
    
-
    function commentLogin() {
       <% if(id == null) { %>
          alert("로그인해 주세요.");
          document.commentFrm.commentContent.focus();
          return;
       <%} else {%>
-      //event.preventDefault();
       document.commentFrm.submit();
       <%}%>
    }
@@ -154,7 +176,7 @@
          <input type="hidden" name="boardSeq" value="<%=boardSeq%>">
          <input type="hidden" name="nowPage" value="<%=nowPage%>">
          <div class="submit">
-            <input type="submit" value="등록">
+            <input type="button" value="등록" onClick="commentLogin()">
          </div>
          
       </form>

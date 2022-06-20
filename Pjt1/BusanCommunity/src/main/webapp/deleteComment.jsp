@@ -8,11 +8,15 @@
 	String nowPage = request.getParameter("nowPage");
 	int boardSeq = Integer.parseInt(request.getParameter("boardSeq"));
 	int commentSeq = Integer.parseInt(request.getParameter("commentSeq"));
+	System.out.println(boardSeq);
+	System.out.println(commentSeq);
     String inId = (String)session.getAttribute("idKey");
+    System.out.println(inId);
     
 	if (inId != null) {
-		BoardBean bean = (BoardBean) session.getAttribute("bean");
-		String dbId = bean.getBoardWriter();
+		CommentBean bean = (CommentBean) session.getAttribute("CommentBean");
+		String dbId = bean.getCommentWriter();
+		System.out.println(dbId);
 		if (inId.equals(dbId)) {
 			sMgr.deleteComment(boardSeq, commentSeq);
 			String url = "read.jsp?nowPage=" + nowPage + "&boardSeq=" + boardSeq;
