@@ -161,14 +161,12 @@
                 <div>참여자</div>
               </a>
             </li>
-            <hr>
             <li>
               <a href="javascript:void(0)">
                 <div>모두의 토론</div>
                 <div>참여자</div>
               </a>
             </li>
-            <hr>
           </ul>
         </div>
       </section>
@@ -213,27 +211,28 @@
 								
 								int boardCount = bean.getBoardCount();
 					%>
-					<tr>
+				<tr>
 					<td>																					
 						<a href="javascript:read('<%=boardSeq%>')">
-							<div><%=boardTitle%></div>
+							<div class="boardTitle"><%=boardTitle%></div>
 							<div class="boardContent"><%=boardContent%></div>
 							<div class="boardUser">
+							  <div class="left">
 								<% if(profileImage != null) { %>
 									<img src="./images/<%=profileImage%>"/>
 								<% } else {%>
 									<img src="./images/ProfileImage.jpg"/>
 								<% } %>
 								<div><%=boardWriter%></div>
-							</div>
-							<div class="boardCount">
+							  </div>
+							  <div class="boardCount right">
 								<div class="time"></div>
 								<div class="count">
 									<img src="./images/eye.png"/>
 									<span><%=boardCount%></span>
-								</div>
+							  	</div>
+							  </div>
 							</div>
-							
 							
 						</a>
 					</td>
@@ -242,10 +241,11 @@
 			}%> <!-- end else -->  		
         	</tbody>
         </table>
-        <table>
+        <table class="pageNum">
 			<tr>
 				<td>
-				<!-- 페이징 및 블럭 처리 Start--> 
+				<div>
+			<!-- 페이징 및 블럭 처리 Start--> 
 				<%
 					  //하단 페이지 시작번호
 	   				  int pageStart = (nowBlock -1)*pagePerBlock + 1 ; 
@@ -254,23 +254,24 @@
 	   				  
 	   				  if(totalPage !=0){
 	    			  	if (nowBlock > 1) {%>
-	    			  		<a href="javascript:block('<%=nowBlock-1%>')">prev...</a><%}%>&nbsp; 
+	    			  		<a class="num" href="javascript:block('<%=nowBlock-1%>')">prev...</a><%}%> 
 	    			  		<%for ( ; pageStart < pageEnd; pageStart++){%>
-	     			     	<a href="javascript:pageing('<%=pageStart %>')"> 
-	     					<%if(pageStart==nowPage) {%><font color="blue"> <%}%>
-	     					[<%=pageStart %>] 
+	     			     	<a class="num" href="javascript:pageing('<%=pageStart %>')"> 
+	     					<%if(pageStart==nowPage) {%><font> <%}%>
+	     					[<%=pageStart %>]
 	     					<%if(pageStart==nowPage) {%></font> <%}%></a> 
-	    					<%}//for%>&nbsp; 
+	    					<%}//for%>
 	    					<%if (totalBlock > nowBlock ) {%>
 	    					<a href="javascript:block('<%=nowBlock+1%>')">.....next</a>
-	    				<%}%>&nbsp;  
+	    				<%}%>
 	   				<%}%>
 	 				<!-- 페이징 및 블럭 처리 End-->
+	 				</div>
 				</td>		
 			</tr>
 		</table>
 		
-			<form name="postFrm" method="post">
+			<form class="bottomMenu" name="postFrm" method="post">
 				<div style="float: right">
 					<% if(id == null) { %>			
 					<input type="hidden" name="id"> 

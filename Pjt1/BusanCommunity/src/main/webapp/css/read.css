@@ -1,9 +1,24 @@
+@import url('https://webfontworld.github.io/busan/Busan.css');
+:root{
+  --normal-line:1px solid;
+  
+  --light-gray:#dcdcdc90;
+  --medium-gray: #b4b4b4;
+  --dark-gray: #969696;
+
+  --font-17 : 17px;
+  --font-22 : 22px;
+  --font-25 : 25px;
+
+}
+
 body{
-	background-color: #e0e0e0;
+	background-color: #fff;
 	display: flex;
 	flex-direction: column;
 	justify-content : space-between;
 	height : auto !important;
+	background: var(--light-gray);
 }
 
 main{
@@ -12,47 +27,64 @@ main{
 	margin-bottom : 1vh;
 }
 
+.main,
+table.main{
+  border: var(--normal-line)var(--light-gray);
+  border-collapse: inherit;
+}
+
 
 
 main:nth-child(2){
-	margin-top: 60px;
-	flex-basis: 50%;
-	
+	margin-top: 100px;
+	flex-basis: 40%;
 }
+
 main:nth-child(3){
-	flex-basis: 15%;
+	flex-basis: 5%;
 }
 
 main:nth-child(4){
 	flex-basis: 20%;
 }
 
-main:nth-child(5) a{
-	color : blue;
-}
-
 main .main{
-	flex: .25;
+	width:500px;
 	background-color: white;
 }
+.title{
+	overflow:hidden;
+	text-align: center;
+    font-size: var(--font-25);
+    font-family: 'busan', sans-serif;
+}
 
+.content{
+	height: 320px;
+	overflow: auto;
+}
 main .main hr{
 	border-color: #e0e0e0;
 }
 
 main .main > *{
-	margin: 1vh 1vw;
+	margin:10px 0 10px 10px;
+	font-family: 'busan', sans-serif;
 }
 
 
 main .main thead{
-	height: 5vh;
+	height: 4vh;
 	text-align: center;
+	border:var(--normal-line)var(--light-gray);
 }
-
+main .main tbody{
+	border:var(--normal-line)var(--light-gray);
+	word-break: break-all;
+}
 main .main thead td{
   vertical-align: middle;
-  background-color : gray;
+  background: var(--light-gray);
 }
 
 main .main tbody td{
@@ -64,13 +96,21 @@ main .main tbody td > *{
 }
 
 
+main .main .info{
+	display: inline-flex;
+	width: 100%;
+}
+
 main .time-count{
 	display: flex;
+	align-items: center;
 }
 
 main .user{
-	display: flex;
 	align-items: center;
+	display:flex;
+	margin-right: 220px;
+    margin-left: 20px;
 }
 
 main .user img{
@@ -79,39 +119,52 @@ main .user img{
 	margin-right : 1vw;
 }
 
-main form {
-	flex: .25;
-	background-color: white;
-	text-align: right;
-	display: flex;
-	flex-direction: column;
+.buttons{
+	text-align: center;
+}
+.buttons a{
+	margin-right:20px;
+}
+.buttons a:hover{
+	color:var(--dark-gray);
 }
 
-
+main form {
+	background-color: white;
+	display: flex;
+	height: 40px;
+}
 
 main form .comment{
-	border-bottom: 1px solid #e0e0e0;
+	border: var(--normal-line)var(--light-gray);
 	text-align: left;
-	flex: .85;
 }
 
-main form .comment textarea{
-	width: 100%;	
-	height: 90%;
+main form .comment input{
+	width: 446px;	
 	padding: 1vh 1vw;
-	
-	
+}
+
+main form .comment input:focus{
+	outline: none;
+}
+
+.commentBtn{
+	text-align: right;
+}
+.commentBtn a{
+	margin-left:20px;
+}
+
+.commentBtn > a:hover{
+	color:var(--dark-gray);
 }
 
 main form .submit{
-	flex: 0.15;
-	display: flex;
-	justify-content: right;
-	align-items : center;
+	line-height: 30px;
 }
 
 main form .submit input{
-	margin-right : 1vw;
 	background-color : black;
 	color : white;
 	padding : .5vh .5vw;
@@ -123,3 +176,4 @@ main form .submit input{
 	color: #a0a0a0;
 	font-weight: bold;
 }
+

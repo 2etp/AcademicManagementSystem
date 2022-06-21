@@ -1,11 +1,26 @@
+:root{
+  --normal-line:1px solid;
+  
+  --light-gray:#dcdcdc90;
+  --medium-gray: #b4b4b4;
+  --dark-gray: #969696;
+
+  --font-17 : 17px;
+  --font-22 : 22px;
+  --font-25 : 25px;
+
+}
+
+
 main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #e0e0e0;
   padding-top: 100px;
   flex : 1;
+  background: var(--light-gray);
 }
+
 .main-section{
   display: flex;
   justify-content: space-between;
@@ -22,10 +37,16 @@ main {
   margin-right: 100px;
 }
 
+.main-section-left1{
+	border-left: var(--normal-line)var(--light-gray);
+	border-right: var(--normal-line)var(--light-gray);
+}
+
 .main-section-left1-header{
   display: flex;
   align-items: center;
   background-color: beige;
+  border-top:var(--normal-line)var(--light-gray);
 }
 
 .main-section-left1-header img{
@@ -44,11 +65,9 @@ main {
 
 .main-section-left1-item li{
   padding: 10px 10px;
+  border-bottom:var(--normal-line)var(--light-gray);
 }
 
-
-.main-section-left1-item a{
-}
 
 .main-section-left1-item hr{
   color: darkgray;
@@ -63,11 +82,6 @@ main {
   font-size: 14px;
   color: darkgray;
 }
-
-/* main-section-left2 */
-
-
-/* main-section-center */
 
 .main-section-center{
   margin-right: 100px;
@@ -86,7 +100,7 @@ main {
 }
 
 .main-section-center .content-table td a > *{
-  margin-bottom: 2vh;
+  margin-bottom: 3vh;
 }
 
 .main-section-center .content-table thead{
@@ -95,10 +109,53 @@ main {
   
 }
 
+.main-section-center table.pageNum{
+	margin:20px auto;
+}
+
+table.pageNum tbody tr td{
+	width: 30px;
+    height: 30px;
+}
+
+table.pageNum tbody tr td div{
+    display: inline-flex;
+}
+
+form.bottomMenu{
+	text-align: center;
+}
+
+form.bottomMenu div{
+	display:inline-flex;
+	padding-bottom: 30px;
+}
+
+form.bottomMenu input,
+form.bottomMenu a{
+	margin-right:20px;
+}
+
+form.bottomMenu div input:hover,
+form.bottomMenu div a:hover{
+	color: var(--dark-gray);
+}
+
+a.num{
+  margin-right: 20px;
+}
+
+a.num:hover{
+  color: var(--dark-gray);
+}
+
+
 .main-section-center .content-table thead td{
   height: 5vh;
   vertical-align: middle;
-  background-color : gray;
+  font-size: var(--font-22);
+  text-align:center;
+  background: var(--dark-gray);
 }
 
 .main-section-center .content-table tbody td{
@@ -118,12 +175,16 @@ main {
 .main-section-center .content-table .boardUser{
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 
 .main-section-center .content-table .boardUser img{
   width: 25px;
   height: 25px;
   margin-right : 1vw;
+}
+.main-section-center .boardTitle{
+	font-size:22px;
 }
 
 .main-section-center .boardCount{
@@ -139,10 +200,20 @@ main {
 .main-section-center .boardCount span{
 	font-size: 20px;
 }
-
+.main-section-center .boardCount .count{
+	display: flex;
+}
 
 .main-section-center .search {
-  border: 1px solid black;
+  border:var(--normal-line)var(--medium-gray);
+  height: 40px;
+  border-radius: 30px;
+}
+
+.main-section-center .search form{
+	height: 38px;
+    background: white;
+    border-radius: 30px 30px 30px 30px;
 }
 
 .main-section-center .search table{
@@ -150,17 +221,26 @@ main {
 }
 
 .main-section-center .search input{
-  width: 90%;
+    height: 37px;
+    width: 92%;
+    padding-left: 20px;
+    border-radius: 30px 0 0 30px;
+    background: var(--light-gray);
+}
+
+.main-section-center .search input:focus { 
+  outline: none; 
 }
 
 .main-section-center .search button{
-  background-color: aquamarine;
-  width: 9%;
+    background-color:white;
+    height: 38px;
+    border-radius: 0 30px 30px 0;
+    position: fixed;
 }
 
 .main-section-center .search button span{
-  font-size: 50px;
-  height: 50px;
+  font-size: 38px;
 }
 
 
@@ -197,6 +277,15 @@ main {
   overflow: hidden;
 }
 
+.left,
+.right{
+	display: flex;
+    align-items: center;
+}
+
+footer{
+	border-top: 1px solid var(--dark-gray);
+}
 /*
 .main-section-right .realtimerank .realtimerank-item{ 
   position: relative;

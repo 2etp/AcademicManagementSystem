@@ -68,7 +68,7 @@
 
 <html>
 <head>
-<title>JSP Board</title>
+<title>잘놀다갑니다</title>
 <link rel="stylesheet" href="./css/destyle.css">
 <link href="./css/read.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="./css/common.css">
@@ -86,7 +86,7 @@
    }
    
    function commentLogin() {
-		var commentTextareaEl = document.querySelector("textarea[name='commentContent']");
+		var commentTextareaEl = document.querySelector("input[name='commentContent']");
 		
       <% if(id == null) { %>
          alert("로그인해 주세요.");
@@ -132,18 +132,13 @@
       </div>
     </div>
   </header>
+  
    <main>
       <div class="main">
          <div class="title">
             <%=boardTitle%>
          </div>
-         <div class="time-count">
-            <div class="time"><%=boardRegdate%></div>
-            &nbsp;
-            <div>|</div>
-            &nbsp;
-            <div class="count">조회수 <%=boardCount%></div>
-         </div>
+		<div class="info">
          <div class="user">
             <% if(profileImage != null) { %>
             <img src="./images/<%=profileImage%>"/>
@@ -151,31 +146,40 @@
             <img src="./images/ProfileImage.jpg"/>
             <% } %>
             <div class="name"><%=boardWriter%></div>
+         </div>         
+         <div class="time-count">
+            <div class="time"><%=boardRegdate%></div>
+            &nbsp;
+            <div>|</div>
+            &nbsp;
+            <div class="count">조회수 <%=boardCount%></div>
+         </div>
          </div>
          <hr>
          <div class="content">
             <%=boardContent%>   
          </div>
-         <div>
+         <div class="buttons">
             <%
              if(id != null && id.equals(boardWriter)) {
              %> 
-	         [ <a href="javascript:list()" >리스트</a> |
-	         <a href="update.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>" >수 정</a> |
-	         <a href="delete.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>">삭 제</a> ]<br/>
+	          <a href="javascript:list()">목 록</a> 
+	         <a href="update.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>" >수 정</a> 
+	         <a href="delete.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>">삭 제</a>
 	         <% } else { %>
-	         [ <a href="javascript:list()" >리스트</a> ]
+	          <a href="javascript:list()" >목 록</a> 
 	         <% }%>
          </div>
       </div>
    </main>
+   
 <main>
       <!-- 댓글 기능 -->
       <form name="commentFrm" method="post" action="commentPost" enctype="multipart/form-data">
          <div class="comment">
-            <textarea name="commentContent" placeholder="댓글 등록하기"></textarea>
+            <input type="text" name="commentContent" placeholder="댓글 등록하기"></input>
          </div>
-         
+        
          <!-- 댓글을 등록한 사용자의 IP 주소를 가져옴 -->
          <input type="hidden" name="commentIp" value="<%=request.getRemoteAddr()%>">
          <input type="hidden" name="commentWriter" value="<%=id%>">
@@ -183,8 +187,7 @@
          <input type="hidden" name="nowPage" value="<%=nowPage%>">
          <div class="submit">
             <input type="button"  id="commentSubmit" value="등록" onClick="commentLogin()">
-         </div>
-         
+         </div>    
       </form>
    </main>
    <main>
@@ -214,7 +217,8 @@
                 
              %>
              <tr>
-                <td>
+     			<td>
+                <div class="info">
                    <!-- 댓글 작성자 이름 -->
                    <div class="user">
                      <% if(profileImage != null) { %>
@@ -222,20 +226,20 @@
                      <% } else {%>
                      <img src="./images/ProfileImage.jpg"/>
                      <% } %>
-                     <div class="name"><%=commentWriter%></div>
-                    </div>
+                     <div class="name"><%=commentWriter%></div></div>
                    <!-- 댓글 작성 날짜 -->
-                   <div class="time-count"><%=commentRegdate%></div>
+                   <div class="time-count" style="margin-left:50px;"><%=commentRegdate%></div>
+                  </div>
                    <div><%=commentContent%></div>
      
                     <%
                       if(id != null && id.equals(commentWriter)) {
                    %> 
-                   <div>
-                      [ <a href="read.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>&commentRef=<%=commentRef%>">답변</a> |
-                      <a href="deleteComment.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>&commentSeq=<%=commentSeq%>">삭 제</a> ]<br/>
+                   <div class="commentBtn">
+                      <a href="read.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>&commentRef=<%=commentRef%>">답 변</a> 
+                      <a href="deleteComment.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>&commentSeq=<%=commentSeq%>">삭 제</a>
                       <% } else { %>
-                      [ <a href="read.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>&commentRef=<%=commentRef%>" >답변</a> ]
+                      <a class="nonLogin" href="read.jsp?nowPage=<%=nowPage%>&boardSeq=<%=boardSeq%>&commentRef=<%=commentRef%>" >답 변</a>
                       <% }%>           
                     </div>
                    <% } %>
@@ -244,10 +248,6 @@
          </tbody>
       </table>   
    </main>   
-   
-   <main>
-      <a href=./community.jsp>목록으로</a>
-   </main>
     
    <!-- 대댓글 기능 -->
 <%--    <form name="replycommentFrm" method="post" action="replyCommentPost" enctype="multipart/form-data">
@@ -279,7 +279,6 @@
    <footer>
     <div class="footer">
       <div class="footer-information">
-        <br><br>
         팀장 : 박휘원 | 전화번호 : 010-4623-0195 <br><br>
         팀원 : 송민영 | 전화번호 : 010-8800-3995 <br><br>
         팀원 : 최낙원 | 전화번호 : 010-9753-0266 <br><br>
