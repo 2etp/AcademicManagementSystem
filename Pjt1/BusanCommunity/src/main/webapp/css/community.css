@@ -75,7 +75,8 @@ main {
 
 
 .main-section-left1-item div:first-child{
-  margin-bottom: 10px;
+      height: 2vw;
+    line-height: 2vw;
 }
 
 .main-section-left1-item div+div{
@@ -222,7 +223,7 @@ a.num:hover{
 
 .main-section-center .search input{
     height: 37px;
-    width: 92%;
+    width: 90%;
     padding-left: 20px;
     border-radius: 30px 0 0 30px;
     background: var(--light-gray);
@@ -236,7 +237,6 @@ a.num:hover{
     background-color:white;
     height: 38px;
     border-radius: 0 30px 30px 0;
-    position: fixed;
 }
 
 .main-section-center .search button span{

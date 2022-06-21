@@ -157,14 +157,12 @@
           <ul class="main-section-left1-item">
             <li>
               <a href="javascript:void(0)">
-                <div>회사생활</div>
-                <div>참여자</div>
+                <div>여행</div>
               </a>
             </li>
             <li>
               <a href="javascript:void(0)">
                 <div>모두의 토론</div>
-                <div>참여자</div>
               </a>
             </li>
           </ul>
