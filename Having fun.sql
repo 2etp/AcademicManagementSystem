@@ -59,7 +59,7 @@ CREATE TABLE `tblboard` (
   `board_filename` varchar(45) DEFAULT NULL,
   `board_filesize` int DEFAULT NULL,
   PRIMARY KEY (`board_seq`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,7 +68,7 @@ CREATE TABLE `tblboard` (
 
 LOCK TABLES `tblboard` WRITE;
 /*!40000 ALTER TABLE `tblboard` DISABLE KEYS */;
-INSERT INTO `tblboard` VALUES (2,'test','dtdt','<p>dfdsfs</p>',0,'2022-06-17','0:0:0:0:0:0:0:1',67,NULL,0),(11,'raid','acbd','smart',0,'2022-06-18','0:0:0:0:0:0:0:1',77,NULL,0),(13,'test','ㅇㅅㅇ','<p>ㅇㄹㅇㄴㄹㄴㄹㅇㄴ</p><p>ㄴㄹㄴㅇㄹㄴㅇㄹㄴ</p><p><br></p><p>ㄴㅇ</p><p>ㅇㄴ</p><p>ㅎㄴ</p>',0,'2022-06-19','0:0:0:0:0:0:0:1',3,NULL,0),(14,'test','ㄴㅇㄹㄶㅇㄴ','<p>ㄴㅇㅎㅇㅎㅇㅁㅎㅁㅎㅁㅎㅁ</p>',0,'2022-06-19','0:0:0:0:0:0:0:1',0,NULL,0),(15,'test','ㅁㄻㅎㅁㅎㅁㅎ','<p>ㅇㄻㄻ</p>',0,'2022-06-19','0:0:0:0:0:0:0:1',6,NULL,0),(16,'test','ㅁㄻㄻㄴㄹ','<p>ㅇㅁㅎㅁㅎㅁㅇㅎㅁㅇㄴ</p>',0,'2022-06-19','0:0:0:0:0:0:0:1',3,NULL,0),(17,'test','ㅁㄴㄻㄻㅁㄹ','<p>ㅁㄴㄹㄴㅁㄻㄹ</p>',0,'2022-06-19','0:0:0:0:0:0:0:1',38,NULL,0),(19,'test1','힘내','힘 내세요',0,'2022-06-20','0:0:0:0:0:0:0:1',0,NULL,0),(20,'test1','넹','네네넹',0,'2022-06-20','0:0:0:0:0:0:0:1',1,NULL,0);
+INSERT INTO `tblboard` VALUES (21,'test1','게시글 테스트1','게시글 테스트입니다1',0,'2022-06-21','0:0:0:0:0:0:0:1',1,NULL,0),(22,'test1','게시글 테스트2','<p>게시글 테스트입니다2</p>',0,'2022-06-21','0:0:0:0:0:0:0:1',1,NULL,0),(23,'test1','게시글 테스트3','<p>게시글 테스트입니다3</p>',0,'2022-06-21','0:0:0:0:0:0:0:1',0,NULL,0),(24,'test1','게시글 테스트4','<p>게시글 테스트입니다4</p>',0,'2022-06-21','0:0:0:0:0:0:0:1',0,NULL,0),(25,'test1','게시글 테스트5','<p>게시글 테스트입니다5</p>',0,'2022-06-21','0:0:0:0:0:0:0:1',0,NULL,0),(26,'test1','게시글 테스트6','<p>게시글 테스트입니다6</p>',0,'2022-06-21','0:0:0:0:0:0:0:1',0,NULL,0),(27,'test1','게시글 테스트7','<p>게시글 테스트입니다7</p>',0,'2022-06-21','0:0:0:0:0:0:0:1',0,NULL,0),(28,'test1','게시글 테스트8','<p>게시글 테스트입니다8</p>',0,'2022-06-21','0:0:0:0:0:0:0:1',0,NULL,0),(29,'test1','게시글 테스트9','<p>게시글 테스트입니다9</p>',0,'2022-06-21','0:0:0:0:0:0:0:1',0,NULL,0),(30,'test1','게시글 테스트10','<p>게시글 테스트입니다10</p>',0,'2022-06-21','0:0:0:0:0:0:0:1',0,NULL,0),(31,'test1','게시글 테스트11','<p>게시글 테스트입니다11</p>',0,'2022-06-21','0:0:0:0:0:0:0:1',0,NULL,0),(32,'test1','게시글 테스트12','<p>게시글 테스트입니다12</p>',0,'2022-06-21','0:0:0:0:0:0:0:1',0,NULL,0),(33,'test1','게시글 테스트13','<p>게시글 테스트입니다13</p>',0,'2022-06-21','0:0:0:0:0:0:0:1',1,NULL,0);
 /*!40000 ALTER TABLE `tblboard` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -92,7 +92,7 @@ CREATE TABLE `tblcomment` (
   PRIMARY KEY (`comment_seq`),
   KEY `tblcomment_ibfk` (`comment_board`),
   CONSTRAINT `tblcomment_ibfk` FOREIGN KEY (`comment_board`) REFERENCES `tblboard` (`board_seq`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -101,7 +101,7 @@ CREATE TABLE `tblcomment` (
 
 LOCK TABLES `tblcomment` WRITE;
 /*!40000 ALTER TABLE `tblcomment` DISABLE KEYS */;
-INSERT INTO `tblcomment` VALUES (5,2,'test','dtd','2022-06-17',0,1,0,'0:0:0:0:0:0:0:1'),(16,2,'test','dtdt','2022-06-18',0,16,0,'0:0:0:0:0:0:0:1'),(17,2,'raid','넹','2022-06-18',0,17,0,'0:0:0:0:0:0:0:1'),(27,11,'raid','넹','2022-06-18',0,18,0,'0:0:0:0:0:0:0:1'),(28,11,'raid','ㅇㅇ','2022-06-18',0,28,0,'0:0:0:0:0:0:0:1'),(29,11,'raid','ㅇㅇㅇㅇ','2022-06-18',0,29,0,'0:0:0:0:0:0:0:1'),(30,11,'test','넹','2022-06-18',0,30,0,'0:0:0:0:0:0:0:1'),(31,11,'test','테스트입니다!','2022-06-18',0,31,0,'0:0:0:0:0:0:0:1'),(32,11,'test','니얼굴이다','2022-06-18',0,32,0,'0:0:0:0:0:0:0:1'),(33,11,'raid','dd','2022-06-18',0,33,0,'0:0:0:0:0:0:0:1'),(34,11,'test','dfdfd','2022-06-18',0,34,0,'0:0:0:0:0:0:0:1'),(39,17,'null','','2022-06-20',0,39,0,'0:0:0:0:0:0:0:1'),(41,16,'test1','sdfsg','2022-06-20',0,41,0,'0:0:0:0:0:0:0:1'),(42,17,'test1','dd','2022-06-20',0,42,0,'0:0:0:0:0:0:0:1'),(58,20,'test1','관리자에 의해 삭제되었습니다.','2022-06-20',0,58,0,'0:0:0:0:0:0:0:1'),(59,20,'test1','관리자에 의해 삭제되었습니다.','2022-06-20',0,59,0,'0:0:0:0:0:0:0:1');
+INSERT INTO `tblcomment` VALUES (74,33,'test1','test1','2022-06-21',0,1,0,'0:0:0:0:0:0:0:1'),(76,33,'test1','관리자에 의해 삭제되었습니다.','2022-06-21',0,75,0,'0:0:0:0:0:0:0:1');
 /*!40000 ALTER TABLE `tblcomment` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -204,7 +204,7 @@ CREATE TABLE `tblnotice` (
 
 LOCK TABLES `tblnotice` WRITE;
 /*!40000 ALTER TABLE `tblnotice` DISABLE KEYS */;
-INSERT INTO `tblnotice` VALUES (1,'공지사항1','니 얼굴 윤겔라'),(2,'공지사항2','니 얼굴 후딘'),(3,'공지사항3','니 얼굴 롱스톤'),(4,'공지사항4','니 얼굴 루주라'),(5,'공지사항5','5'),(6,'공지사항6','6');
+INSERT INTO `tblnotice` VALUES (1,'공지사항1','test1'),(2,'공지사항2','test2'),(3,'공지사항3','test3'),(4,'공지사항4','test4'),(5,'공지사항5','test5'),(6,'공지사항6','test6');
 /*!40000 ALTER TABLE `tblnotice` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -281,4 +281,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-20 17:58:54
+-- Dump completed on 2022-06-22  9:09:04
