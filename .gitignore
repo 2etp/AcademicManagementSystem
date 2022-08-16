@@ -85,7 +85,6 @@ local.properties
 *.jar
 *.nar
 *.ear
-*.zip
 *.tar.gz
 *.rar
 
