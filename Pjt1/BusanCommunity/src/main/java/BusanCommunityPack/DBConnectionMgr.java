@@ -9,9 +9,9 @@ import BusanCommunityPack.DBConnectionMgr;
 public class DBConnectionMgr {
     private Vector connections = new Vector(10);
     private String _driver = "com.mysql.cj.jdbc.Driver",
-    _url = "jdbc:mysql://localhost:4020/busancommunity",
+    _url = "jdbc:mysql://localhost:9753/busancommunity",
     _user = "root",
-    _password = "1234";
+    _password = "0266";
     private boolean _traceOn = true;
     private boolean initialized = false;
     private int _openConnections = 10;
